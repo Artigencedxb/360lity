@@ -10,4 +10,7 @@ body {
   h1 {
     @apply font-medium text-[35px] md:text-[40px];
   }
+  h2 {
+    @apply font-bold text-[30px] md:text-[35px];
+  }
 }

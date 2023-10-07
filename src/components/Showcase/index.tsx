@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
-import { Logo } from "../../../assets";
 import ShowcaseBox from "./ShowcaseBox";
+import { Logo } from "@/assets";
 
 const Showcase = () => {
   return (

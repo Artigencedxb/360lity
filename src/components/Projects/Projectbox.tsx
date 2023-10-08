@@ -11,7 +11,7 @@ const ProjextsBox: React.FC<{
   return (
     <div
       onClick={() => router.push(`/projects/${data?.id}`)}
-      className={cn("h-[180px] rounded-[12px]", className)}
+      className={cn("h-[180px] rounded-[12px] triangle-box", className)}
     >
       {data?.name}
     </div>

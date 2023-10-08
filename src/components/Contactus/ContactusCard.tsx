@@ -5,7 +5,7 @@ import React from "react";
 const ContactusCard = () => {
   return (
     <div className="flex flex-col gap-4 md:w-[300px]">
-      <div className="bg-black h-[210px] rounded-[15px]"></div>
+      <div className="bg-black h-[210px] rounded-[15px] triangle-box"></div>
       <div className="bg-white rounded-[15px] p-8">
         <div className="text-sm font-normal whitespace-pre-wrap">
           Ready to embark on a journey beyond reality? Contact us today, and

@@ -20,7 +20,7 @@ const Aboutus = () => {
         <h1>About us</h1>
       </div>
 
-      <div className="bg-black rounded-[10px] w-full py-20 flex items-center justify-center">
+      <div className="bg-black rounded-[10px] w-full py-20 flex items-center justify-center triangle-box2">
         <Image src={LogoWhite} alt="" />
       </div>
       <div className="bg-white rounded-[15px] py-8 px-14">

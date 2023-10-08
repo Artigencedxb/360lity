@@ -10,7 +10,7 @@ const BlogCard: React.FC<{ data: IBlog }> = ({ data }) => {
   };
   return (
     <div className="flex flex-col gap-4">
-      <div className="bg-black w-full h-[210px] rounded-[15px]"></div>
+      <div className="bg-black w-full h-[210px] rounded-[15px] triangle-box"></div>
       <div className="bg-white rounded-[15px] p-5">
         <h4 className="text-sm font-semibold">{data?.title}</h4>
         <div className="text-sm font-normal whitespace-pre-wrap">

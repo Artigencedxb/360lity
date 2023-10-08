@@ -14,3 +14,27 @@ body {
     @apply font-bold text-[30px] md:text-[35px];
   }
 }
+
+.triangle-box {
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    99% 100%,
+    57% 100%,
+    50% 90%,
+    43% 100%,
+    0 100%
+  );
+}
+
+.triangle-box2 {
+  clip-path: polygon(
+    0% 0%,
+    100% 0,
+    100% 100%,
+    51% 100%,
+    50% 90%,
+    49% 100%,
+    0 100%
+  );
+}

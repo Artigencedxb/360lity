@@ -7,6 +7,13 @@ import LogoWhite from "./360-white.svg";
 import MailIcon from "./mail.svg";
 import WhatsappIcon from "./whatsapp.svg";
 
+//Arrows
+import RightArrow from "./arrow-right.svg";
+import LeftArrow from "./arrow-left.svg";
+
+//map
+import UaeMap from "./uae-map.svg";
+
 export {
   Logo,
   LogoText,
@@ -16,4 +23,7 @@ export {
   ShareIcon,
   MailIcon,
   WhatsappIcon,
+  LeftArrow,
+  RightArrow,
+  UaeMap,
 };

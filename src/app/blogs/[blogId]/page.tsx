@@ -1,4 +1,4 @@
-import { Logo, LogoWhite, RightArrowIcon, ShareIcon } from "@/assets";
+import { Logo, LogoView, LogoWhite, RightArrowIcon, ShareIcon } from "@/assets";
 import ProjectDetails from "@/components/Projects/ProjectDetails";
 import { BlogData } from "@/data/blog";
 import { projectData } from "@/data/projects";

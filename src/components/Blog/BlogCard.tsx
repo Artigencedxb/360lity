@@ -15,7 +15,10 @@ const BlogCard: React.FC<{ data: IBlog }> = ({ data }) => {
         <h4 className="text-sm font-semibold">{data?.title}</h4>
         <div className="text-sm font-normal whitespace-pre-wrap">
           {data?.description1?.slice(0, 400)}
-          <span onClick={toggleReadMore} className="text-[#0060E4]">
+          <span
+            onClick={toggleReadMore}
+            className="text-[#0060E4] cursor-pointer"
+          >
             {"...Read more"}
           </span>
         </div>

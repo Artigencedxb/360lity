@@ -2,14 +2,12 @@ import { Logo } from "@/assets";
 import Image from "next/image";
 import React from "react";
 import MapSlider from "./Map-Slider";
+import Header from "@/common/Header";
 
 const Explore = () => {
   return (
     <div className="py-10">
-      <div className="flex items-center gap-3">
-        <Image src={Logo} alt="" />
-        <h1>Explore</h1>
-      </div>
+      <Header heading="Explore" />
       <div className="mt-5">
         <p className="text-sm font-medium">Embark on a Journey of Discovery</p>
         <p className="text-sm font-medium">

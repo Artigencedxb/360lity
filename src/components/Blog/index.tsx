@@ -5,14 +5,12 @@ import { Logo } from "@/assets";
 import { projectData } from "@/data/projects";
 import { BlogData } from "@/data/blog";
 import BlogCard from "./BlogCard";
+import Header from "@/common/Header";
 
 const Blog = () => {
   return (
     <div className="py-10">
-      <div className="flex items-center gap-3">
-        <Image src={Logo} alt="" />
-        <h1>Blog</h1>
-      </div>
+      <Header heading="Blog" />
       <div className="mt-5">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-5 gap-y-10">
           {BlogData?.map((data) => {

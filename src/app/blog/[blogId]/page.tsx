@@ -1,4 +1,5 @@
 import { Logo, LogoView, LogoWhite, RightArrowIcon, ShareIcon } from "@/assets";
+import Header from "@/common/Header";
 import ProjectDetails from "@/components/Projects/ProjectDetails";
 import { BlogData } from "@/data/blog";
 import { projectData } from "@/data/projects";
@@ -24,10 +25,7 @@ const BlogPage: React.FC<{ params: { blogId: number } }> = ({ params }) => {
   const conc = blog?.conclusion1! + blog?.conclusion2 ?? "";
   return (
     <div className="py-10 space-y-5">
-      <div className="flex items-center gap-3">
-        <Image src={Logo} alt="" />
-        <h1>Blog</h1>
-      </div>
+      <Header heading="Blog" />
 
       <div className="bg-black rounded-[10px] w-full py-20 flex items-center justify-center">
         <Image src={LogoWhite} alt="" />

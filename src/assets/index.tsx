@@ -14,6 +14,15 @@ import LeftArrow from "./arrow-left.svg";
 //map
 import UaeMap from "./uae-map.svg";
 
+//Footer
+import FacebookIcon from "./facebook.svg";
+import InstagramIcon from "./instagram.svg";
+import TiktokIcon from "./tik-tok.svg";
+import TwitterIcon from "./twitter.svg";
+import YoutubeIcon from "./youtube.svg";
+import FooterLogo from "./footer-logo.svg";
+import FooterQr from "./footer-qr.svg";
+
 export {
   Logo,
   LogoText,
@@ -26,4 +35,11 @@ export {
   LeftArrow,
   RightArrow,
   UaeMap,
+  FacebookIcon,
+  FooterLogo,
+  FooterQr,
+  InstagramIcon,
+  TiktokIcon,
+  TwitterIcon,
+  YoutubeIcon,
 };

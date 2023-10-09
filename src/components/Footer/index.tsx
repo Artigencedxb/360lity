@@ -62,8 +62,8 @@ const Footer = () => {
             E mail
           </Link>
         </div>
-        <div className="col-span-2 lg:col-span-1 flex items-center justify-center">
-          <div className="bg-white w-full triangle-box flex items-center justify-between rounded-[15px] p-5 gap-14">
+        <div className=" flex items-center justify-center flex-col gap-2">
+          <div className="bg-white w-full triangle-box flex items-center justify-between rounded-[15px] p-5 gap-10">
             <Image
               src={FooterLogo}
               alt="Footer Logo"
@@ -71,6 +71,7 @@ const Footer = () => {
             />
             <Image src={FooterQr} alt="Footer Qr" className="rounded-[15px]" />
           </div>
+          <p className="text-xs">copyright All rights reserved 360lity.com</p>
         </div>
       </div>
     </footer>

@@ -1,5 +1,8 @@
+//Logo
 import Logo from "./360lity-logo.svg";
 import LogoText from "./360lity-text-logo.svg";
+import LogoMain from "./logo-main.svg";
+
 import ShareIcon from "./share.svg";
 import RightArrowIcon from "./right.svg";
 import LogoView from "./360.svg";
@@ -42,4 +45,5 @@ export {
   TiktokIcon,
   TwitterIcon,
   YoutubeIcon,
+  LogoMain,
 };

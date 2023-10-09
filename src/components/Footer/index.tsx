@@ -15,7 +15,7 @@ import React from "react";
 const Footer = () => {
   return (
     <footer className="bg-black px-[3.5rem] md:px-[4.5rem] xl:px-[6rem] text-white">
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-5 py-12 gap-y-4 lg:gap-y-0">
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 py-12 gap-y-8 lg:gap-y-0">
         <div className="space-y-3 flex justify-center flex-col items-center">
           <Image src={LogoWhite} alt="White logo" width={37} height={37} />
           <p className="text-sm font-normal">360lity.com</p>

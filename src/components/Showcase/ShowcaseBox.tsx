@@ -8,6 +8,8 @@ const ShowcaseBox: React.FC<{
   src: string;
   name: string;
 }> = ({ className, src, name }) => {
+  console.log(className, "class");
+
   return (
     <div
       className={cn(

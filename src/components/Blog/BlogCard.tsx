@@ -10,11 +10,13 @@ const BlogCard: React.FC<{ data: IBlog }> = ({ data }) => {
   };
   return (
     <div className="flex flex-col gap-4">
-      <div className="bg-black w-full h-[210px] rounded-[15px] triangle-box"></div>
+      <div className="bg-black w-full h-[180px] md:h-[210px] rounded-[15px] triangle-box"></div>
       <div className="bg-white rounded-[15px] p-5">
         <h4 className="text-sm font-semibold">{data?.title}</h4>
         <div className="text-sm font-normal whitespace-pre-wrap">
-          {data?.description1?.slice(0, 400)}
+          <div className="hidden md:block">
+            {data?.description1?.slice(0, 400)}
+          </div>
           <span
             onClick={toggleReadMore}
             className="text-[#0060E4] cursor-pointer"

@@ -12,8 +12,8 @@ export default function Home() {
       <Showcase />
       <Projects />
       <Blog />
-      <Aboutus />
       <Explore />
+      <Aboutus />
       <Contactus />
     </div>
   );

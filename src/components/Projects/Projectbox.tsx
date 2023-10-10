@@ -2,6 +2,8 @@
 import React from "react";
 import cn from "classnames";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
+import { LogoView } from "@/assets";
 
 const ProjectsBox: React.FC<{
   data:
@@ -13,17 +15,18 @@ const ProjectsBox: React.FC<{
   return (
     <div
       onClick={() => router.push(`/projects/${data?.id}`)}
-      className={cn("h-[180px] rounded-[12px] triangle-box", className)}
+      className={cn(
+        "h-[180px] relative w-full rounded-[12px] triangle-box",
+        className
+      )}
     >
       {data?.src?.length ? (
-        <iframe
+        <Image
           src={data?.src}
-          name="galaxy"
-          className="rounded-[12px]"
-          height="100%%"
-          width="100%%"
-          allowFullScreen
-        ></iframe>
+          fill
+          className="rounded-[12px] object-cover"
+          alt={data?.name}
+        />
       ) : (
         data?.name
       )}

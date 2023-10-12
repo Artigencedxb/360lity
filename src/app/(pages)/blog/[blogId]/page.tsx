@@ -1,5 +1,6 @@
 import { Logo, LogoView, LogoWhite, RightArrowIcon, ShareIcon } from "@/assets";
 import Header from "@/common/Header";
+import Triangle from "@/common/Triangle";
 import ProjectDetails from "@/components/Projects/ProjectDetails";
 import { BlogData } from "@/data/blog";
 import { projectData } from "@/data/projects";
@@ -27,8 +28,9 @@ const BlogPage: React.FC<{ params: { blogId: number } }> = ({ params }) => {
     <div className="py-10 space-y-5">
       <Header heading="Blog" />
 
-      <div className="bg-black rounded-[10px] w-full py-20 flex items-center justify-center">
+      <div className="bg-black rounded-[10px] w-full py-20 relative flex items-center justify-center">
         <Image src={LogoWhite} alt="" />
+        <Triangle />
       </div>
       <div className="bg-white rounded-[15px] p-5">
         <div className="text-sm font-semibold whitespace-pre-wrap">

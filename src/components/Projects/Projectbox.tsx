@@ -4,6 +4,7 @@ import cn from "classnames";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { LogoView } from "@/assets";
+import Triangle from "@/common/Triangle";
 
 const ProjectsBox: React.FC<{
   data:
@@ -16,10 +17,11 @@ const ProjectsBox: React.FC<{
     <div
       onClick={() => router.push(`/projects/${data?.id}`)}
       className={cn(
-        "h-[120px] sm:h-[180px] relative w-full rounded-[12px] triangle-box",
+        "h-[120px] sm:h-[180px] relative w-full rounded-[12px]",
         className
       )}
     >
+      <Triangle />
       {data?.src?.length ? (
         <Image
           src={data?.src}

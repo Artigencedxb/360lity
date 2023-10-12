@@ -4,7 +4,7 @@ import React from "react";
 
 const loading = () => {
   return (
-    <div className="bg-white flex items-center justify-center">
+    <div className="bg-white flex items-center h-screen justify-center">
       <Image src={LogoMain} alt="360lity Logo" />
     </div>
   );

@@ -1,20 +1,14 @@
-import Image from "next/image";
-import Showcase from "../components/Showcase";
-import Projects from "../components/Projects";
-import Blog from "@/components/Blog";
-import Aboutus from "@/components/Aboutus";
-import Contactus from "@/components/Contactus";
-import Explore from "@/components/Explore";
-
 export default function Home() {
   return (
-    <div className="">
-      <Showcase />
-      <Projects />
-      <Blog />
-      <Explore />
-      <Aboutus />
-      <Contactus />
+    <div className="h-screen">
+      <iframe
+        src="https://360lity.com/projects/web/"
+        name="360lity"
+        scrolling="no"
+        width="100%"
+        height="100%"
+        allowFullScreen
+      ></iframe>
     </div>
   );
 }

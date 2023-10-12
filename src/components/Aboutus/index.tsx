@@ -1,4 +1,5 @@
 import { Logo, LogoView, LogoWhite } from "@/assets";
+import Triangle from "@/common/Triangle";
 import { AboutusData } from "@/data/Aboutus";
 import Image from "next/image";
 
@@ -20,8 +21,9 @@ const Aboutus = () => {
         <h1>About us</h1>
       </div>
 
-      <div className="bg-black rounded-[10px] w-full py-20 flex items-center justify-center triangle-box2">
+      <div className="bg-black rounded-[10px] relative w-full py-20 flex items-center justify-center">
         <Image src={LogoWhite} alt="" />
+        <Triangle />
       </div>
       <div className="bg-white rounded-[15px] py-8 px-14">
         <div className="text-sm font-semibold whitespace-pre-wrap">

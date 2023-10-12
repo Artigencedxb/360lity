@@ -2,6 +2,7 @@
 import Logo from "./360lity-logo.svg";
 import LogoText from "./360lity-text-logo.svg";
 import LogoMain from "./logo-main.svg";
+import LogoNavigation from "./logo-navigation.svg";
 
 import ShareIcon from "./share.svg";
 import RightArrowIcon from "./right.svg";
@@ -46,4 +47,5 @@ export {
   TwitterIcon,
   YoutubeIcon,
   LogoMain,
+  LogoNavigation,
 };

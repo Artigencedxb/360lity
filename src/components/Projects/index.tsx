@@ -12,13 +12,7 @@ const Projects = () => {
       <div className="mt-5">
         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-5 gap-y-10">
           {projectData?.map((data) => {
-            return (
-              <ProjectsBox
-                key={data?.id}
-                data={data}
-                className="bg-green-800"
-              />
-            );
+            return <ProjectsBox key={data?.id} data={data} />;
           })}
         </div>
       </div>

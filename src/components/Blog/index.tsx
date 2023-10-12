@@ -12,7 +12,7 @@ const Blog = () => {
     <div className="py-10">
       <Header heading="Blog" />
       <div className="mt-5">
-        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-5 gap-y-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-5 gap-y-10">
           {BlogData?.map((data) => {
             return <BlogCard key={data?.id} data={data} />;
           })}

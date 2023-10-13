@@ -7,7 +7,7 @@ import Header from "@/common/Header";
 
 const Projects = () => {
   return (
-    <div className="py-10">
+    <div className="py-[4.3rem] md:py-10">
       <Header heading="Projects" />
       <div className="mt-5">
         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-5 gap-y-10">

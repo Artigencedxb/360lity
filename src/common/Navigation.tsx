@@ -43,10 +43,10 @@ const Navigation = () => {
   };
   return (
     <div
-      className="absolute z-30 top-0 right-0 px-[1.5rem] space-y-2"
+      className="absolute z-30 top-0 right-0 px-[2rem] sm:px-[3rem] lg:px-[1.5rem] space-y-2"
       ref={ref}
     >
-      <div className="bg-white w-[140px] h-[125px] p-7 relative rounded-[10px] flex items-center justify-center">
+      <div className="bg-white w-[140px] h-[125px] p-7 relative rounded-bl-[10px] rounded-br-[10px] flex items-center justify-center">
         <Link href="/">
           <Image src={LogoText} alt="360 lity logo" />
         </Link>

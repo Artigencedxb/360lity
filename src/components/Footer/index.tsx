@@ -8,18 +8,19 @@ import {
   TwitterIcon,
   YoutubeIcon,
 } from "@/assets";
+import Triangle from "@/common/Triangle";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
 const Footer = () => {
   return (
-    <footer className="bg-black px-[3.5rem] md:px-[4.5rem] xl:px-[6rem] text-white">
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 py-12 gap-y-8 lg:gap-y-0">
+    <footer className="bg-black text-white">
+      <div className="lg:max-w-6xl px-[2rem] sm:px-[3rem] lg:px-[1.5rem] gap-x-4 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 py-12 gap-y-8 lg:gap-y-0">
         <div className="space-y-3 flex justify-center flex-col items-center">
           <Image src={LogoWhite} alt="White logo" width={37} height={37} />
           <p className="text-sm font-normal">360lity.com</p>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-3">
             <Image src={FacebookIcon} alt="Facebook icon" />
             <Image src={InstagramIcon} alt="Instagram icon" />
             <Image src={TiktokIcon} alt="Tiktok icon" />
@@ -28,17 +29,44 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="space-y-1.5 text-start lg:text-center">
-          <h3 className="mb-3">360lity</h3>
-          <p className="text-sm">About</p>
-          <p className="text-sm">Showcase</p>
-          <p className="text-sm">Projects</p>
-          <p className="text-sm">Blogs</p>
-          <p className="text-sm">XV Explore</p>
-          <p className="text-sm">Clients</p>
-          <p className="text-sm">Team</p>
-        </div>
-        <div className="space-y-1.5 text-start lg:text-center">
+        <ul className="px-5 space-y-1.5 text-start lg:text-start">
+          <li className="mb-3">360lity</li>
+
+          <li className="text-sm">
+            {" "}
+            <Link href="/showcase">Showcase</Link>
+          </li>
+
+          <li className="text-sm">
+            <Link href="/projects">projects</Link>
+          </li>
+
+          <li className="text-sm">
+            {" "}
+            <Link href="/xvt">XVT</Link>
+          </li>
+
+          <li className="text-sm">
+            <Link href="/blog">Blogs</Link>
+          </li>
+
+          <li className="text-sm">
+            <Link href="/explore">XV Exlilore</Link>
+          </li>
+
+          <li className="text-sm">
+            <Link href="/aboutus">About</Link>
+          </li>
+
+          <li className="text-sm">
+            <Link href="/contactus">Contact</Link>
+          </li>
+
+          <li className="text-sm">
+            <Link href="#">Team</Link>
+          </li>
+        </ul>
+        <div className="px-5 space-y-1.5 text-start lg:text-start">
           <h3 className="mb-3">Services</h3>
 
           <p className="text-sm">360-XVT</p>
@@ -48,7 +76,7 @@ const Footer = () => {
           <p className="text-sm">Photoraphy</p>
           <p className="text-sm">Videography</p>
         </div>
-        <div className="space-y-1.5 text-start lg:text-center flex flex-col">
+        <div className="px-5 space-y-1.5 text-start lg:text-start flex flex-col">
           <h3 className="mb-3">Contact</h3>
           <p className="text-sm">Feedback</p>
           <Link href="tel:+971 543243123" className="text-sm">
@@ -62,16 +90,28 @@ const Footer = () => {
             E mail
           </Link>
         </div>
-        <div className=" flex items-center justify-center flex-col gap-2">
-          <div className="bg-white w-full triangle-box flex items-center justify-between rounded-[15px] p-5 gap-10">
-            <Image
-              src={FooterLogo}
-              alt="Footer Logo"
-              className="rounded-[15px]"
-            />
-            <Image src={FooterQr} alt="Footer Qr" className="rounded-[15px]" />
+        <div className="flex items-center justify-center flex-col gap-2">
+          <div className="bg-white w-[200px] lg:w-full relative flex items-center justify-between rounded-[15px] px-4 py-6">
+            <div className="relative w-[50px] h-[50px]">
+              <Image
+                src={FooterLogo}
+                alt="Footer Logo"
+                className="rounded-[15px]"
+              />
+            </div>
+            <div className="relative w-[60px] h-[60px]">
+              <Image
+                src={FooterQr}
+                alt="Footer Qr"
+                fill
+                className="rounded-[15px]"
+              />
+            </div>
+            <Triangle className="bg-black left-[45%]" />
           </div>
-          <p className="text-xs">copyright All rights reserved 360lity.com</p>
+          <p className="text-[11px]">
+            copyright All rights reserved 360lity.com
+          </p>
         </div>
       </div>
     </footer>

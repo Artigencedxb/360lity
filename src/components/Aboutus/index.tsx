@@ -1,4 +1,5 @@
 import { Logo, LogoView, LogoWhite } from "@/assets";
+import Header from "@/common/Header";
 import Triangle from "@/common/Triangle";
 import { AboutusData } from "@/data/Aboutus";
 import Image from "next/image";
@@ -15,11 +16,8 @@ const Aboutus = () => {
 
   //   const conc = blog?.conclusion1! + blog?.conclusion2 ?? "";
   return (
-    <div className="py-10 space-y-5">
-      <div className="flex items-center gap-3">
-        <Image src={Logo} alt="" />
-        <h1>About us</h1>
-      </div>
+    <div className="py-[4.3rem] md:py-10 space-y-5">
+      <Header heading="About us" />
 
       <div className="bg-black rounded-[10px] relative w-full py-20 flex items-center justify-center">
         <Image src={LogoWhite} alt="" />

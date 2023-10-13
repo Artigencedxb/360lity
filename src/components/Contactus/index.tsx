@@ -7,7 +7,7 @@ import Header from "@/common/Header";
 
 const Contactus = () => {
   return (
-    <div className="py-10">
+    <div className="py-[4.3rem] md:py-10">
       <Header heading="Contact Us" />
       <div className="md:flex-row flex-col flex items-center gap-4 mt-5">
         <ContactusCard />

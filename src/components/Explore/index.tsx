@@ -6,7 +6,7 @@ import Header from "@/common/Header";
 
 const Explore = () => {
   return (
-    <div className="py-10">
+    <div className="py-[4.3rem] md:py-10">
       <Header heading="Explore" />
       <div className="mt-5">
         <p className="text-sm font-medium">Embark on a Journey of Discovery</p>

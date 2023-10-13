@@ -1,10 +1,10 @@
-"use client";
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Navigation from "@/common/Navigation";
 import { usePathname } from "next/navigation";
 import Footer from "@/components/Footer";
+import LayooutView from "./layoout-view";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,17 +21,10 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const pathname = usePathname();
-  console.log(pathname, "path");
-
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className="h-full relative">
-          {pathname === "/" && <Navigation />}
-          {children}
-          {pathname != "/" && <Footer />}
-        </div>
+        <LayooutView>{children}</LayooutView>
       </body>
     </html>
   );

@@ -1,6 +1,9 @@
+import { BlogImage1, BlogImage2, BlogImage3, BlogImage4 } from "@/assets/blogs";
+
 export const BlogData = [
   {
     id: 1,
+    image: BlogImage1,
     title: "Why 360° Virtual Tours Trump Images and Videos:",
     description1:
       "Exploring the Benefits\nIn today's digital age, the way we consume visual content is evolving, and 360° virtual tours are at the forefront of this transformation. Gone are the days when static images and traditional videos were sufficient to showcase spaces, products, or destinations. In this blog post, we will uncover why 360° virtual tours are becoming the preferred choice for businesses and consumers alike. \n \n",
@@ -24,6 +27,7 @@ export const BlogData = [
   },
   {
     id: 2,
+    image: BlogImage2,
     title: "The Public's Embrace of 360° Virtual Tours:",
     description1:
       "A Glimpse into the Growing Trend\nIn recent years, there has been a remarkable surge in the popularity of 360° virtual tours among the general public. From exploring dream vacation destinations to shopping for a new home, people are increasingly turning to this technology in both personal and professional contexts. In this blog post, we will explore the driving forces behind this growing trend and shed light on why businesses across various industries are leveraging 360° virtual tours to elevate customer experiences. \n \n",
@@ -47,6 +51,7 @@ export const BlogData = [
   },
   {
     id: 3,
+    image: BlogImage3,
     title: `360° Virtual Tours: A Study on User Engagement and Conversion Rates`,
     description1:
       "In the ever-evolving landscape of digital marketing and user experience, 360° virtual tours have emerged as a game-changer. They promise immersive and interactive experiences, but what impact do they have on user engagement and conversion rates? In this blog post, we will dive into a comprehensive study that sheds light on the profound influence of 360° virtual tours on customer behavior. \n \n",
@@ -71,6 +76,7 @@ export const BlogData = [
   },
   {
     id: 4,
+    image: BlogImage4,
     title: `360° Extended Virtual Tours (XVT) for Real Estate: `,
     description1:
       "Beyond Stunning Visuals\nIn the world of real estate, first impressions matter, and stunning visuals have long been the gold standard for showcasing properties. But what if there was a way to offer more than just static images and videos? Enter 360° virtual tours—a revolutionary tool that goes beyond aesthetics. In this blog post, we'll explore how 360° virtual tours benefit the real estate industry by providing prospective buyers with a comprehensive feel for a property, ultimately leading to faster sales, increased trust, and reduced in-person visits. \n \n",

@@ -2,8 +2,11 @@ import React from "react";
 
 const ContactusForm = () => {
   return (
-    <div className="self-start w-full h-full">
-      <form action="" className="flex flex-col gap-6 h-full">
+    <div className="basis-[30%] self-stretch w-full h-full">
+      <form
+        action=""
+        className="flex flex-col justify-between h-full gap-4 md:gap-0"
+      >
         <input
           placeholder="Name/Company"
           className="outline-none py-3 px-5 bg-white rounded-[15px]"
@@ -21,7 +24,7 @@ const ContactusForm = () => {
           className="py-3 px-5 bg-white rounded-[15px]"
           rows={5}
         />
-        <button className="rounded-[15px] bg-[#0060E4] font-medium py-3 text-white">
+        <button className="rounded-[15px] w-[150px] bg-[#0060E4] font-medium py-3 text-white">
           Submit
         </button>
       </form>

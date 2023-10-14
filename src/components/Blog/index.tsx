@@ -3,9 +3,9 @@ import React from "react";
 // import ProjectsBox from "./Projectbox";
 import { Logo } from "@/assets";
 import { projectData } from "@/data/projects";
-import { BlogData } from "@/data/blog";
 import BlogCard from "./BlogCard";
 import Header from "@/common/Header";
+import { BlogData } from "@/data/blog";
 
 const Blog = () => {
   return (

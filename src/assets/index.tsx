@@ -9,6 +9,7 @@ import RightArrowIcon from "./right.svg";
 import LogoView from "./360.svg";
 import LogoWhite from "./360-white.svg";
 import MailIcon from "./mail.svg";
+import PhoneIcon from "./phone.svg";
 import WhatsappIcon from "./whatsapp.svg";
 
 //Arrows
@@ -40,6 +41,7 @@ export {
   RightArrow,
   UaeMap,
   FacebookIcon,
+  PhoneIcon,
   FooterLogo,
   FooterQr,
   InstagramIcon,

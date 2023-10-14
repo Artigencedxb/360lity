@@ -107,7 +107,7 @@ const Footer = () => {
                 className="rounded-[15px]"
               />
             </div>
-            <Triangle className="bg-black left-[45%]" />
+            <Triangle className="bg-black" />
           </div>
           <p className="text-[11px]">
             copyright All rights reserved 360lity.com

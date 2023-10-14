@@ -12,6 +12,7 @@
     "classnames": "^2.3.2",
     "framer-motion": "^10.16.4",
     "keen-slider": "^6.8.6",
+    "lottie-react": "^2.4.0",
     "next": "13.5.4",
     "react": "^18",
     "react-detect-click-outside": "^1.1.7",

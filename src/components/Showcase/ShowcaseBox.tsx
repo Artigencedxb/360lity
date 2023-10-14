@@ -14,7 +14,7 @@ const ShowcaseBox: React.FC<{
   return (
     <div
       className={cn(
-        " rounded-[15px] relative h-[180px] w-auto md:h-auto",
+        " rounded-[15px] relative h-[200px] w-auto md:h-auto",
         className
       )}
     >

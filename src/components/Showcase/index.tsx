@@ -21,18 +21,7 @@ const Showcase = () => {
               />
             );
           })}
-          {/* <ShowcaseBox className=" bg-blue-300 lg:col-span-2" />
-          <ShowcaseBox className=" bg-blue-300 lg:col-span-2" />
-          <ShowcaseBox className=" bg-blue-300 lg:col-span-4 lg:triangle-box2" />
-          <ShowcaseBox className=" bg-blue-300 lg:col-span-2" />
-          <ShowcaseBox className=" bg-blue-300 lg:col-span-2" />
-          <ShowcaseBox className=" bg-blue-300 lg:col-span-2" /> */}
         </div>
-        {/* <div className="grid grid-cols-3 gap-2">
-          <ShowcaseBox className="" />
-          <ShowcaseBox className="" />
-          <ShowcaseBox className="" />
-        </div> */}
       </div>
     </div>
   );

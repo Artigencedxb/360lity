@@ -14,7 +14,7 @@ const ShowcaseBox: React.FC<{
   return (
     <div
       className={cn(
-        " rounded-[15px] transition-all relative h-auto w-auto md:h-auto group overflow-hidden inline-block",
+        " rounded-[15px] transition-all relative h-[13rem] md:h-auto group overflow-hidden inline-block",
         className
       )}
     >

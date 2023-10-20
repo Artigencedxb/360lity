@@ -10,7 +10,7 @@ const Showcase = () => {
     <div className="py-[4.3rem] md:py-10">
       <Header heading="Showcase" />
       <div className="mt-5">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-8 md:grid-rows-5 lg:grid-rows-3 grid-rows-1 md:h-[1100px] lg:h-[850px]">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-8 md:grid-rows-5 lg:grid-rows-3 grid-rows-1 md:h-[85rem] lg:h-[50rem]">
           {showCaseData?.map((dat) => {
             return (
               <ShowcaseBox

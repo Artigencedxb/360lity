@@ -106,3 +106,26 @@ body {
   margin: 20px;
   position: relative;
 }
+
+.left {
+  flex-basis: 50%;
+  padding-right: 20px;
+  position: relative;
+  z-index: 1;
+  background-color: black;
+  background-image: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 1)
+  );
+  mix-blend-mode: multiply;
+}
+
+.right::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}

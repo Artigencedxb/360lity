@@ -33,15 +33,16 @@ const BlogPage: React.FC<{ params: { blogId: number } }> = ({ params }) => {
     <div className="py-[4.8rem] md:py-10 space-y-5">
       <Header heading="Blog" />
 
-      <div className="bg-black img-wrap rounded-[10px] w-full relative flex flex-col md:flex-row items-center justify-center">
-        <div className="md:basis-[70%] py-10">
+      <div className="img-wrap rounded-[10px] w-full relative flex flex-col md:flex-row items-center justify-center">
+        <div className="md:absolute w-full md:w-[75%] z-[1000] top-0 left-0 lg:w-[75%] h-full md:basis-[70%] self-stretch flex items-center py-10 rounded-tl-[10px] rounded-bl-[10px] left">
           <h1 className="text-xl md:text-5px text-white px-8">{blog?.title}</h1>
         </div>
-        <div className="hidden md:block basis-[30%] rounded-tr-[10px] relative rounded-br-[10px]">
+        <div className="ml-auto relative w-[12rem] h-[12rem] basis-[30%] right">
           <Image
             src={blog?.image}
             alt="blog image"
-            className="rounded-tr-[10px] fade rounded-br-[10px]"
+            fill
+            className="rounded-tr-[10px] rounded-br-[10px]"
           />
         </div>
         {/* <Image src={LogoWhite} alt="" /> */}

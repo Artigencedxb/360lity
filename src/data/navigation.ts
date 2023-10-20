@@ -19,11 +19,7 @@ export const NavigationData = [
     label: "Blogs",
     href: "/blog",
   },
-  {
-    id: 5,
-    label: "Explore",
-    href: "/explore",
-  },
+
   {
     id: 6,
     label: "About",

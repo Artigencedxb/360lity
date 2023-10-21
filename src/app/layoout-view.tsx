@@ -24,7 +24,7 @@ const LayooutView: React.FC<{ children: React.ReactNode }> = ({ children }) => {
           <LoadingScreen loading={loading} />
         ) : (
           <>
-            <div className="h-full relative px-[2rem] max-w-6xl sm:px-[3rem] lg:px-[1.5rem] mx-auto">
+            <div className="h-full relative mr-[3rem]">
               {pathname === "/" && <Navigation />}
             </div>
             {children}

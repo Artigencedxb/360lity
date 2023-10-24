@@ -2,8 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "SF Pro";
+  src: url("./SF-Pro.dmg");
+}
+
 body {
-  @apply bg-[#D5E5F7];
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: #d5e5f7;
 }
 
 @layer base {
@@ -12,6 +18,9 @@ body {
   }
   h2 {
     @apply font-bold text-[30px] md:text-[35px];
+  }
+  .rounded-x {
+    @apply rounded-[10px];
   }
 }
 @keyframes fade {

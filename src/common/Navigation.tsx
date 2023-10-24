@@ -106,7 +106,7 @@ const Navigation = () => {
                     onMouseEnter={() => setHover(el?.id)}
                     onMouseLeave={() => setHover(0)}
                     onClick={() => clickHandler(el?.href)}
-                    className="bg-[#73CCFF] hover:scale-105 transition-all duration-200 w-[140px] flex items-center text-sm font-medium justify-center gap-2.5 px-5 py-2.5 rounded-[10px]"
+                    className="bg-[#73CCFF] hover:scale-105 transition-all font-medium duration-200 w-[140px] flex items-center text-sm justify-center gap-2.5 px-5 py-2.5 rounded-[10px]"
                   >
                     {el?.label}
                     <Image

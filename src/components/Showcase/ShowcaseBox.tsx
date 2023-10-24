@@ -1,21 +1,26 @@
 import React from "react";
 import cn from "classnames";
 import Image from "next/image";
-import { LogoView } from "@/assets";
+import { DeleteIcon, LogoView } from "@/assets";
 import Triangle from "@/common/Triangle";
 
 const ShowcaseBox: React.FC<{
   className?: string;
   src: string;
   name: string;
-}> = ({ className, src, name }) => {
+  admin?: boolean;
+}> = ({ className, src, name, admin = false }) => {
   console.log(className, "class");
 
   return (
     <div
       className={cn(
         " rounded-[15px] transition-all relative h-[13rem] md:h-auto group overflow-hidden inline-block",
-        className
+        className,
+        {
+          "!md:h-[13rem]": !!admin,
+          "!md:h-auto": !admin,
+        }
       )}
     >
       <Triangle />
@@ -31,11 +36,22 @@ const ShowcaseBox: React.FC<{
       ) : (
         name
       )}
-      <div className="absolute bg-black/50 w-full h-full opacity-0 flex justify-center items-center group-hover:opacity-100 z-10">
-        <button>
-          <Image src={LogoView} alt="360 View Logo" className="" />
-        </button>
-      </div>
+      {admin ? (
+        <div className="absolute bg-black/50 w-full h-full opacity-0 flex justify-center gap-6 items-center group-hover:opacity-100 z-10">
+          <button>
+            <Image src={LogoView} alt="360 View Logo" className="" />
+          </button>
+          <button>
+            <Image src={DeleteIcon} alt="360 View Logo" className="" />
+          </button>
+        </div>
+      ) : (
+        <div className="absolute bg-black/50 w-full h-full opacity-0 flex justify-center items-center group-hover:opacity-100 z-10">
+          <button>
+            <Image src={LogoView} alt="360 View Logo" className="" />
+          </button>
+        </div>
+      )}
     </div>
   );
 };

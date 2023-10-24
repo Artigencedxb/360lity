@@ -15,20 +15,23 @@ const LayooutView: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     setTimeout(() => setLoading(true), 5000);
   }, []);
   const pathname = usePathname();
-  console.log(pathname, "path");
+
+  console.log(pathname.includes("admin"), "dalj");
+
+  const footerEnabled = !pathname?.includes("admin") && pathname !== "/";
 
   return (
     <Fragment>
       <AnimatePresence>
         {!loading ? (
-          <LoadingScreen loading={loading} />
+          !pathname?.includes("admin") && <LoadingScreen loading={loading} />
         ) : (
           <>
             <div className="h-full relative mr-[3rem]">
               {pathname === "/" && <Navigation />}
             </div>
             {children}
-            {pathname != "/" && <Footer />}{" "}
+            {footerEnabled && <Footer />}{" "}
           </>
         )}
       </AnimatePresence>

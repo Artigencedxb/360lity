@@ -12,6 +12,8 @@ import MailIcon from "./mail.svg";
 import PhoneIcon from "./phone.svg";
 import WhatsappIcon from "./whatsapp.svg";
 
+import DeleteIcon from "./delete.svg";
+
 //Arrows
 import RightArrow from "./arrow-right.svg";
 import LeftArrow from "./arrow-left.svg";
@@ -45,6 +47,7 @@ export {
   FooterLogo,
   FooterQr,
   InstagramIcon,
+  DeleteIcon,
   TiktokIcon,
   TwitterIcon,
   YoutubeIcon,

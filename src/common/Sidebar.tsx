@@ -1,9 +1,8 @@
 "use client";
-import { LogoText } from "@/assets";
+import { LogoTextWhite } from "@/assets";
+import cn from "classnames";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
-import cn from "classnames";
 import { usePathname } from "next/navigation";
 
 const Sidebar = () => {
@@ -11,7 +10,7 @@ const Sidebar = () => {
   return (
     <aside className="fixed left-0 top-0 h-screen z-100 w-64 py-6 px-5 text-white bg-black/80">
       <nav className="flex flex-col justify-center items-center">
-        <Image src={LogoText} className="mb-8" alt="" />
+        <Image src={LogoTextWhite} className="mb-8" alt="" />
         <ul className="space-y-4 w-full">
           <li
             className={cn(

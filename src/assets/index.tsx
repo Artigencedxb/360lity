@@ -1,6 +1,7 @@
 //Logo
 import Logo from "./360lity-logo.svg";
 import LogoText from "./360lity-text-logo.svg";
+import LogoTextWhite from "./360lity-text-white.svg";
 import LogoMain from "./logo-main.svg";
 import LogoNavigation from "./logo-navigation.svg";
 
@@ -50,6 +51,7 @@ export {
   DeleteIcon,
   TiktokIcon,
   TwitterIcon,
+  LogoTextWhite,
   YoutubeIcon,
   LogoMain,
   LogoNavigation,

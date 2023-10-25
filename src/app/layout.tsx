@@ -2,6 +2,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import LayooutView from "./layoout-view";
 import { Metadata } from "next";
+import ReactQueryProvider from "@/Providers/QueryClientProvider";
 
 export const metadata: Metadata = {
   title: "360-lity",
@@ -27,7 +28,9 @@ export default function RootLayout({
           type="image"
           sizes="any"
         /> */}
-        <LayooutView>{children}</LayooutView>
+        <ReactQueryProvider>
+          <LayooutView>{children}</LayooutView>
+        </ReactQueryProvider>
       </body>
     </html>
   );

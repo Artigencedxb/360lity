@@ -1,8 +1,8 @@
 import cn from "classnames";
-import React, { InputHTMLAttributes } from "react";
+import React, { TextareaHTMLAttributes } from "react";
 import { FieldValues, UseFormRegister } from "react-hook-form";
 
-interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
   id: string;
   label: string;
   name: string;
@@ -11,19 +11,18 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   register: UseFormRegister<any>; // declare register props
 }
 
-const Input: React.FC<InputProps> = React.forwardRef(
-  ({ id, label, register, name, type = "text", error, className, ...rest }) => {
+const TextArea: React.FC<TextareaProps> = React.forwardRef(
+  ({ id, label, register, name, error, className, ...rest }) => {
     return (
       <div className="space-y-2">
-        <input
+        <textarea
           {...rest}
           {...register(name)}
           name={name}
           placeholder={label || ""}
-          type={type}
           id={id}
           className={cn(
-            "outline-none py-2 px-5 border-2 rounded-[10px]",
+            "outline-none py-2 px-5 border-2 rounded-x",
             className,
             {
               "border-0 ring-2 ring-red-300": error?.length,
@@ -38,6 +37,6 @@ const Input: React.FC<InputProps> = React.forwardRef(
   }
 );
 
-Input.displayName = "Input";
+TextArea.displayName = "TextArea";
 
-export default Input;
+export default TextArea;

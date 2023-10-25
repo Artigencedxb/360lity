@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { DeleteIcon, LogoView } from "@/assets";
 import Triangle from "@/common/Triangle";
+import { TrashIcon, PencilSquareIcon } from "@heroicons/react/24/solid";
 
 const ProjectsBox: React.FC<{
   data:
@@ -34,12 +35,12 @@ const ProjectsBox: React.FC<{
         data?.name
       )}
       {admin ? (
-        <div className="absolute bg-black/50 w-full h-full opacity-0 flex justify-center gap-6 items-center group-hover:opacity-100 z-10">
+        <div className="absolute bg-black/50 w-full h-full opacity-0 flex justify-center gap-8 items-center group-hover:opacity-100 z-10">
           <button>
-            <Image src={LogoView} alt="360 View Logo" className="" />
+            <PencilSquareIcon className="w-8 h-8 text-white" />
           </button>
           <button>
-            <Image src={DeleteIcon} alt="360 View Logo" className="" />
+            <TrashIcon className="w-10 h-10 text-white" />
           </button>
         </div>
       ) : (

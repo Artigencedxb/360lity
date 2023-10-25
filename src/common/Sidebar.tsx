@@ -28,7 +28,7 @@ const Sidebar = () => {
             className={cn(
               "transition-all duration-300 text-lg hover:text-black font-medium cursor-pointer hover:bg-primary text-center py-2.5 rounded-x",
               {
-                "bg-primary text-black": pathname === "/admin/projects",
+                "bg-primary text-black": pathname?.includes("/admin/projects"),
               }
             )}
           >

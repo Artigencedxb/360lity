@@ -5,10 +5,11 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React from "react";
 
-const Header: React.FC<{ heading: string; buttonText?: string }> = ({
-  heading,
-  buttonText,
-}) => {
+const Header: React.FC<{
+  heading: string;
+  buttonText?: string;
+  buttonUrl?: string;
+}> = ({ heading, buttonText, buttonUrl = "#" }) => {
   const router = useRouter();
   return (
     <div className="flex items-center gap-3">
@@ -20,7 +21,11 @@ const Header: React.FC<{ heading: string; buttonText?: string }> = ({
       </button>
       <h1>{heading}</h1>
       {buttonText?.length && (
-        <Button text={buttonText} className="ml-auto w-auto" />
+        <Button
+          text={buttonText}
+          className="ml-auto w-auto"
+          onClick={() => router?.push(buttonUrl as string)}
+        />
       )}
     </div>
   );

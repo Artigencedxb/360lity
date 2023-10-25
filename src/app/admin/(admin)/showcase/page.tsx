@@ -6,7 +6,11 @@ import React from "react";
 const AdminShowcasepage = () => {
   return (
     <div>
-      <Header heading="Showcase" buttonText="+ Add Showcase" />
+      <Header
+        heading="Showcase"
+        buttonText="+ Add Showcase"
+        buttonUrl="/admin/showcase/create"
+      />
 
       <div className="grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 gap-x-5 gap-y-10 mt-10">
         {showCaseData?.map((dat) => {

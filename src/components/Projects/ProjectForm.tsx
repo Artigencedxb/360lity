@@ -1,34 +1,119 @@
 "use client";
-import React from "react";
-import { z } from "zod";
-import { useForm, SubmitHandler } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import Input from "@/UI/Input";
-import TextArea from "@/UI/TextArea";
 import Button from "@/UI/Button";
-import { PhotoIcon } from "@heroicons/react/24/outline";
+import ImagePreview from "@/UI/ImagePreview";
+import Input from "@/UI/Input";
+import Loader from "@/UI/Loader";
+import TextArea from "@/UI/TextArea";
+import { useDelete, useUpload } from "@/api/image";
+import { useCreateProject, useEditProject } from "@/api/project";
+import { Project } from "@/types/project";
+import { resizeFile } from "@/utils/resizeFile";
+import { transformFile } from "@/utils/transformFile";
 import { ArrowUpTrayIcon } from "@heroicons/react/20/solid";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/navigation";
+import React from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { z } from "zod";
 
 const ProjectSchema = z.object({
   name: z.string().min(1, "Please enter a project name"),
   link: z.string().min(3, "Please enter a 360 video link for project"),
   description: z.string().min(3, "Please enter a description"),
-  image: z.string().min(3, "Please upload a project photo"),
+  image: z.string().optional(),
 });
 
 type ProjectSchemaType = z.infer<typeof ProjectSchema>;
 
-const ProjectForm = () => {
+const ProjectForm: React.FC<{ initialValues?: Project }> = ({
+  initialValues,
+}) => {
+  const router = useRouter();
+  const { mutate: create, isPending: createLoader } = useCreateProject();
+  const { mutate: edit, isPending: editLoader } = useEditProject();
+  const { mutate: upload, isPending: uploadLoader } = useUpload();
+  const { mutate: deleteImage, isPending: deleteLoader } = useDelete();
+  const imageloader = uploadLoader || deleteLoader;
+  const loader = createLoader || editLoader;
+  const buttonText = initialValues ? "Edit Project" : "Add Project";
   const {
     register,
     handleSubmit,
+    setValue,
+    getValues,
+    watch,
     formState: { errors },
-  } = useForm<ProjectSchemaType>({ resolver: zodResolver(ProjectSchema) });
+  } = useForm<ProjectSchemaType>({
+    resolver: zodResolver(ProjectSchema),
+    defaultValues: { ...initialValues },
+  });
 
   const onSubmit: SubmitHandler<ProjectSchemaType> = (data) => {
-    console.log(data);
+    if (initialValues) {
+      edit(
+        {
+          ...data,
+          id: initialValues?._id,
+          ...(data?.image?.length ? { image: data?.image } : { image: null }),
+        },
+        {
+          onSuccess: (res) => {},
+        }
+      );
+    } else {
+      create(
+        {
+          ...data,
+          ...(data?.image?.length ? { image: data?.image } : { image: null }),
+        },
+        {
+          onSuccess: (res) => {
+            router.replace("/admin/projects");
+          },
+        }
+      );
+    }
   };
-  console.log(errors, "errors");
+
+  const imageHandler = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    let formData = new FormData();
+
+    const imageFile = e.target.files?.[0];
+
+    const imgValue = await transformFile(imageFile as File);
+
+    if (imgValue) {
+      console.log(imgValue, "img");
+      formData.append("image", imageFile!);
+
+      const data = {
+        image: imgValue,
+      };
+
+      upload(data, {
+        onSuccess: (res) => {
+          console.log(res, "res");
+          const imgUrl = res?.data?.secure_url;
+          setValue("image", imgUrl);
+        },
+      });
+    }
+  };
+
+  const deleteHandler = () => {
+    const imgValue = getValues("image");
+    const data = {
+      image: imgValue,
+      folder: "projects",
+    };
+
+    deleteImage(data, {
+      onSuccess: (res) => {
+        console.log(res, "res");
+        setValue("image", "");
+      },
+    });
+  };
 
   return (
     <div className="mt-10 max-w-sm">
@@ -37,23 +122,38 @@ const ProjectForm = () => {
         className="w-full space-y-4"
         action=""
       >
-        <div>
-          <label
-            className="bg-[#0060E4] flex items-center w-40 gap-2 cursor-pointer text-sm justify-center rounded-x text-white font-semibold px-5 py-3"
-            htmlFor="image"
-          >
-            <ArrowUpTrayIcon className="w-5 h-5" /> Upload image
-          </label>
-          <Input
-            id={"image"}
-            name="image"
-            register={register}
-            label="Project image"
-            error={errors?.image?.message}
-            className="w-full hidden"
-            type="file"
+        {imageloader ? (
+          <div className="flex justify-center py-6 w-[45%]">
+            <Loader />
+          </div>
+        ) : watch("image")?.length ? (
+          <ImagePreview
+            src={watch("image") as string}
+            alt="project"
+            deleteHandler={deleteHandler}
           />
-        </div>
+        ) : (
+          <div>
+            <label
+              className="bg-[#0060E4] flex items-center w-40 gap-2 cursor-pointer text-sm justify-center rounded-x text-white font-semibold px-5 py-3"
+              htmlFor="image"
+            >
+              <ArrowUpTrayIcon className="w-5 h-5" /> Upload image
+            </label>
+            <input
+              id={"image"}
+              onChange={imageHandler}
+              name="image"
+              className="w-full hidden"
+              type="file"
+            />
+            {errors?.image && (
+              <p className="text-red-700 text-sm font-medium mt-3">
+                {errors?.image?.message}
+              </p>
+            )}
+          </div>
+        )}
         <Input
           id={"name"}
           name="name"
@@ -80,7 +180,12 @@ const ProjectForm = () => {
           className="w-full"
           rows={4}
         />
-        <Button type="submit" text="Add Project" />
+        <Button
+          loading={loader}
+          disabled={loader}
+          type="submit"
+          text={buttonText}
+        />
       </form>
     </div>
   );

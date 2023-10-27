@@ -1,32 +1,30 @@
 "use client";
-import React from "react";
-import cn from "classnames";
-import { useRouter } from "next/navigation";
-import Image from "next/image";
-import { DeleteIcon, LogoView } from "@/assets";
+import { LogoView } from "@/assets";
 import Triangle from "@/common/Triangle";
-import { TrashIcon, PencilSquareIcon } from "@heroicons/react/24/solid";
+import { IProject } from "@/types/project";
+import { PencilSquareIcon, TrashIcon } from "@heroicons/react/24/solid";
+import cn from "classnames";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import React from "react";
 
 const ProjectsBox: React.FC<{
-  data:
-    | { name: string; description: string; id: number; src?: string }
-    | undefined;
+  data: IProject["data"]["project"][0] | undefined;
   className?: string;
   admin?: boolean;
 }> = ({ data, className, admin = false }) => {
   const router = useRouter();
   return (
     <div
-      onClick={() => router.push(`/projects/${data?.id}`)}
       className={cn(
         "transition-all h-[13rem] group overflow-hidden inline-block relative w-full rounded-[10px]",
         className
       )}
     >
       <Triangle />
-      {data?.src?.length ? (
+      {data?.image?.length ? (
         <Image
-          src={data?.src}
+          src={data?.image}
           fill
           className="rounded-[10px] object-cover transition group-hover:bg-black/30 duration-1000 group-hover:scale-125"
           alt={data?.name}
@@ -36,7 +34,12 @@ const ProjectsBox: React.FC<{
       )}
       {admin ? (
         <div className="absolute bg-black/50 w-full h-full opacity-0 flex justify-center gap-8 items-center group-hover:opacity-100 z-10">
-          <button>
+          <button
+            type="button"
+            onClick={() =>
+              router.push(`/admin/projects/${data?._id as string}`)
+            }
+          >
             <PencilSquareIcon className="w-8 h-8 text-white" />
           </button>
           <button>
@@ -45,7 +48,7 @@ const ProjectsBox: React.FC<{
         </div>
       ) : (
         <div className="absolute bg-black/50 w-full h-full opacity-0 flex justify-center items-center group-hover:opacity-100 z-10">
-          <button>
+          <button onClick={() => router.push(`/projects/${data?.id}`)}>
             <Image src={LogoView} alt="360 View Logo" className="" />
           </button>
         </div>

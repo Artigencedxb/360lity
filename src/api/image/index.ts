@@ -2,7 +2,7 @@ import { useMutation } from "@tanstack/react-query";
 import { axiosInstance } from "../../../axios.config";
 import { routes } from "../routes";
 
-const PostUpload = async (val: { image: any }) => {
+const PostUpload = async (val: { image: any; preset: string }) => {
   console.log(val, "val");
 
   const { data } = await axiosInstance.post(routes.upload, val, {

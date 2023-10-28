@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { axiosInstance } from "../../../axios.config";
 import { routes } from "../routes";
 import {
@@ -23,6 +23,11 @@ const editProject = async (val: PatchProject) => {
   return data;
 };
 
+const deleteProject = async (val: { id: string }) => {
+  const { data } = await axiosInstance.delete(`${routes.project}/${val?.id}`);
+  return data;
+};
+
 const allProjects = async (): Promise<IProject> => {
   const { data } = await axiosInstance?.get(routes.project);
   return data;
@@ -42,6 +47,16 @@ export const useCreateProject = () => {
 export const useEditProject = () => {
   return useMutation({
     mutationFn: editProject,
+  });
+};
+
+export const useDeleteProject = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: deleteProject,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: [routes["project"]] });
+    },
   });
 };
 

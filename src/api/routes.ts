@@ -3,4 +3,5 @@ export const routes = {
   upload: "/image/upload",
   delete: "/image/delete",
   project: "/project",
+  showcase: "/showcase",
 };

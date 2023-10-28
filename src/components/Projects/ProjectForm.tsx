@@ -14,6 +14,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import React from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { toast } from "sonner";
 import { z } from "zod";
 
 const ProjectSchema = z.object({
@@ -57,7 +58,9 @@ const ProjectForm: React.FC<{ initialValues?: Project }> = ({
           ...(data?.image?.length ? { image: data?.image } : { image: null }),
         },
         {
-          onSuccess: (res) => {},
+          onSuccess: (res) => {
+            toast.success("Project updated.");
+          },
         }
       );
     } else {
@@ -68,6 +71,7 @@ const ProjectForm: React.FC<{ initialValues?: Project }> = ({
         },
         {
           onSuccess: (res) => {
+            toast.success("New project added.");
             router.replace("/admin/projects");
           },
         }
@@ -88,6 +92,7 @@ const ProjectForm: React.FC<{ initialValues?: Project }> = ({
 
       const data = {
         image: imgValue,
+        preset: "Project",
       };
 
       upload(data, {
@@ -182,7 +187,7 @@ const ProjectForm: React.FC<{ initialValues?: Project }> = ({
         />
         <Button
           loading={loader}
-          disabled={loader}
+          disabled={loader || imageloader}
           type="submit"
           text={buttonText}
         />

@@ -18,6 +18,12 @@ const AdminProjectspage = () => {
         buttonUrl="/admin/projects/create"
       />
 
+      {!projects?.length && (
+        <div className="py-16 text-center text-2xl font-medium">
+          No projects added.
+        </div>
+      )}
+
       <div className="grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 gap-x-5 gap-y-10 mt-10">
         {projects?.map((dat) => {
           return <ProjectsBox admin={true} key={dat?.id} data={dat} />;

@@ -68,6 +68,6 @@ export const useGetProject = (projectId: string) => {
   return useQuery({
     queryKey: [`${routes["project"]}/${projectId}`],
     queryFn: () => singleProject(projectId),
-    refetchOnWindowFocus: true,
+    refetchOnMount: true,
   });
 };

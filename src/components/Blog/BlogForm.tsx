@@ -4,62 +4,63 @@ import ImagePreview from "@/UI/ImagePreview";
 import Input from "@/UI/Input";
 import Loader from "@/UI/Loader";
 import TextArea from "@/UI/TextArea";
+import ReactQuill, { Quill } from "react-quill";
+import { useCreateBlog, useEditBlog } from "@/api/blog";
 import { useDelete, useUpload } from "@/api/image";
-import { useCreateProject, useEditProject } from "@/api/project";
-import { Project } from "@/types/project";
-import { resizeFile } from "@/utils/resizeFile";
+import { Blog } from "@/types/blog";
 import { transformFile } from "@/utils/transformFile";
 import { ArrowUpTrayIcon } from "@heroicons/react/20/solid";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
-import React, { useEffect } from "react";
-import { SubmitHandler, useForm } from "react-hook-form";
+import React from "react";
+import { SubmitHandler, useForm, Controller } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
+import { convert } from "html-to-text";
+import "react-quill/dist/quill.snow.css";
 
-const ProjectSchema = z.object({
-  name: z.string().min(1, "Please enter a project name"),
-  link: z.string().min(3, "Please enter a 360 video link for project"),
+const BlogSchema = z.object({
+  title: z.string().min(1, "Please enter a blog title"),
   description: z.string().min(3, "Please enter a description"),
   image: z.string().optional(),
 });
 
-type ProjectSchemaType = z.infer<typeof ProjectSchema>;
+type BlogSchemaType = z.infer<typeof BlogSchema>;
 
-const ProjectForm: React.FC<{ initialValues?: Project }> = ({
-  initialValues,
-}) => {
-  console.log(initialValues, "initial");
+function htmlDecode(content: string) {
+  let e = document.createElement("div");
+  e.innerHTML = content;
+  return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
+}
 
+const BlogForm: React.FC<{ initialValues?: Blog }> = ({ initialValues }) => {
   const router = useRouter();
-  const { mutate: create, isPending: createLoader } = useCreateProject();
-  const { mutate: edit, isPending: editLoader } = useEditProject();
+  const decodeValue = htmlDecode(initialValues?.description as string);
+  const text = convert(decodeValue as string);
+  console.log(text, "text");
+
+  const { mutate: create, isPending: createLoader } = useCreateBlog();
+  const { mutate: edit, isPending: editLoader } = useEditBlog();
   const { mutate: upload, isPending: uploadLoader } = useUpload();
   const { mutate: deleteImage, isPending: deleteLoader } = useDelete();
   const imageloader = uploadLoader || deleteLoader;
   const loader = createLoader || editLoader;
-  const queryClient = useQueryClient();
-  const buttonText = initialValues ? "Edit Project" : "Add Project";
+  const buttonText = initialValues ? "Edit Blog" : "Add Blog";
   const {
     register,
     handleSubmit,
     setValue,
     getValues,
     watch,
-    reset,
+    control,
     formState: { errors },
-  } = useForm<ProjectSchemaType>({
-    resolver: zodResolver(ProjectSchema),
+  } = useForm<BlogSchemaType>({
+    resolver: zodResolver(BlogSchema),
+    mode: "onChange",
+    defaultValues: { ...initialValues, description: text },
   });
 
-  useEffect(() => {
-    if (initialValues) {
-      reset({ ...initialValues });
-    }
-  }, [initialValues, reset]);
-
-  const onSubmit: SubmitHandler<ProjectSchemaType> = (data) => {
+  const onSubmit: SubmitHandler<BlogSchemaType> = (data) => {
     if (initialValues) {
       edit(
         {
@@ -69,7 +70,7 @@ const ProjectForm: React.FC<{ initialValues?: Project }> = ({
         },
         {
           onSuccess: (res) => {
-            toast.success("Project updated.");
+            toast.success("Blog updated.");
           },
         }
       );
@@ -81,8 +82,8 @@ const ProjectForm: React.FC<{ initialValues?: Project }> = ({
         },
         {
           onSuccess: (res) => {
-            toast.success("New project added.");
-            router.replace("/admin/projects");
+            toast.success("New blog added.");
+            router.replace("/admin/blog");
           },
         }
       );
@@ -102,7 +103,7 @@ const ProjectForm: React.FC<{ initialValues?: Project }> = ({
 
       const data = {
         image: imgValue,
-        preset: "Project",
+        preset: "Blogs",
       };
 
       upload(data, {
@@ -119,7 +120,7 @@ const ProjectForm: React.FC<{ initialValues?: Project }> = ({
     const imgValue = getValues("image");
     const data = {
       image: imgValue,
-      folder: "projects",
+      folder: "blogs",
     };
 
     deleteImage(data, {
@@ -170,31 +171,28 @@ const ProjectForm: React.FC<{ initialValues?: Project }> = ({
           </div>
         )}
         <Input
-          id={"name"}
-          name="name"
+          id={"title"}
+          name="title"
           register={register}
-          label="Project name"
-          error={errors?.name?.message}
+          label="Blog title"
+          error={errors?.title?.message}
           className="w-full"
+        />
+        <Controller
+          control={control}
+          name="description"
+          render={({ field: { onChange, value, name } }) => {
+            return (
+              <ReactQuill
+                className="bg-white rounded-x min-h-[250px]"
+                theme="snow"
+                value={value}
+                onChange={onChange}
+              ></ReactQuill>
+            );
+          }}
         />
 
-        <Input
-          id={"link"}
-          name="link"
-          register={register}
-          label="360 video link"
-          error={errors?.link?.message}
-          className="w-full"
-        />
-        <TextArea
-          id={"description"}
-          name="description"
-          register={register}
-          label="Description"
-          error={errors?.description?.message}
-          className="w-full"
-          rows={4}
-        />
         <Button
           loading={loader}
           disabled={loader || imageloader}
@@ -206,4 +204,4 @@ const ProjectForm: React.FC<{ initialValues?: Project }> = ({
   );
 };
 
-export default ProjectForm;
+export default BlogForm;

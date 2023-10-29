@@ -1,18 +1,28 @@
-import Image from "next/image";
-import React from "react";
-import ProjectsBox from "./Projectbox";
-import { Logo } from "@/assets";
-import { projectData } from "@/data/projects";
+"use client";
+import { useProjects } from "@/api/project";
 import Header from "@/common/Header";
+import ProjectsBox from "./Projectbox";
+import { useLottie } from "lottie-react";
+import animation from "../../../public/animation.json";
 
 const Projects = () => {
+  const { data, isPending } = useProjects();
+  console.log(data, "data");
+  const projects = data?.data?.project;
+
+  const options = {
+    animationData: animation,
+    loop: true,
+  };
+  const { View } = useLottie(options);
   return (
     <div className="py-[4.3rem] md:py-10">
       <Header heading="Projects" />
       <div className="mt-5">
+        {isPending && <div>{View}</div>}
         <div className=" grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-5 gap-y-10">
-          {projectData?.map((data) => {
-            return <ProjectsBox key={data?.id} data={data} />;
+          {projects?.map((data, index) => {
+            return <ProjectsBox key={data?.id} data={data} index={index + 1} />;
           })}
         </div>
       </div>

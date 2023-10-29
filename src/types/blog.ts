@@ -16,3 +16,41 @@ export type IBlog =
       conclusion2?: string;
     }
   | undefined;
+
+export interface PostBlog {
+  title: string;
+  description: string;
+  image?: string | null;
+}
+
+export interface PatchBlog {
+  id?: string;
+  title: string;
+  description: string;
+  image?: string | null;
+}
+
+export interface IBlogs {
+  status: string;
+  result: number;
+  data: Data;
+}
+
+export interface ISingleBlog {
+  status: string;
+  result: number;
+  data: { blog: Blog };
+}
+
+interface Data {
+  blog: Blog[];
+}
+
+export interface Blog {
+  _id: string;
+  createdAt: string;
+  title: string;
+  image: string;
+  description: string;
+  id: string;
+}

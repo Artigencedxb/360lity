@@ -13,9 +13,10 @@ import { useDeleteProject } from "@/api/project";
 
 const ProjectsBox: React.FC<{
   data: IProject["data"]["project"][0] | undefined;
+  index?: number;
   className?: string;
   admin?: boolean;
-}> = ({ data, className, admin = false }) => {
+}> = ({ data, index, className, admin = false }) => {
   const [deleteModal, setDeleteModal] = useState(false);
 
   //delete api
@@ -45,11 +46,11 @@ const ProjectsBox: React.FC<{
       )}
       <div
         className={cn(
-          "transition-all h-[13rem] group overflow-hidden inline-block relative w-full rounded-[10px]",
+          "transition-all h-[13rem] trianglebox group overflow-hidden inline-block relative w-full rounded-[10px]",
           className
         )}
       >
-        <Triangle />
+        {/* <Triangle /> */}
         {data?.image?.length ? (
           <Image
             src={data?.image}
@@ -76,7 +77,7 @@ const ProjectsBox: React.FC<{
           </div>
         ) : (
           <div className="absolute bg-black/50 w-full h-full opacity-0 flex justify-center items-center group-hover:opacity-100 z-10">
-            <button onClick={() => router.push(`/projects/${data?.id}`)}>
+            <button onClick={() => router.push(`/projects/${index}`)}>
               <Image src={LogoView} alt="360 View Logo" className="" />
             </button>
           </div>

@@ -45,7 +45,7 @@ const ShowcaseBox: React.FC<{
       )}
       <div
         className={cn(
-          " rounded-[15px] transition-all relative h-[13rem] md:h-auto group overflow-hidden inline-block",
+          "trianglebox rounded-[15px] transition-all relative h-[13rem] md:h-auto group overflow-hidden inline-block",
           className,
           {
             "!md:h-[13rem]": !!admin,
@@ -53,7 +53,6 @@ const ShowcaseBox: React.FC<{
           }
         )}
       >
-        <Triangle />
         {data?.image?.length ? (
           <div className="block transition-all duration-300 group-hover:bg-black/30">
             <Image

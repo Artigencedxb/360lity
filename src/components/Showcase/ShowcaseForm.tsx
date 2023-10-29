@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { z } from "zod";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -43,11 +43,18 @@ const ShowcaseForm: React.FC<{ initialValues?: Showcase }> = ({
     setValue,
     getValues,
     watch,
+    reset,
     formState: { errors },
   } = useForm<ShowcaseSchemaType>({
     resolver: zodResolver(ShowcaseSchema),
     defaultValues: { ...initialValues },
   });
+
+  useEffect(() => {
+    if (initialValues) {
+      reset({ ...initialValues });
+    }
+  }, [initialValues, reset]);
 
   const onSubmit: SubmitHandler<ShowcaseSchemaType> = (data) => {
     if (initialValues) {

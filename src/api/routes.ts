@@ -4,4 +4,5 @@ export const routes = {
   delete: "/image/delete",
   project: "/project",
   showcase: "/showcase",
+  blog: "/blog",
 };

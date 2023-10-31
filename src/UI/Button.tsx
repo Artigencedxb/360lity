@@ -29,7 +29,7 @@ const Button: React.FC<ButtonProps> = React.forwardRef(
           }
         )}
       >
-        {loading && <Loader className="!border-[3px] !w-4 !h-4" />}
+        {loading && <Loader className="!border-[2px] border-t-white w-4 h-4" />}
         {text}
       </button>
     );

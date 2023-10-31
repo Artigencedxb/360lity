@@ -9,13 +9,17 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import DeleteModal from "../Modal/DeleteModal";
+import { useProjectStore } from "@/store/use-projects";
 
 const ShowcaseBox: React.FC<{
   className?: string;
   data: Showcase;
+  index?: number;
   admin?: boolean;
-}> = ({ className, data, admin = false }) => {
+}> = ({ className, index, data, admin = false }) => {
   const [deleteModal, setDeleteModal] = useState(false);
+
+  const { setProjectIndex } = useProjectStore();
 
   //delete api
   const { mutate, isPending } = useDeleteShowcase();
@@ -45,7 +49,7 @@ const ShowcaseBox: React.FC<{
       )}
       <div
         className={cn(
-          "trianglebox rounded-[15px] transition-all relative h-[13rem] md:h-auto group overflow-hidden inline-block",
+          "trianglebox rounded-[15px] transition-all relative min-h-[13rem] group overflow-hidden inline-block",
           className,
           {
             "!md:h-[13rem]": !!admin,
@@ -81,7 +85,12 @@ const ShowcaseBox: React.FC<{
           </div>
         ) : (
           <div className="absolute bg-black/50 w-full h-full opacity-0 flex justify-center items-center group-hover:opacity-100 z-10">
-            <button onClick={() => router.push(`/showcase/${data?.id}`)}>
+            <button
+              onClick={() => {
+                setProjectIndex(index as number);
+                router.push(`/view-showcase`);
+              }}
+            >
               <Image src={LogoView} alt="360 View Logo" className="" />
             </button>
           </div>

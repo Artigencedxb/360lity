@@ -1,14 +1,24 @@
 "use client";
 import { LogoTextWhite } from "@/assets";
+import { useAuth } from "@/store/use-auth";
+import { ArrowLeftOnRectangleIcon } from "@heroicons/react/24/outline";
 import cn from "classnames";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 const Sidebar = () => {
   const pathname = usePathname();
+  const router = useRouter();
+  const { logout } = useAuth();
+
+  const clickHandler = () => {
+    logout();
+    router.push("/");
+  };
   return (
-    <aside className="fixed left-0 top-0 h-screen z-100 w-64 py-6 px-5 text-white bg-black/80">
+    <aside className="fixed left-0 top-0 h-screen z-100 w-64 py-6 px-5 flex flex-col text-white bg-black/80">
       <nav className="flex flex-col justify-center items-center">
         <Image src={LogoTextWhite} className="mb-8" alt="" />
         <ul className="space-y-4 w-full">
@@ -56,6 +66,14 @@ const Sidebar = () => {
           </li>
         </ul>
       </nav>
+      <div className="flex justify-center w-full mt-auto">
+        <button
+          onClick={clickHandler}
+          className="flex items-center ml-12 mx-auto gap-2 w-full"
+        >
+          Sign out <ArrowLeftOnRectangleIcon className="w-5 h-5" />
+        </button>
+      </div>
     </aside>
   );
 };

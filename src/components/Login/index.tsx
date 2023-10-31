@@ -1,7 +1,11 @@
 "use client";
 import Input from "@/UI/Input";
 import { useLogin } from "@/api/auth/login-api";
+import { Logo } from "@/assets";
+import Header from "@/common/Header";
 import { zodResolver } from "@hookform/resolvers/zod";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -14,6 +18,7 @@ type SignUpSchemaType = z.infer<typeof SignUpSchema>;
 
 const Login = () => {
   const { mutate, isPending } = useLogin();
+  const router = useRouter();
 
   const {
     register,
@@ -27,7 +32,16 @@ const Login = () => {
   };
   return (
     <div className="bg-white rounded-[10px] p-10">
-      <h1 className="text-center">Admin</h1>
+      <div className="flex items-center mb-5">
+        <button
+          className="relative w-[25px] h-[25px] md:w-[35px] md:h-[35px]"
+          onClick={() => router.back()}
+        >
+          <Image fill src={Logo} alt="" />
+        </button>
+        <h1 className="text-center ml-6">Admin</h1>
+      </div>
+
       <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
         <Input
           id={"email"}

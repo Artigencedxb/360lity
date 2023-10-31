@@ -28,12 +28,11 @@ const Showcase = () => {
             No showcase&apos;s.
           </div>
         )}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-8 md:grid-rows-5 lg:grid-rows-3 grid-rows-1 md:h-[85rem] lg:h-[50rem]">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {showcase?.map((dat, index) => {
-            const className = showCaseData?.[index]?.className;
-            return (
-              <ShowcaseBox key={dat?.id} className={className} data={dat} />
-            );
+            // const className = showCaseData?.[index]?.className;
+
+            return <ShowcaseBox key={dat?.id} data={dat} index={index} />;
           })}
         </div>
       </div>

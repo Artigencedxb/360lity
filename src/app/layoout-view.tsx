@@ -19,7 +19,10 @@ const LayooutView: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   console.log(pathname, "dalj");
 
   const footerEnabled =
-    !pathname?.includes("admin") && pathname !== "/" && pathname !== "/view";
+    !pathname?.includes("admin") &&
+    pathname !== "/" &&
+    pathname !== "/view-showcase" &&
+    pathname !== "/view-project";
 
   return (
     <Fragment>

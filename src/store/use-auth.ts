@@ -21,6 +21,7 @@ export const useAuth = create<AuthProps>()(
         }),
       logout: () =>
         set((state) => {
+          localStorage.removeItem("token");
           return { loggedIn: false, token: "" };
         }),
     }),

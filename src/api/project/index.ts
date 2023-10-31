@@ -28,8 +28,15 @@ const deleteProject = async (val: { id: string }) => {
   return data;
 };
 
-const allProjects = async (): Promise<IProject> => {
-  const { data } = await axiosInstance?.get(routes.project);
+const allProjects = async (
+  page?: number,
+  limit?: number
+): Promise<IProject> => {
+  const { data } = await axiosInstance?.get(routes.project, {
+    params: {
+      ...(page && { page, limit }),
+    },
+  });
   return data;
 };
 
@@ -60,8 +67,11 @@ export const useDeleteProject = () => {
   });
 };
 
-export const useProjects = () => {
-  return useQuery({ queryKey: [routes["project"]], queryFn: allProjects });
+export const useProjects = (page?: number, limit?: number) => {
+  return useQuery({
+    queryKey: [routes["project"], page, limit],
+    queryFn: () => allProjects(page, limit),
+  });
 };
 
 export const useGetProject = (projectId: string) => {

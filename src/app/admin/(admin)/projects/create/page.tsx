@@ -4,7 +4,7 @@ import React from "react";
 
 const AddProjectsPage = () => {
   return (
-    <div>
+    <div className="py-10">
       <Header heading="Add Project" />
 
       <ProjectForm />

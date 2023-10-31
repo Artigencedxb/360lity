@@ -30,8 +30,12 @@ const deleteBlog = async (val: { id: string }) => {
   return data;
 };
 
-const allBlog = async (): Promise<IBlogs> => {
-  const { data } = await axiosInstance?.get(routes.blog);
+const allBlog = async (page?: number, limit?: number): Promise<IBlogs> => {
+  const { data } = await axiosInstance?.get(routes.blog, {
+    params: {
+      ...(page && { page, limit }),
+    },
+  });
   return data;
 };
 
@@ -62,8 +66,11 @@ export const useDeleteBlog = () => {
   });
 };
 
-export const useBlog = () => {
-  return useQuery({ queryKey: [routes["blog"]], queryFn: allBlog });
+export const useBlog = (page?: number, limit?: number) => {
+  return useQuery({
+    queryKey: [routes["blog"], page, limit],
+    queryFn: () => allBlog(page, limit),
+  });
 };
 
 export const useGetBlog = (blogId: string) => {

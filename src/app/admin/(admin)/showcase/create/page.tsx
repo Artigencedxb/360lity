@@ -5,7 +5,7 @@ import React from "react";
 
 const AddShowcasePage = () => {
   return (
-    <div>
+    <div className="py-10">
       <Header heading="Add Showcase" />
 
       <ShowcaseForm />

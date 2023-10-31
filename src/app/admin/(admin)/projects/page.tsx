@@ -24,7 +24,7 @@ const AdminProjectspage = () => {
         </div>
       )}
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 gap-x-5 gap-y-10 mt-10">
+      <div className="grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 gap-x-5 gap-y-10 mt-10 py-10">
         {projects?.map((dat) => {
           return <ProjectsBox admin={true} key={dat?.id} data={dat} />;
         })}

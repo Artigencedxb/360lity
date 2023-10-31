@@ -34,7 +34,7 @@ const Login = () => {
     <div className="bg-white rounded-[10px] p-10">
       <div className="flex items-center mb-5">
         <button
-          className="relative w-[25px] h-[25px] md:w-[35px] md:h-[35px]"
+          className="relative w-[25px] h-[25px] md:w-[37px] md:h-[37px]"
           onClick={() => router.back()}
         >
           <Image fill src={Logo} alt="" />

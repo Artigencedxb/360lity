@@ -20,6 +20,11 @@ const Projects = () => {
       <Header heading="Projects" />
       <div className="mt-5">
         {isPending && <div>{View}</div>}
+        {!projects?.length && (
+          <div className="py-16 text-center text-2xl font-medium">
+            No projects.
+          </div>
+        )}
         <div className=" grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-5 gap-y-10">
           {projects?.map((data, index) => {
             return <ProjectsBox key={data?.id} data={data} index={index} />;

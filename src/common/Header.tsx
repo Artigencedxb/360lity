@@ -4,13 +4,23 @@ import { Logo } from "@/assets";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React from "react";
+import { toast } from "sonner";
 
 const Header: React.FC<{
+  result?: number;
   heading: string;
   buttonText?: string;
   buttonUrl?: string;
-}> = ({ heading, buttonText, buttonUrl = "#" }) => {
+}> = ({ result, heading, buttonText, buttonUrl = "#" }) => {
   const router = useRouter();
+
+  const clickHandler = () => {
+    if (result === 6 && heading === "Showcase") {
+      return toast.error("You can only add 6 showcases.");
+    }
+    router?.push(buttonUrl as string);
+  };
+
   return (
     <div className="flex items-center gap-3">
       <button
@@ -24,7 +34,7 @@ const Header: React.FC<{
         <Button
           text={buttonText}
           className="ml-auto w-auto"
-          onClick={() => router?.push(buttonUrl as string)}
+          onClick={clickHandler}
         />
       )}
     </div>

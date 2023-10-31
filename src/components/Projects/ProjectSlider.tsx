@@ -7,11 +7,11 @@ import "keen-slider/keen-slider.min.css";
 import Image from "next/image";
 import { UaeMap } from "@/assets";
 import { AnimatePresence, motion } from "framer-motion";
+import { useProjectStore } from "@/store/use-projects";
 
-const ProjectSlider: React.FC<{ index: number }> = ({ index }) => {
-  console.log(index, "index");
-
-  const [currentSlide, setCurrentSlide] = React.useState(index);
+const ProjectSlider = () => {
+  const { projectIndex } = useProjectStore();
+  const [currentSlide, setCurrentSlide] = React.useState(projectIndex);
 
   const { data } = useProjects();
 
@@ -26,21 +26,21 @@ const ProjectSlider: React.FC<{ index: number }> = ({ index }) => {
       <div className="keen-slider__slide">3</div> */}
         {project?.slice(currentSlide, currentSlide + 1).map((el, indexes) => {
           return (
-            <motion.div
+            // <div
+            //   key={indexes}
+            //   initial={{ x: -200 }}
+            //   animate={{ x: 0 }}
+            //   exit={{ x: 200 }}
+            //   transition={{ duration: 1 }}
+            // >
+            <ProjectDetails
+              currentSlide={currentSlide}
+              length={project?.length}
+              setCurrentSlide={setCurrentSlide}
               key={indexes}
-              initial={{ x: -200 }}
-              animate={{ x: 0 }}
-              exit={{ x: 200 }}
-              transition={{ duration: 1 }}
-            >
-              <ProjectDetails
-                currentSlide={currentSlide}
-                length={project?.length}
-                setCurrentSlide={setCurrentSlide}
-                key={indexes}
-                val={el}
-              />
-            </motion.div>
+              val={el}
+            />
+            // </div>
           );
         })}
       </AnimatePresence>

@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import DeleteModal from "../Modal/DeleteModal";
 import { useDeleteProject } from "@/api/project";
+import { useProjectStore } from "@/store/use-projects";
 
 const ProjectsBox: React.FC<{
   data: IProject["data"]["project"][0] | undefined;
@@ -18,6 +19,7 @@ const ProjectsBox: React.FC<{
   admin?: boolean;
 }> = ({ data, index, className, admin = false }) => {
   const [deleteModal, setDeleteModal] = useState(false);
+  const { setProjectIndex } = useProjectStore();
 
   //delete api
   const { mutate, isPending } = useDeleteProject();
@@ -77,7 +79,12 @@ const ProjectsBox: React.FC<{
           </div>
         ) : (
           <div className="absolute bg-black/50 w-full h-full opacity-0 flex justify-center items-center group-hover:opacity-100 z-10">
-            <button onClick={() => router.push(`/projects/${index}`)}>
+            <button
+              onClick={() => {
+                setProjectIndex(index as number);
+                router.push(`/projects/details`);
+              }}
+            >
               <Image src={LogoView} alt="360 View Logo" className="" />
             </button>
           </div>

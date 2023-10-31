@@ -13,6 +13,7 @@ const AdminShowcasepage = () => {
   return (
     <div>
       <Header
+        result={data?.result}
         heading="Showcase"
         buttonText="+ Add Showcase"
         buttonUrl="/admin/showcase/create"

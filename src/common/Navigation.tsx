@@ -6,7 +6,7 @@ import Triangle from "./Triangle";
 import { NavigationData } from "@/data/navigation";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { motion, Variants } from "framer-motion";
+import { AnimatePresence, motion, Variants } from "framer-motion";
 import { useDetectClickOutside } from "react-detect-click-outside";
 import animationWhite from "../../public/animation-white.json";
 import Lottie from "lottie-react";
@@ -31,26 +31,24 @@ const Navigation = () => {
   //   },
   // };
   // const { View } = useLottie(options);
-
-  const variants: Variants = {
-    open: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 1,
-        ease: "easeOut",
-        staggerChildren: 0.07,
-        staggerDirection: -1,
-        delayChildren: 0.2,
-      },
-    },
+  const itemVariants = {
     closed: {
       opacity: 0,
-      y: -20,
+    },
+    open: { opacity: 1 },
+  };
+
+  const sideVariants = {
+    closed: {
       transition: {
-        ease: "easeOut",
-        duration: 1,
-        staggerChildren: 0.05,
+        staggerChildren: 0.2,
+        staggerDirection: -1,
+      },
+    },
+    open: {
+      transition: {
+        staggerChildren: 0.2,
+        staggerDirection: 1,
       },
     },
   };
@@ -92,30 +90,34 @@ const Navigation = () => {
           ""
         )}
         {
-          <motion.div
-            variants={variants}
-            initial={true}
-            animate={viewMore ? "open" : "closed"}
-            className="flex flex-col gap-2"
-          >
-            {viewMore &&
-              NavigationData?.map((el) => {
-                return (
-                  <motion.button
-                    key={el?.id}
-                    onMouseEnter={() => setHover(el?.id)}
-                    onMouseLeave={() => setHover(0)}
-                    onClick={() => clickHandler(el?.href)}
-                    className="bg-[#73CCFF] hover:scale-105 transition-all font-medium duration-200 w-[140px] flex items-center text-sm justify-center gap-2.5 px-5 py-2.5 rounded-[10px]"
-                  >
-                    {el?.label}
-                    <Image
-                      src={LogoNavigation}
-                      className="ml-auto"
-                      alt=""
-                      width={20}
-                    />
-                    {/* {hover === el?.id ? (
+          <AnimatePresence>
+            <motion.div
+              variants={sideVariants}
+              initial={"closed"}
+              animate={viewMore ? "open" : "closed"}
+              className="flex flex-col gap-2"
+            >
+              {viewMore &&
+                NavigationData?.map((el, index) => {
+                  return (
+                    <motion.button
+                      key={index}
+                      initial={"closed"}
+                      variants={itemVariants}
+                      animate={"open"}
+                      onMouseEnter={() => setHover(el?.id)}
+                      onMouseLeave={() => setHover(0)}
+                      onClick={() => clickHandler(el?.href)}
+                      className="bg-[#73CCFF] hover:scale-105 transition-all font-medium duration-200 w-[140px] flex items-center text-sm justify-center gap-2.5 px-5 py-2.5 rounded-[10px]"
+                    >
+                      {el?.label}
+                      <Image
+                        src={LogoNavigation}
+                        className="ml-auto"
+                        alt=""
+                        width={20}
+                      />
+                      {/* {hover === el?.id ? (
                       <Lottie
                         animationData={animationWhite}
                         autoplay={true}
@@ -137,10 +139,11 @@ const Navigation = () => {
                         width={20}
                       />
                     )} */}
-                  </motion.button>
-                );
-              })}
-          </motion.div>
+                    </motion.button>
+                  );
+                })}
+            </motion.div>
+          </AnimatePresence>
         }
       </div>
     </div>

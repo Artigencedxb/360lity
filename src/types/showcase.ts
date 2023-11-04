@@ -33,6 +33,6 @@ export interface Showcase {
   name: string;
   image: string;
   link: string;
-
+  description: string;
   id: string;
 }

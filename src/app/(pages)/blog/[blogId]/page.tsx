@@ -5,6 +5,7 @@ import Triangle from "@/common/Triangle";
 import * as DOMPurify from "dompurify";
 import Image from "next/image";
 import React from "react";
+import { ShareIcon } from "../../../../assets";
 
 // export const metadata: Metadata = {
 //   title: "Blog",
@@ -45,8 +46,8 @@ const BlogPage: React.FC<{ params: { blogId: string } }> = ({ params }) => {
       <div className="py-[4.8rem] md:py-10 space-y-5">
         <Header heading="Blog" />
 
-        <div className="img-wrap rounded-[10px] w-full relative flex flex-col md:flex-row items-center justify-center">
-          <div className="md:absolute w-full md:w-[75%] z-[1000] top-0 left-0 lg:w-[75%] h-full md:basis-[70%] self-stretch flex items-center py-10 rounded-tl-[10px] rounded-bl-[10px] left">
+        <div className="trianglebox img-wrap rounded-[10px] w-full relative flex flex-col md:flex-row items-center justify-center">
+          <div className="md:absolute w-full z-[1000] top-0 overlay left-0 md:w-[75%] lg:w-[80%] h-full self-stretch flex items-center py-10 rounded-tl-[10px] rounded-bl-[10px]">
             <h1 className="text-xl md:text-5px text-white px-8">
               {blog?.title}
             </h1>
@@ -60,7 +61,6 @@ const BlogPage: React.FC<{ params: { blogId: string } }> = ({ params }) => {
             />
           </div>
           {/* <Image src={LogoWhite} alt="" /> */}
-          <Triangle />
         </div>
         <div className="bg-white rounded-[15px] p-5">
           <div dangerouslySetInnerHTML={{ __html: clean }} />
@@ -69,7 +69,9 @@ const BlogPage: React.FC<{ params: { blogId: string } }> = ({ params }) => {
         </div>
         <div className="text-sm font-normal whitespace-pre-wrap">{desc}</div>
         <div className="text-sm font-normal whitespace-pre-wrap">{conc}</div> */}
+          <Image className="mt-8 ml-auto" src={ShareIcon} alt="share icon" />
         </div>
+        <div></div>
         {/* <ProjectDetails blogId={params?.blogId} data={project} /> */}
       </div>
     );

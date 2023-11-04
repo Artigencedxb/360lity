@@ -139,7 +139,7 @@ const ProjectForm: React.FC<{ initialValues?: Project }> = ({
       >
         {imageloader ? (
           <div className="flex justify-center py-6 w-[45%]">
-            <Loader />
+            <Loader className="w-9 h-9" />
           </div>
         ) : watch("image")?.length ? (
           <ImagePreview

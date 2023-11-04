@@ -70,21 +70,13 @@ const BlogCard: React.FC<{ data: Blog; admin?: boolean }> = ({
           />
           {admin && (
             <div className="top-0 left-0 absolute bg-black/50 w-full h-full opacity-0 flex justify-center gap-8 items-center group-hover:opacity-100 z-10">
-              <button
-                type="button"
-                onClick={() =>
-                  router.push(`/admin/blog/${data?._id as string}`)
-                }
-              >
-                <PencilSquareIcon className="w-8 h-8 text-white" />
-              </button>
               <button onClick={() => setDeleteModal(true)}>
                 <TrashIcon className="w-8 h-8 text-white" />
               </button>
             </div>
           )}
         </div>
-        <div className="bg-white flex flex-col h-[13rem] items-stretch md:h-[32rem] lg:h-[30rem] xl:h-[26rem] rounded-[10px] p-5">
+        <div className="bg-white flex flex-col h-[13rem] items-stretch md:h-[32rem] overflow-hidden lg:h-[30rem] xl:h-[30rem] rounded-[10px] p-5">
           <h4 className="text-sm font-semibold">{data?.title}</h4>
           <div
             dangerouslySetInnerHTML={{

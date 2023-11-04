@@ -21,6 +21,7 @@ const ShowcaseSchema = z.object({
   name: z.string().min(1, "Please enter a showcase name"),
   link: z.string().min(3, "Please enter a 360 video link for showcase"),
   image: z.string().min(3, "Please upload a showcase photo"),
+  description: z.string().min(3, "Please enter a description"),
 });
 
 type ShowcaseSchemaType = z.infer<typeof ShowcaseSchema>;
@@ -135,7 +136,7 @@ const ShowcaseForm: React.FC<{ initialValues?: Showcase }> = ({
       >
         {imageloader ? (
           <div className="flex justify-center py-6 w-[45%]">
-            <Loader />
+            <Loader className="w-9 h-9" />
           </div>
         ) : watch("image")?.length ? (
           <ImagePreview
@@ -182,7 +183,15 @@ const ShowcaseForm: React.FC<{ initialValues?: Showcase }> = ({
           error={errors?.link?.message}
           className="w-full"
         />
-
+        <TextArea
+          id={"description"}
+          name="description"
+          register={register}
+          label="Description"
+          error={errors?.description?.message}
+          className="w-full"
+          rows={4}
+        />
         <Button
           loading={loader}
           disabled={loader || imageloader}

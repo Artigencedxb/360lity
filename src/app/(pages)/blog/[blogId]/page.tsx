@@ -46,14 +46,14 @@ const BlogPage: React.FC<{ params: { blogId: string } }> = ({ params }) => {
       <div className="py-[4.8rem] md:py-10 space-y-5">
         <Header heading="Blog" />
 
-        <div className=" rounded-[10px] w-full relative flex flex-col md:flex-row items-center justify-center">
+        <div className="hidden rounded-[10px] w-full relative md:flex flex-col md:flex-row items-center justify-center">
           {/* <Triangle /> */}
-          <div className="overlay md:absolute w-full z-[1000] top-0 left-0 md:w-[90%] lg:w-[90%] h-full self-stretch flex items-center py-10 rounded-tl-[10px] rounded-bl-[10px]">
+          <div className="fade-effect md:absolute w-full z-[1000] top-0 left-0 md:w-[90%] lg:w-[95%] h-full self-stretch md:flex items-center py-10 rounded-tl-[10px] rounded-bl-[10px]">
             <h1 className="text-3xl md:text-5px text-white pl-12 w-[70%]">
               {blog?.title}
             </h1>
           </div>
-          <div className="ml-auto relative w-[18rem] h-[12rem] basis-[30%] right">
+          <div className=" md:ml-auto relative basis-full w-full h-full md:w-[18rem] md:h-[12rem] md:basis-[30%]">
             <Image
               src={blog?.image as string}
               alt="blog image"
@@ -62,6 +62,21 @@ const BlogPage: React.FC<{ params: { blogId: string } }> = ({ params }) => {
             />
           </div>
           {/* <Image src={LogoWhite} alt="" /> */}
+        </div>
+        <div className="md:hidden relative">
+          <div className="w-full justify-center flex absolute z-[3000] top-0 left-0 h-full self-stretch items-center py-10 rounded-bl-[10px]">
+            <h1 className="text-base md:text-5px text-white pl-12 w-[70%]">
+              {blog?.title}
+            </h1>
+          </div>
+          <div className="overlay relative md:ml-auto w-full h-[13rem]">
+            <Image
+              src={blog?.image as string}
+              alt="blog image"
+              fill
+              className="rounded-[10px]"
+            />
+          </div>
         </div>
         <div className="bg-white rounded-[15px] p-5">
           <div dangerouslySetInnerHTML={{ __html: clean }} />

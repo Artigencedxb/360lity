@@ -101,14 +101,6 @@ body {
   transform: rotate(135deg) skewY(-45deg) scale(0.707, 1.414) translate(50%);
 }
 
-.img-wrap {
-  background: linear-gradient(
-    to right,
-    rgba(0, 0, 0, 0),
-    rgba(255, 255, 255, 0.5)
-  );
-}
-
 .frame {
   width: 315px;
   height: 165px;
@@ -117,17 +109,49 @@ body {
 }
 
 .overlay {
-  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.5), transparent);
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    to right,
+    rgb(0, 0, 0),
+    rgba(0, 0, 0, 0.85),
+    rgba(0, 0, 0, 0.8),
+    rgba(0, 0, 0, 0)
+  );
 }
 
-
-
+.img-effect {
+  -webkit-mask-image: -webkit-gradient(
+    linear,
+    to left,
+    from(rgba(0, 0, 0, 1)),
+    to(rgba(0, 0, 0, 0))
+  );
+  mask-image: linear-gradient(to left, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0) 100%);
+}
+.trianglenew {
+  display: block;
+  width: 30px;
+  height: 25px;
+  background-color: #d5e5f7;
+  border: inherit;
+  position: absolute;
+  bottom: 0px;
+  z-index: 2000;
+  left: calc(50%);
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  border-top-left-radius: 12px;
+}
 
 .trianglebox::after {
   content: "";
   position: absolute;
   /* margin: 0 auto; */
-  bottom: -4px;
+  bottom: -4.2px;
   left: 50%;
   transform: translateX(-50%);
   width: 40px;

@@ -46,18 +46,19 @@ const BlogPage: React.FC<{ params: { blogId: string } }> = ({ params }) => {
       <div className="py-[4.8rem] md:py-10 space-y-5">
         <Header heading="Blog" />
 
-        <div className="trianglebox img-wrap rounded-[10px] w-full relative flex flex-col md:flex-row items-center justify-center">
-          <div className="md:absolute w-full z-[1000] top-0 overlay left-0 md:w-[75%] lg:w-[80%] h-full self-stretch flex items-center py-10 rounded-tl-[10px] rounded-bl-[10px]">
-            <h1 className="text-xl md:text-5px text-white px-8">
+        <div className=" rounded-[10px] w-full relative flex flex-col md:flex-row items-center justify-center">
+          {/* <Triangle /> */}
+          <div className="overlay md:absolute w-full z-[1000] top-0 left-0 md:w-[90%] lg:w-[90%] h-full self-stretch flex items-center py-10 rounded-tl-[10px] rounded-bl-[10px]">
+            <h1 className="text-3xl md:text-5px text-white pl-12 w-[70%]">
               {blog?.title}
             </h1>
           </div>
-          <div className="ml-auto relative w-[12rem] h-[12rem] basis-[30%] right">
+          <div className="ml-auto relative w-[18rem] h-[12rem] basis-[30%] right">
             <Image
               src={blog?.image as string}
               alt="blog image"
               fill
-              className="rounded-tr-[10px] rounded-br-[10px]"
+              className="rounded-tr-[10px] img-effect rounded-br-[10px]"
             />
           </div>
           {/* <Image src={LogoWhite} alt="" /> */}

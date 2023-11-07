@@ -20,7 +20,7 @@ const Projects = () => {
       <Header heading="Projects" />
       <div className="mt-5">
         {isPending && <div>{View}</div>}
-        {!projects?.length && (
+        {!projects?.length && !isPending && (
           <div className="py-16 text-center text-2xl font-medium">
             No projects.
           </div>

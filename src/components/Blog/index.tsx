@@ -21,7 +21,7 @@ const Blog = () => {
       <Header heading="Blog" />
       <div className="mt-5">
         {isPending && <div>{View}</div>}
-        {!blogs?.length && (
+        {!blogs?.length && !isPending && (
           <div className="py-16 text-center text-2xl font-medium">
             No blogs.
           </div>

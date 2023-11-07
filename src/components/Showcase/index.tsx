@@ -23,7 +23,7 @@ const Showcase = () => {
       <Header heading="Showcase" />
       <div className="mt-5">
         {isPending && <div>{View}</div>}
-        {!showcase?.length && (
+        {!showcase?.length && !isPending && (
           <div className="py-16 text-center text-2xl font-medium">
             No showcase&apos;s.
           </div>

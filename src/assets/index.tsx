@@ -31,6 +31,9 @@ import YoutubeIcon from "./youtube.svg";
 import FooterLogo from "./footer-logo.svg";
 import FooterQr from "./footer-qr.svg";
 
+//Triangle
+import TriangleIcon from "./round-triangle.svg";
+
 export {
   Logo,
   LogoText,
@@ -55,4 +58,5 @@ export {
   YoutubeIcon,
   LogoMain,
   LogoNavigation,
+  TriangleIcon,
 };

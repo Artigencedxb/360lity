@@ -19,6 +19,8 @@ const ShowcaseBox: React.FC<{
 }> = ({ className, index, data, admin = false }) => {
   const [deleteModal, setDeleteModal] = useState(false);
 
+  console.log(className, "class");
+
   const { setProjectIndex } = useProjectStore();
 
   //delete api
@@ -49,14 +51,11 @@ const ShowcaseBox: React.FC<{
       )}
       <div
         className={cn(
-          "trianglebox rounded-[15px] transition-all relative min-h-[13rem] group overflow-hidden inline-block",
-          className,
-          {
-            "!md:h-[13rem]": !!admin,
-            "!md:h-auto": !admin,
-          }
+          " rounded-[15px] transition-all relative min-h-[13rem] group overflow-hidden inline-block",
+          className
         )}
       >
+        <Triangle />
         {data?.image?.length ? (
           <div className="block transition-all duration-300 group-hover:bg-black/30">
             <Image

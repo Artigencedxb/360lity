@@ -22,7 +22,7 @@ const Button: React.FC<ButtonProps> = React.forwardRef(
         {...rest}
         type={type}
         className={cn(
-          "rounded-[10px] px-6 capitalize bg-[#0060E4] disabled:opacity-80 font-medium py-3 text-white",
+          "rounded-[10px] px-6 capitalize bg-[#0060E4] disabled:opacity-60 font-medium py-3 text-white",
           className,
           {
             "flex items-center justift-center gap-2": loading,

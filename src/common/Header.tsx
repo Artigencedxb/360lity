@@ -11,7 +11,8 @@ const Header: React.FC<{
   heading: string;
   buttonText?: string;
   buttonUrl?: string;
-}> = ({ result, heading, buttonText, buttonUrl = "#" }) => {
+  disabled?: boolean;
+}> = ({ result, heading, buttonText, buttonUrl = "#", disabled = false }) => {
   const router = useRouter();
 
   const clickHandler = () => {
@@ -32,6 +33,7 @@ const Header: React.FC<{
       <h1>{heading}</h1>
       {buttonText?.length && (
         <Button
+          disabled={disabled}
           text={buttonText}
           className="ml-auto w-auto"
           onClick={clickHandler}

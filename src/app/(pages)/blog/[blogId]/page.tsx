@@ -47,7 +47,7 @@ const BlogPage: React.FC<{ params: { blogId: string } }> = ({ params }) => {
         <Header heading="Blog" />
 
         <div className="hidden rounded-[10px] w-full relative md:flex flex-col md:flex-row items-center justify-center">
-          {/* <Triangle /> */}
+          <Triangle />
           <div className="fade-effect md:absolute w-full z-[1000] top-0 left-0 md:w-[90%] lg:w-[95%] h-full self-stretch md:flex items-center py-10 rounded-tl-[10px] rounded-bl-[10px]">
             <h1 className="text-3xl md:text-5px text-white pl-12 w-[70%]">
               {blog?.title}

@@ -48,11 +48,11 @@ const ProjectsBox: React.FC<{
       )}
       <div
         className={cn(
-          "transition-all h-[13rem] trianglebox group overflow-hidden inline-block relative w-full rounded-[10px]",
+          "transition-all h-[13rem] relative group overflow-hidden inline-block w-full rounded-[10px]",
           className
         )}
       >
-        {/* <Triangle /> */}
+        <Triangle />
         {data?.image?.length ? (
           <Image
             src={data?.image}

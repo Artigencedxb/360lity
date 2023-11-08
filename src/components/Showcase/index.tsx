@@ -12,6 +12,7 @@ import { useLottie } from "lottie-react";
 const Showcase = () => {
   const { data, isPending } = useShowcase(1, 6);
   const showcase = data?.data?.showcase;
+  
 
   const options = {
     animationData: animation,

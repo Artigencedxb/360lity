@@ -33,6 +33,7 @@ import FooterQr from "./footer-qr.svg";
 
 //Triangle
 import TriangleIcon from "./round-triangle.svg";
+import TriangleBlackIcon from "./round-triangle-black.svg";
 
 export {
   Logo,
@@ -59,4 +60,5 @@ export {
   LogoMain,
   LogoNavigation,
   TriangleIcon,
+  TriangleBlackIcon,
 };

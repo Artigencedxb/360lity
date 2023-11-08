@@ -4,6 +4,7 @@ import { Project } from "@/types/project";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
+import Triangle from "../../common/Triangle";
 
 const ProjectDetails: React.FC<{
   currentSlide: number;
@@ -22,7 +23,8 @@ const ProjectDetails: React.FC<{
 
   return (
     <div className="w-full mt-5 grid lg:grid-cols-2 gap-x-6 grid-cols-1 gap-y-8">
-      <div className="relative trianglebox rounded-x w-full h-[375px] group overflow-hidden inline-block">
+      <div className="relative rounded-x w-full h-[375px] group overflow-hidden inline-block">
+        <Triangle />
         {val?.image?.length ? (
           <Image
             src={val?.image}

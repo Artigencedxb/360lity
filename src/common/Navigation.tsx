@@ -1,15 +1,12 @@
 "use client";
-import { LogoMain, LogoNavigation, LogoText, LogoView } from "@/assets";
-import Image from "next/image";
-import React, { useState, useEffect } from "react";
-import Triangle from "./Triangle";
+import { LogoNavigation, LogoText } from "@/assets";
 import { NavigationData } from "@/data/navigation";
+import { AnimatePresence, Variants, motion, useCycle } from "framer-motion";
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { AnimatePresence, motion, Variants } from "framer-motion";
+import { useEffect, useState } from "react";
 import { useDetectClickOutside } from "react-detect-click-outside";
-import animationWhite from "../../public/animation-white.json";
-import Lottie from "lottie-react";
 
 const Navigation = () => {
   const [viewMore, setViewMore] = useState(false);
@@ -31,18 +28,24 @@ const Navigation = () => {
   //   },
   // };
   // const { View } = useLottie(options);
-  const itemVariants = {
+  const itemVariants: Variants = {
     closed: {
       opacity: 0,
+      transition: {
+        duration: 0.3,
+        ease: "easeInOut",
+      },
     },
     open: { opacity: 1 },
   };
 
-  const sideVariants = {
+  const sideVariants: Variants = {
     closed: {
       transition: {
         staggerChildren: 0.2,
         staggerDirection: -1,
+        duration: 0.3,
+        ease: "easeInOut",
       },
     },
     open: {
@@ -55,7 +58,7 @@ const Navigation = () => {
 
   useEffect(() => {
     if (viewMore && hover === 0) {
-      const timer = setTimeout(() => setViewMore(false), 5000);
+      const timer = setTimeout(() => setViewMore(false), 8000);
       return () => clearTimeout(timer);
     }
   }, [viewMore, hover]);
@@ -65,9 +68,10 @@ const Navigation = () => {
     setViewMore(false);
     router?.push(link);
   };
+
   return (
     <div
-      className="absolute z-30 top-0 right-0 px-[2rem] sm:px-[3rem] lg:px-[1.5rem] space-y-2"
+      className="absolute z-[3000] top-0 right-0 px-[2rem] sm:px-[3rem] lg:px-[1.5rem] space-y-2"
       ref={ref}
     >
       <div className="bg-white w-[140px] h-[125px] p-7 relative rounded-bl-[10px] rounded-br-[10px] flex items-center justify-center">
@@ -105,8 +109,12 @@ const Navigation = () => {
                       initial={"closed"}
                       variants={itemVariants}
                       animate={"open"}
-                      onMouseEnter={() => setHover(el?.id)}
-                      onMouseLeave={() => setHover(0)}
+                      transition={{
+                        duration: 0.3,
+                        delay: index * 0.08,
+                        ease: [0.4, 0.6, 0.2, 1],
+                        type: "tween",
+                      }}
                       onClick={() => clickHandler(el?.href)}
                       className="bg-[#73CCFF] hover:scale-105 transition-all font-medium duration-200 w-[140px] flex items-center text-sm justify-center gap-2.5 px-5 py-2.5 rounded-[10px]"
                     >

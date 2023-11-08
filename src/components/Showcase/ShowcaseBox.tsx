@@ -19,12 +19,11 @@ const ShowcaseBox: React.FC<{
 }> = ({ className, index, data, admin = false }) => {
   const [deleteModal, setDeleteModal] = useState(false);
 
-  console.log(className, "class");
-
   const { setProjectIndex } = useProjectStore();
 
   //delete api
   const { mutate, isPending } = useDeleteShowcase();
+
 
   const showcaseDeleteHandler = () => {
     mutate(

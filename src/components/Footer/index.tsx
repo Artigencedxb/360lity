@@ -5,6 +5,7 @@ import {
   InstagramIcon,
   LogoWhite,
   TiktokIcon,
+  TriangleBlackIcon,
   TwitterIcon,
   YoutubeIcon,
 } from "@/assets";
@@ -12,6 +13,7 @@ import Triangle from "@/common/Triangle";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import TriangleBlack from "../../common/TriangleBlack";
 
 const Footer = () => {
   return (
@@ -38,7 +40,7 @@ const Footer = () => {
           </li>
 
           <li className="text-sm">
-            <Link href="/projects">projects</Link>
+            <Link href="/projects">Projects</Link>
           </li>
 
           <li className="text-sm">
@@ -48,10 +50,6 @@ const Footer = () => {
 
           <li className="text-sm">
             <Link href="/blog">Blogs</Link>
-          </li>
-
-          <li className="text-sm">
-            <Link href="/explore">XV Exlilore</Link>
           </li>
 
           <li className="text-sm">
@@ -90,7 +88,7 @@ const Footer = () => {
             E mail
           </Link>
         </div>
-        <div className="flex items-center justify-center flex-col gap-2">
+        <div className="flex items-center justify-center flex-col gap-3">
           <div className="bg-white w-[200px] lg:w-full relative flex items-center justify-between rounded-[15px] px-4 py-6">
             <div className="relative w-[50px] h-[50px]">
               <Image
@@ -107,7 +105,7 @@ const Footer = () => {
                 className="rounded-[15px]"
               />
             </div>
-            {/* <Triangle className="bg-black left-[43%]" /> */}
+            <TriangleBlack />
           </div>
           <p className="text-[11px]">
             copyright All rights reserved 360lity.com

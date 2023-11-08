@@ -6,7 +6,7 @@ import { useLottie } from "lottie-react";
 import animation from "../../../public/animation.json";
 
 const Projects = () => {
-  const { data, isPending } = useProjects(1, 8);
+  const { data, isPending } = useProjects();
   console.log(data, "data");
   const projects = data?.data?.project;
 

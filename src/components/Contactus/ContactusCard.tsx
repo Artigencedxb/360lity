@@ -1,11 +1,15 @@
 import { MailIcon, PhoneIcon, WhatsappIcon } from "@/assets";
 import Image from "next/image";
 import React from "react";
+import Triangle from "../../common/Triangle";
 
 const ContactusCard = () => {
   return (
     <div className="flex flex-col gap-4 md:w-[300px] h-full">
-      <div className="bg-black h-[210px] rounded-[15px] triangle-box"></div>
+      <div className="bg-black h-[210px] rounded-[15px] relative">
+        {" "}
+        <Triangle />
+      </div>
       <div className="bg-white rounded-[15px] p-8">
         <div className="text-sm font-normal whitespace-pre-wrap">
           Ready to embark on a journey beyond reality? Contact us today, and

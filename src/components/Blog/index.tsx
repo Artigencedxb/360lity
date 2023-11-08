@@ -9,7 +9,7 @@ import { useBlog } from "@/api/blog";
 import { useLottie } from "lottie-react";
 
 const Blog = () => {
-  const { data, isPending } = useBlog(1, 4);
+  const { data, isPending } = useBlog();
   const blogs = data?.data?.blog;
   const options = {
     animationData: animation,

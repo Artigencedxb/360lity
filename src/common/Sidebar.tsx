@@ -21,49 +21,67 @@ const Sidebar = () => {
     <aside className="fixed left-0 top-0 h-screen z-100 w-64 py-6 px-5 flex flex-col text-white bg-black/80">
       <nav className="flex flex-col justify-center items-center">
         <Image src={LogoTextWhite} className="mb-8" alt="" />
-        <ul className="space-y-4 w-full">
+        <ul className="w-full">
+        <Link href="/admin/showcase">
           <li
             className={cn(
-              "transition-all duration-300 text-lg hover:text-black font-medium cursor-pointer hover:bg-primary text-center py-2.5 rounded-x",
+              "mb-4 transition-all duration-300 text-lg hover:text-black font-medium cursor-pointer hover:bg-primary text-center py-2.5 rounded-x",
               {
                 "bg-primary text-black": pathname === "/admin/showcase",
               }
             )}
           >
-            <Link href="/admin/showcase">Showcase</Link>
+            Showcase
           </li>
-
+          </Link>
+          <Link href="/admin/projects">
           <li
             className={cn(
-              "transition-all duration-300 text-lg hover:text-black font-medium cursor-pointer hover:bg-primary text-center py-2.5 rounded-x",
+              "mb-4 transition-all duration-300 text-lg hover:text-black font-medium cursor-pointer hover:bg-primary text-center py-2.5 rounded-x",
               {
                 "bg-primary text-black": pathname?.includes("/admin/projects"),
               }
             )}
           >
-            <Link href="/admin/projects">Projects</Link>
+           Projects
           </li>
+          </Link>
+             <Link href="/admin/blog">
           <li
             className={cn(
-              "transition-all duration-300 text-lg hover:text-black font-medium cursor-pointer hover:bg-primary text-center py-2.5 rounded-x",
+              "mb-4 transition-all duration-300 text-lg hover:text-black font-medium cursor-pointer hover:bg-primary text-center py-2.5 rounded-x",
               {
                 "bg-primary text-black": pathname?.includes("/admin/blog"),
               }
             )}
           >
-            <Link href="/admin/blog">Blogs</Link>
+         Blogs
           </li>
-
+          </Link>
+          <Link href="#">
           <li
             className={cn(
-              "transition-all duration-300 text-lg hover:text-black font-medium cursor-pointer hover:bg-primary text-center py-2.5 rounded-x",
+              "mb-4 transition-all duration-300 text-lg hover:text-black font-medium cursor-pointer hover:bg-primary text-center py-2.5 rounded-x",
               {
                 "bg-primary text-black": pathname === "/admin/about",
               }
             )}
           >
-            <Link href="#">About</Link>
+            About
           </li>
+          </Link>
+          <Link href="/admin/contactus">
+          <li
+            className={cn(
+              "mb-4 transition-all duration-300 text-lg hover:text-black font-medium cursor-pointer hover:bg-primary text-center py-2.5 rounded-x",
+              {
+                "bg-primary text-black": pathname === "/admin/about",
+              }
+            )}
+          >
+           Contact
+          </li>
+          </Link>
         </ul>
       </nav>
       <div className="flex justify-center w-full mt-auto">

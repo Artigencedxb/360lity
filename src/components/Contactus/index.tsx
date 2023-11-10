@@ -2,7 +2,7 @@ import { Logo } from "@/assets";
 import Image from "next/image";
 import React from "react";
 import ContactusCard from "./ContactusCard";
-import ContactusForm from "./ContactusForm";
+import ContactusForm from "./MailForm";
 import Header from "@/common/Header";
 
 const Contactus = () => {

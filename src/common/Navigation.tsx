@@ -44,14 +44,15 @@ const Navigation = () => {
       transition: {
         staggerChildren: 0.2,
         staggerDirection: -1,
-        duration: 0.3,
         ease: "easeInOut",
       },
     },
     open: {
       transition: {
-        staggerChildren: 0.2,
+        staggerChildren: 1.8,
         staggerDirection: 1,
+        delayChildren: 3,
+        ease: "easeInOut",
       },
     },
   };
@@ -80,25 +81,24 @@ const Navigation = () => {
         </Link>
         {/* <Triangle /> */}
       </div>
-
-      <div>
-        {!viewMore ? (
-          <button
-            onClick={() => setViewMore(true)}
-            className="bg-[#73CCFF] w-full flex items-center text-sm font-medium justify-center gap-2.5 px-5 py-2.5 rounded-[10px]"
-          >
-            More
-            <Image src={LogoNavigation} alt="" width={20} />
-          </button>
-        ) : (
-          ""
-        )}
-        {
-          <AnimatePresence>
+      <AnimatePresence>
+        <div>
+          {!viewMore ? (
+            <button
+              onClick={() => setViewMore(true)}
+              className="bg-[#73CCFF] w-full flex items-center text-sm font-medium justify-center gap-2.5 px-5 py-2.5 rounded-[10px]"
+            >
+              More
+              <Image src={LogoNavigation} alt="" width={20} />
+            </button>
+          ) : null}
+          {
             <motion.div
+              key={"nav-key"}
               variants={sideVariants}
               initial={"closed"}
               animate={viewMore ? "open" : "closed"}
+              exit={"closed"}
               className="flex flex-col gap-2"
             >
               {viewMore &&
@@ -109,6 +109,7 @@ const Navigation = () => {
                       initial={"closed"}
                       variants={itemVariants}
                       animate={"open"}
+                      exit={"closed"}
                       transition={{
                         duration: 0.3,
                         delay: index * 0.08,
@@ -151,9 +152,9 @@ const Navigation = () => {
                   );
                 })}
             </motion.div>
-          </AnimatePresence>
-        }
-      </div>
+          }
+        </div>
+      </AnimatePresence>
     </div>
   );
 };

@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import ContactusForm from "../../../../components/Contactus/ContactUsForm";
+import ContactusForm from "@/components/Contactus/ContactUsForm";
 import { useGetContact } from "../../../../api/contactus";
 
 const ContactUsAdminpage = () => {

@@ -2,14 +2,18 @@
 import { useShowcase } from "@/api/showcase";
 import Header from "@/common/Header";
 import ShowcaseBox from "@/components/Showcase/ShowcaseBox";
-import { showCaseData } from "@/data/showcase";
-import React from "react";
+import { useLottie } from "lottie-react";
+import animation from "../../../../../public/animation.json";
 
 const AdminShowcasepage = () => {
-  const { data } = useShowcase();
+  const { data, isPending } = useShowcase();
   console.log(data, "data");
   const showcase = data?.data?.showcase;
-
+  const options = {
+    animationData: animation,
+    loop: true,
+  };
+  const { View } = useLottie(options);
   return (
     <div>
       <Header
@@ -19,10 +23,10 @@ const AdminShowcasepage = () => {
         buttonUrl="/admin/showcase/create"
         disabled={data?.result === 8}
       />
-
-      {!showcase?.length && (
+      {isPending && <div>{View}</div>}
+      {!showcase?.length && !isPending && (
         <div className="py-16 text-center text-2xl font-medium">
-          No showcase added.
+          No showcase&apos;s.
         </div>
       )}
 

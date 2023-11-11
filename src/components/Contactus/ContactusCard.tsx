@@ -1,9 +1,13 @@
+"use client";
 import { MailIcon, PhoneIcon, WhatsappIcon } from "@/assets";
 import Image from "next/image";
 import React from "react";
 import Triangle from "../../common/Triangle";
+import { useGetContact } from "../../api/contactus";
 
 const ContactusCard = () => {
+  const { data } = useGetContact();
+  const contact = data?.data.contact;
   return (
     <div className="flex flex-col gap-4 md:w-[300px] h-full">
       <div className="bg-black h-[210px] rounded-[15px] relative">
@@ -16,9 +20,15 @@ const ContactusCard = () => {
           let&apos;s craft immersive realities together.
         </div>
         <div className="flex items-center gap-4 justify-center mt-6">
-          <Image src={PhoneIcon} alt="Phone icon" />
+          <a href={`tel:${contact?.phone}`}>
+            <Image src={PhoneIcon} alt="Phone icon" />
+          </a>
+          <a target="_blank" href={`https://api.whatsapp.com/send?phone=${contact?.phone}`}>
           <Image src={WhatsappIcon} alt="Whatsapp icon" />
+          </a>
+          <a href={`mailto:${contact?.email}`}>
           <Image src={MailIcon} alt="Mail icon" />
+          </a>
         </div>
       </div>
     </div>

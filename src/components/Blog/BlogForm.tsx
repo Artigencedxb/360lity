@@ -187,6 +187,7 @@ const BlogForm: React.FC<{ initialValues?: Blog }> = ({ initialValues }) => {
                 className="bg-white rounded-x min-h-[250px]"
                 theme="snow"
                 value={value}
+               
                 onChange={onChange}
               ></ReactQuill>
             );

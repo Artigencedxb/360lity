@@ -1,69 +1,69 @@
 "use client";
 import Button from "@/UI/Button";
 import ImagePreview from "@/UI/ImagePreview";
-import Input from "@/UI/Input";
 import Loader from "@/UI/Loader";
-import TextArea from "@/UI/TextArea";
 import { useDelete, useUpload } from "@/api/image";
-import { useCreateProject, useEditProject } from "@/api/project";
-import { Project } from "@/types/project";
-import { resizeFile } from "@/utils/resizeFile";
 import { transformFile } from "@/utils/transformFile";
 import { ArrowUpTrayIcon } from "@heroicons/react/20/solid";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useQueryClient } from "@tanstack/react-query";
+import { convert } from "html-to-text";
 import { useRouter } from "next/navigation";
-import React, { useEffect } from "react";
-import { SubmitHandler, useForm } from "react-hook-form";
+import React, { useRef } from "react";
+import { Controller, SubmitHandler, useForm } from "react-hook-form";
+import ReactQuill, {Quill} from "react-quill";
+import "react-quill/dist/quill.snow.css";
 import { toast } from "sonner";
 import { z } from "zod";
-import { useEditContact } from "../../api/contactus";
-import { Contact } from "../../types/contact";
+import { useEditAbout } from "../../api/about";
+import { About } from "../../types/about";
+import "react-quill/dist/quill.snow.css";
+import Input from "../../UI/Input";
 
-const ProjectSchema = z.object({
-  phone: z.string().min(1, "Please enter a contact phone number"),
-  whatsapp: z.string().min(2, "Please enter a whatsapp phone number"),
-  email: z
-    .string()
-    .min(3, "Please enter a email")
-    .email("Please enter a valid email address"),
+const Inline = Quill.import("blots/inline");
+
+const BlogSchema = z.object({
+  title: z.string().min(1, "Please enter a title"),
+  description: z.string().min(3, "Please enter a description"),
   image: z.string().optional(),
 });
 
-type ProjectSchemaType = z.infer<typeof ProjectSchema>;
+type BlogSchemaType = z.infer<typeof BlogSchema>;
 
-const ContactusForm: React.FC<{ initialValues?: Contact }> = ({
+function htmlDecode(content: string) {
+  let e = document.createElement("div");
+  e.innerHTML = content;
+  return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
+}
+
+const AboutusForm: React.FC<{ initialValues?: About }> = ({
   initialValues,
 }) => {
-  console.log(initialValues, "initial");
-
   const router = useRouter();
-  const { mutate: edit, isPending: editLoader } = useEditContact();
+  const decodeValue = htmlDecode(initialValues?.description as string);
+  const text = convert(decodeValue as string);
+
+
+  const { mutate: edit, isPending: editLoader } = useEditAbout();
   const { mutate: upload, isPending: uploadLoader } = useUpload();
   const { mutate: deleteImage, isPending: deleteLoader } = useDelete();
   const imageloader = uploadLoader || deleteLoader;
   const loader = editLoader;
-  const queryClient = useQueryClient();
-  const buttonText = "Edit Contact Details" ;
+  const buttonText = "Edit About details";
   const {
     register,
     handleSubmit,
     setValue,
     getValues,
     watch,
-    reset,
+    control,
     formState: { errors },
-  } = useForm<ProjectSchemaType>({
-    resolver: zodResolver(ProjectSchema),
+  } = useForm<BlogSchemaType>({
+    resolver: zodResolver(BlogSchema),
+    mode: "onChange",
+    defaultValues: { ...initialValues, description: text },
   });
 
-  useEffect(() => {
-    if (initialValues) {
-      reset({ ...initialValues });
-    }
-  }, [initialValues, reset]);
-
-  const onSubmit: SubmitHandler<ProjectSchemaType> = (data) => {
+  const onSubmit: SubmitHandler<BlogSchemaType> = (data) => {
     if (initialValues) {
       edit(
         {
@@ -73,7 +73,7 @@ const ContactusForm: React.FC<{ initialValues?: Contact }> = ({
         },
         {
           onSuccess: (res) => {
-            toast.success("Contact details updated.");
+            toast.success("About us details updated.");
           },
         }
       );
@@ -93,7 +93,7 @@ const ContactusForm: React.FC<{ initialValues?: Contact }> = ({
 
       const data = {
         image: imgValue,
-        preset: "Contact",
+        preset: "About",
       };
 
       upload(data, {
@@ -110,7 +110,7 @@ const ContactusForm: React.FC<{ initialValues?: Contact }> = ({
     const imgValue = getValues("image");
     const data = {
       image: imgValue,
-      folder: "contact",
+      folder: "about",
     };
 
     deleteImage(data, {
@@ -130,12 +130,12 @@ const ContactusForm: React.FC<{ initialValues?: Contact }> = ({
       >
         {imageloader ? (
           <div className="flex justify-center py-6 w-[45%]">
-            <Loader className="w-9 h-9" />
+            <Loader />
           </div>
         ) : watch("image")?.length ? (
           <ImagePreview
             src={watch("image") as string}
-            alt="contact image"
+            alt="project"
             deleteHandler={deleteHandler}
           />
         ) : (
@@ -161,31 +161,29 @@ const ContactusForm: React.FC<{ initialValues?: Contact }> = ({
           </div>
         )}
         <Input
-          id={"email"}
-          name="email"
+          id={"title"}
+          name="title"
           register={register}
-          label="Email"
-          error={errors?.email?.message}
+          label="title"
+          error={errors?.title?.message}
           className="w-full"
+        />
+        <Controller
+          control={control}
+          name="description"
+          render={({ field: { onChange, value, name } }) => {
+            return (
+              <ReactQuill
+                className="bg-white rounded-x min-h-[250px]"
+                theme="snow"
+                value={value}
+                defaultValue={initialValues?.description}
+                onChange={onChange}
+              ></ReactQuill>
+            );
+          }}
         />
 
-        <Input
-          id={"phone"}
-          name="phone"
-          register={register}
-          label="Phone number"
-          error={errors?.phone?.message}
-          className="w-full"
-        />
-        <TextArea
-          id={"whatsapp"}
-          name="whatsapp"
-          register={register}
-          label="Whatsapp Number"
-          error={errors?.whatsapp?.message}
-          className="w-full"
-          rows={4}
-        />
         <Button
           loading={loader}
           disabled={loader || imageloader}
@@ -197,4 +195,4 @@ const ContactusForm: React.FC<{ initialValues?: Contact }> = ({
   );
 };
 
-export default ContactusForm;
+export default AboutusForm;

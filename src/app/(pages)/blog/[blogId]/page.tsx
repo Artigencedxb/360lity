@@ -87,7 +87,7 @@ const BlogPage: React.FC<{ params: { blogId: string } }> = ({ params }) => {
         <div className="text-sm font-normal whitespace-pre-wrap">{conc}</div> */}
           <Image className="mt-8 ml-auto" src={ShareIcon} alt="share icon" />
         </div>
-        <div></div>
+
         {/* <ProjectDetails blogId={params?.blogId} data={project} /> */}
       </div>
     );

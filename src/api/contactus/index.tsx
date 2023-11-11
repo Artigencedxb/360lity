@@ -36,5 +36,6 @@ export const useGetContact = () => {
     queryKey: [`${routes["contact"]}`],
     queryFn: () => singleContact(),
     refetchOnMount: true,
+    refetchOnWindowFocus: true,
   });
 };

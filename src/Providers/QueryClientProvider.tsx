@@ -10,7 +10,9 @@ const ReactQueryProvider: React.FC<{ children: React.ReactNode }> = ({
       new QueryClient({
         defaultOptions: {
           queries: {
-            refetchOnWindowFocus: false,
+            refetchOnWindowFocus: true,
+            initialData: undefined,
+            staleTime: 0
           },
         },
       })

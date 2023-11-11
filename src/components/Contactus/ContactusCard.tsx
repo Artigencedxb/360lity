@@ -5,14 +5,27 @@ import React from "react";
 import Triangle from "../../common/Triangle";
 import { useGetContact } from "../../api/contactus";
 import Link from "next/link";
+import cn from "classnames";
 
 const ContactusCard = () => {
   const { data } = useGetContact();
   const contact = data?.data.contact;
   return (
     <div className="flex flex-col gap-4 md:w-[300px] h-full">
-      <div className="bg-black h-[210px] rounded-[15px] relative">
-        {" "}
+      <div
+        className={cn("h-[210px] rounded-x relative w-full", {
+          "": contact?.image?.length,
+          "bg-black": !contact?.image?.length,
+        })}
+      >
+        {contact?.image?.length && (
+          <Image
+            className="rounded-x object-cover"
+            src={contact?.image}
+            fill
+            alt="contact image"
+          />
+        )}
         <Triangle />
       </div>
       <div className="bg-white rounded-[15px] p-8">
@@ -24,11 +37,14 @@ const ContactusCard = () => {
           <Link href={`tel:${contact?.phone}`}>
             <Image src={PhoneIcon} alt="Phone icon" />
           </Link>
-          <Link target="_blank" href={`https://api.whatsapp.com/send?phone=${contact?.phone}`}>
-          <Image src={WhatsappIcon} alt="Whatsapp icon" />
+          <Link
+            target="_blank"
+            href={`https://api.whatsapp.com/send?phone=${contact?.phone}`}
+          >
+            <Image src={WhatsappIcon} alt="Whatsapp icon" />
           </Link>
           <Link href={`mailto:${contact?.email}`}>
-          <Image src={MailIcon} alt="Mail icon" />
+            <Image src={MailIcon} alt="Mail icon" />
           </Link>
         </div>
       </div>

@@ -78,8 +78,9 @@ const ProjectsBox: React.FC<{
             </button>
           </div>
         ) : (
-          <div className="absolute bg-black/50 w-full h-full opacity-0 flex justify-center items-center group-hover:opacity-100 z-10">
+          <div className="absolute flex flex-col bg-black/50 w-full h-full opacity-0 justify-center items-center group-hover:opacity-100 z-10">
             <button
+            className="pb-3"
               onClick={() => {
                 setProjectIndex(index as number);
                 router.push(`/projects/details`);
@@ -87,6 +88,7 @@ const ProjectsBox: React.FC<{
             >
               <Image src={LogoView} alt="360 View Logo" className="" />
             </button>
+            <div className="text-white font-semibold">{data?.name ?? ""}</div>
           </div>
         )}
       </div>

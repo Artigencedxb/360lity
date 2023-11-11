@@ -8,7 +8,7 @@ const View360Page = () => {
 
   const project = data?.data?.project;
   return (
-    <div className="p-10">
+    <div>
       <Viewer360 data={project as Project[]} />
     </div>
   );

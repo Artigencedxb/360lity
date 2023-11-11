@@ -13,16 +13,19 @@ import {
   ViewBackIcon,
   ViewNextIcon,
 } from "../assets/360-view";
+import cn from "classnames";
+import { CloseIcon } from "../assets";
 
 const Viewer360: React.FC<{ data?: Showcase[] | Project[] }> = ({ data }) => {
   const { projectIndex } = useProjectStore();
   const [currentSlide, setCurrentSlide] = React.useState(projectIndex);
+  const [fullScreen, setFullScreen] = React.useState(false);
   const [showInfo, setShowInfo] = useState(false);
   const router = useRouter();
   const pathname = usePathname();
 
   return (
-    <div>
+    <div className={cn({ "": fullScreen, "p-10": !fullScreen })}>
       {data?.slice(currentSlide, currentSlide + 1).map((el) => {
         return (
           <div key={el?.id} className="relative">
@@ -32,19 +35,35 @@ const Viewer360: React.FC<{ data?: Showcase[] | Project[] }> = ({ data }) => {
               width="100%"
               height="100%"
               allowFullScreen
-              className="h-screen rounded-x"
+              className={cn("h-screen", {
+                "rounded-x": !fullScreen,
+              })}
             ></iframe>
             {showInfo && (
-              <div className="absolute break-words flex flex-col w-[20rem] bottom-14 z-30 space-y-4 right-16 bg-black/50 px-10 py-7 rounded-x">
-                <h3 className="text-white text-[40px] font-medium">
+              <div
+                className={cn(
+                  "transition-all duration-300 absolute break-words flex flex-col space-y-4 bg-black/50 px-10 py-7 rounded-x",
+                  {
+                    "w-0": !showInfo,
+                    "scale-1 w-[20rem] right-16 bottom-14 z-30  transition-all duration-300 ":
+                      showInfo,
+                  }
+                )}
+              >
+                <h3 className="text-white text-[25px] font-medium">
                   {el?.name}
                 </h3>
-                <p className="text-white text-xl overflow-hidden clear-both block font-medium">
+                <p className="text-white text-base overflow-hidden clear-both block font-medium">
                   {/* @ts-ignore */}
                   {el?.description}
                 </p>
               </div>
             )}
+            <div className="absolute top-4 right-4">
+              <button onClick={() => router.back()}>
+                <Image src={CloseIcon} alt="Close icon" />
+              </button>
+            </div>
             <div className="absolute bottom-4 right-4 flex flex-col gap-6">
               {pathname === "view-showcase" && (
                 <Fragment>
@@ -70,17 +89,21 @@ const Viewer360: React.FC<{ data?: Showcase[] | Project[] }> = ({ data }) => {
                       alt="information icon"
                     />
                   </button>
+                  <button
+                    className="outline-none"
+                    onClick={() => setShowInfo(!showInfo)}
+                  >
+                    <Image
+                      width={23}
+                      height={23}
+                      src={InfoIcon}
+                      alt="information icon"
+                    />
+                  </button>
                 </Fragment>
               )}
-              <button onClick={() => setShowInfo(!showInfo)}>
-                <Image
-                  width={23}
-                  height={23}
-                  src={InfoIcon}
-                  alt="information icon"
-                />
-              </button>
-              <button onClick={() => router.back()}>
+
+              <button onClick={() => setFullScreen((prev) => !prev)}>
                 <Image
                   width={23}
                   height={23}

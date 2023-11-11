@@ -10,9 +10,9 @@ const View360Page = () => {
 
   const showcase = data?.data?.showcase;
   return (
-    <div className="p-10">
+   
       <Viewer360 data={showcase as Showcase[]} />
-    </div>
+
   );
 };
 

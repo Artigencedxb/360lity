@@ -4,6 +4,7 @@ import Image from "next/image";
 import React from "react";
 import Triangle from "../../common/Triangle";
 import { useGetContact } from "../../api/contactus";
+import Link from "next/link";
 
 const ContactusCard = () => {
   const { data } = useGetContact();
@@ -20,15 +21,15 @@ const ContactusCard = () => {
           let&apos;s craft immersive realities together.
         </div>
         <div className="flex items-center gap-4 justify-center mt-6">
-          <a href={`tel:${contact?.phone}`}>
+          <Link href={`tel:${contact?.phone}`}>
             <Image src={PhoneIcon} alt="Phone icon" />
-          </a>
-          <a target="_blank" href={`https://api.whatsapp.com/send?phone=${contact?.phone}`}>
+          </Link>
+          <Link target="_blank" href={`https://api.whatsapp.com/send?phone=${contact?.phone}`}>
           <Image src={WhatsappIcon} alt="Whatsapp icon" />
-          </a>
-          <a href={`mailto:${contact?.email}`}>
+          </Link>
+          <Link href={`mailto:${contact?.email}`}>
           <Image src={MailIcon} alt="Mail icon" />
-          </a>
+          </Link>
         </div>
       </div>
     </div>

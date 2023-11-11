@@ -5,13 +5,24 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import Triangle from "../../common/Triangle";
-
+import { AnimatePresence, motion } from "framer-motion";
 const ProjectDetails: React.FC<{
   currentSlide: number;
+  direction: string;
   setCurrentSlide: React.Dispatch<React.SetStateAction<number>>;
+  setDirection: React.Dispatch<React.SetStateAction<string>>;
   length?: number;
+  projectIndex?: number;
   val: Project;
-}> = ({ currentSlide, setCurrentSlide, val, length }) => {
+}> = ({
+  currentSlide,
+  setCurrentSlide,
+  val,
+  length,
+  setDirection,
+  direction,
+  projectIndex,
+}) => {
   const router = useRouter();
   const [isReadMore, setIsReadMore] = useState(true);
 
@@ -21,8 +32,40 @@ const ProjectDetails: React.FC<{
     setIsReadMore(!isReadMore);
   };
 
+  const slideVariants = {
+    hiddenRight: {
+      x: "100%",
+      opacity: 0,
+    },
+    hiddenLeft: {
+      x: "-100%",
+      opacity: 0,
+    },
+    visible: {
+      x: "0",
+      opacity: 1,
+      transition: {
+        duration: 1,
+      },
+    },
+    exit: {
+      opacity: 0,
+      scale: 0.8,
+      transition: {
+        duration: 0.5,
+      },
+    },
+  };
+
   return (
-    <div className="w-full mt-5 grid lg:grid-cols-2 gap-x-6 grid-cols-1 gap-y-8">
+    <motion.div
+      key={projectIndex}
+      variants={slideVariants}
+      initial={direction === "right" ? "hiddenRight" : "hiddenLeft"}
+      animate="visible"
+      exit="exit"
+      className="mt-5 grid lg:grid-cols-2 gap-x-6 grid-cols-1 gap-y-8"
+    >
       <div className="relative rounded-x w-full h-[375px] group overflow-hidden inline-block">
         <Triangle />
         {val?.image?.length ? (
@@ -54,24 +97,34 @@ const ProjectDetails: React.FC<{
           </p>
         </div>
         <div className="flex mt-auto items-center justify-between">
-          <button
-            onClick={(e: any) => setCurrentSlide((prev) => prev - 1)}
-            disabled={currentSlide === 0}
-          >
-            <Image src={LeftArrow} alt="right arrow icon" />
-          </button>
-          <div className="self-end flex items-center gap-5">
-            <Image src={ShareIcon} alt="share icon" />
+          {currentSlide != 0 && (
             <button
-              onClick={(e: any) => setCurrentSlide((prev) => prev + 1)}
-              disabled={length === Number(currentSlide) + 1}
+              onClick={(e: any) => {
+                setDirection("left");
+                setCurrentSlide((prev) => prev - 1);
+              }}
+              disabled={currentSlide === 0}
             >
-              <Image src={RightArrow} alt="right arrow icon" />
+              <Image src={LeftArrow} alt="right arrow icon" />
             </button>
+          )}
+          <div className="self-end flex items-center gap-5 ml-auto">
+            <Image src={ShareIcon} alt="share icon" />
+            {length !== Number(currentSlide) + 1 && (
+              <button
+                onClick={(e: any) => {
+                  setDirection("right");
+                  setCurrentSlide((prev) => prev + 1);
+                }}
+                disabled={length === Number(currentSlide) + 1}
+              >
+                <Image src={RightArrow} alt="right arrow icon" />
+              </button>
+            )}
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

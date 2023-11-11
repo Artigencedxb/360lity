@@ -13,6 +13,9 @@ import MailIcon from "./mail.svg";
 import PhoneIcon from "./phone.svg";
 import WhatsappIcon from "./whatsapp.svg";
 
+//close icon
+import CloseIcon from "./close.svg";
+
 import DeleteIcon from "./delete.svg";
 
 //Arrows
@@ -61,4 +64,5 @@ export {
   LogoNavigation,
   TriangleIcon,
   TriangleBlackIcon,
+  CloseIcon,
 };

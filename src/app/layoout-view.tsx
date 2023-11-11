@@ -31,7 +31,7 @@ const LayooutView: React.FC<{ children: React.ReactNode }> = ({ children }) => {
           !pathname?.includes("admin") && <LoadingScreen loading={loading} />
         ) : (
           <>
-            <div className="h-full relative mr-[3rem]">
+            <div className="h-full relative mr-4 sm:mr-4 lg:mr-[7.2rem]">
               {pathname === "/" && <Navigation />}
             </div>
             {children}

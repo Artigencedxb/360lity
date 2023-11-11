@@ -14,8 +14,11 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import TriangleBlack from "../../common/TriangleBlack";
+import { useGetContact } from "../../api/contactus";
 
 const Footer = () => {
+  const { data } = useGetContact();
+  const contact = data?.data?.contact;
   return (
     <footer className="bg-black text-white">
       <div className="lg:max-w-6xl px-[2rem] sm:px-[3rem] lg:px-[1.5rem] gap-x-4 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 py-12 gap-y-8 lg:gap-y-0">
@@ -32,7 +35,7 @@ const Footer = () => {
         </div>
 
         <ul className="px-5 space-y-1.5 text-start lg:text-start">
-          <li className="mb-3">360lity</li>
+          <li className="mb-3 font-semibold">360lity</li>
 
           <li className="text-sm">
             {" "}
@@ -65,7 +68,7 @@ const Footer = () => {
           </li>
         </ul>
         <div className="px-5 space-y-1.5 text-start lg:text-start">
-          <h3 className="mb-3">Services</h3>
+          <h3 className="mb-3 font-semibold">Services</h3>
 
           <p className="text-sm">360-XVT</p>
           <p className="text-sm">VR/AR</p>
@@ -75,21 +78,21 @@ const Footer = () => {
           <p className="text-sm">Videography</p>
         </div>
         <div className="px-5 space-y-1.5 text-start lg:text-start flex flex-col">
-          <h3 className="mb-3">Contact</h3>
+          <h3 className="mb-3 font-semibold">Contact</h3>
           <p className="text-sm">Feedback</p>
-          <Link href="tel:+971 543243123" className="text-sm">
+          <Link href={`tel:${contact?.phone}`} className="text-sm">
             Tel:+9714314431
           </Link>
 
-          <Link href="#" className="text-sm">
-            Whatsapp
+          <Link target="_blank" href={`https://api.whatsapp.com/send?phone=${contact?.phone}`} className="text-sm">
+            WhatsApp
           </Link>
-          <Link href="#" className="text-sm">
+          <Link href={`mailto:${contact?.email}`} className="text-sm">
             E mail
           </Link>
         </div>
         <div className="flex items-center justify-center flex-col gap-3">
-          <div className="bg-white w-[200px] lg:w-full relative flex items-center justify-between rounded-[15px] px-4 py-6">
+          <div className="bg-white w-[200px] lg:w-full relative flex items-center justify-between rounded-[15px] px-6 py-6">
             <div className="relative w-[50px] h-[50px]">
               <Image
                 src={FooterLogo}

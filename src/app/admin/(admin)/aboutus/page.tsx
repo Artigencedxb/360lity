@@ -1,4 +1,3 @@
-"use client";
 import AboutusAdmin from "@/components/Aboutus/AboutusAdmin";
 
 const AboutUsAdminpage = () => {

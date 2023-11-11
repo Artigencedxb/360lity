@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { useGetAbout } from "../../api/about";
 import AboutusForm from "./AboutusForm";

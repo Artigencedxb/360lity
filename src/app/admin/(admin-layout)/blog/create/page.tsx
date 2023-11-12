@@ -1,3 +1,4 @@
+"use client";
 import Header from "@/common/Header";
 import React from "react";
 import BlogAddForm from "@/components/Blog/BlogForm";

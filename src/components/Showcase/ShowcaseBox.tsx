@@ -103,7 +103,7 @@ const ShowcaseBox: React.FC<{
             
               {View}
             
-               <div className={cn("absolute bottom-9 text-white font-semibold", {
+               <div className={cn("absolute bottom-10 text-white font-semibold", {
                 "lg:!bottom-32" : index === 0,
                
                })}>{data?.name ?? ""}</div>

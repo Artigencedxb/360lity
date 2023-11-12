@@ -61,22 +61,36 @@ const BlogCard: React.FC<{ data: Blog; admin?: boolean }> = ({
       )}
 
       <div className="relative flex flex-col gap-4">
-        <div className="group bg-black overflow-hidden inline-block relative w-full h-[180px] md:h-[210px] rounded-[15px]">
-          <Image
-            fill
-            src={data?.image}
-            alt={"Blog image"}
-            className="object-cover rounded-[10px] scale-110 transition-all duration-1000 group-hover:scale-100"
-          />
-          <Triangle />
-          {admin && (
-            <div className="top-0 left-0 absolute bg-black/50 w-full h-full opacity-0 flex justify-center gap-8 items-center group-hover:opacity-100 z-10">
-              <button onClick={() => setDeleteModal(true)}>
-                <TrashIcon className="w-8 h-8 text-white" />
-              </button>
-            </div>
-          )}
-        </div>
+        {data?.image?.length ? (
+          <div className="group bg-black overflow-hidden inline-block relative w-full h-[180px] md:h-[210px] rounded-[15px]">
+            <Image
+              fill
+              src={data?.image}
+              alt={"Blog image"}
+              className="object-cover rounded-[10px] scale-110 transition-all duration-1000 group-hover:scale-100"
+            />
+            <Triangle />
+            {admin && (
+              <div className="top-0 left-0 absolute bg-black/50 w-full h-full opacity-0 flex justify-center gap-8 items-center group-hover:opacity-100 z-10">
+                <button onClick={() => setDeleteModal(true)}>
+                  <TrashIcon className="w-8 h-8 text-white" />
+                </button>
+              </div>
+            )}
+          </div>
+        ) : (
+          <div className="relative w-full bg-black h-[180px] md:h-[210px] rounded-[15px]">
+            {" "}
+            <Triangle />
+            {admin && (
+              <div className="top-0 left-0 absolute bg-black/50 w-full h-full opacity-1 flex justify-center gap-8 items-center group-hover:opacity-100 z-10">
+                <button onClick={() => setDeleteModal(true)}>
+                  <TrashIcon className="w-8 h-8 text-white" />
+                </button>
+              </div>
+            )}
+          </div>
+        )}
         <div className="bg-white flex flex-col h-[13rem] items-stretch md:h-[32rem] overflow-hidden lg:h-[30rem] xl:h-[30rem] rounded-[10px] p-5">
           <h4 className="text-sm font-semibold">{data?.title}</h4>
           <div

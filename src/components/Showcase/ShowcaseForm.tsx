@@ -173,6 +173,7 @@ const ShowcaseForm: React.FC<{ initialValues?: Showcase }> = ({
           label="Showcase name"
           error={errors?.name?.message}
           className="w-full"
+          maxLength={14}
         />
 
         <Input

@@ -9,7 +9,7 @@ export const Modal: React.FC<{
 }> = ({ children, open, onClose, title }) => {
   return (
     <Transition appear show={open} as={Fragment}>
-      <Dialog as="div" className="relative z-10" onClose={onClose}>
+      <Dialog as="div" className="relative z-[5000]" onClose={onClose}>
         <Transition.Child
           as={Fragment}
           enter="ease-out duration-300"

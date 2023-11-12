@@ -19,7 +19,7 @@ import { z } from "zod";
 const BlogSchema = z.object({
   title: z.string().min(1, "Please enter a blog title"),
   description: z.string().min(3, "Please enter a description"),
-  image: z.string().optional(),
+  image: z.string().min(1, "Please upload a image"),
 });
 
 type BlogSchemaType = z.infer<typeof BlogSchema>;

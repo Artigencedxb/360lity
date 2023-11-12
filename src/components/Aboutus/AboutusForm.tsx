@@ -35,7 +35,7 @@ function htmlDecode(content: string) {
   return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
 }
 
-const AboutusForm: React.FC<{ initialValues?: About }> = ({
+const AboutusForm: React.FC<{ initialValues: About }> = ({
   initialValues,
 }) => {
   const router = useRouter();

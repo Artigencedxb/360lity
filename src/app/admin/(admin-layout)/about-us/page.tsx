@@ -1,7 +1,7 @@
 "use client";
-import { useGetAbout } from "../../../../api/about";
+import { useGetAbout } from "./../../../../api/about";
 import Header from "../../../../common/Header";
-import AboutusForm from "../../../../components/Aboutus/AboutusForm";
+import AboutusForm from "@/components/Aboutus/AboutusForm";
 
 const AboutPage = () => {
   const { data } = useGetAbout();

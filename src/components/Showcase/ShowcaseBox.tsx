@@ -10,6 +10,8 @@ import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import DeleteModal from "../Modal/DeleteModal";
 import { useProjectStore } from "@/store/use-projects";
+import { LottieOptions, useLottie } from "lottie-react";
+import animation from "../../../public/animation-white.json"
 
 const ShowcaseBox: React.FC<{
   className?: string;
@@ -36,6 +38,13 @@ const ShowcaseBox: React.FC<{
     );
   };
   const router = useRouter();
+
+  const options: LottieOptions = {
+    animationData: animation,
+    loop: true,
+    width: 100
+  };
+  const { View } = useLottie(options);
 
   return (
     <>
@@ -82,15 +91,24 @@ const ShowcaseBox: React.FC<{
             </button>
           </div>
         ) : (
-          <div className="absolute bg-black/50 w-full h-full opacity-0 flex justify-center items-center group-hover:opacity-100 z-10">
-            <button
-              onClick={() => {
-                setProjectIndex(index as number);
-                router.push(`/view-showcase`);
-              }}
-            >
-              <Image src={LogoView} alt="360 View Logo" className="" />
-            </button>
+          <div
+            onClick={() => {
+              setProjectIndex(index as number);
+              router.push(`/projects/details`);
+            }}
+            className="cursor-pointer absolute flex flex-col bg-black/50 w-full h-full opacity-0 justify-center items-center group-hover:opacity-100 z-10"
+          >
+            <div className="flex flex-col items-center justify-center">
+              {/* <Image src={LogoView} alt="360 View Logo" className="" /> */}
+            
+              {View}
+            
+               <div className={cn("absolute bottom-9 text-white font-semibold", {
+                "lg:!bottom-32" : index === 0,
+               
+               })}>{data?.name ?? ""}</div>
+            </div>
+           
           </div>
         )}
       </div>

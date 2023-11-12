@@ -96,12 +96,12 @@ const ProjectsBox: React.FC<{
             }}
             className="cursor-pointer absolute flex flex-col bg-black/50 w-full h-full opacity-0 justify-center items-center group-hover:opacity-100 z-10"
           >
-            <div className="relative flex flex-col items-center justify-center">
+            <div className="flex flex-col items-center justify-center">
               {/* <Image src={LogoView} alt="360 View Logo" className="" /> */}
             
               {View}
             
-               <div className="absolute bottom-3 text-white font-semibold">{data?.name ?? ""}</div>
+               <div className="absolute bottom-10 text-white font-semibold">{data?.name ?? ""}</div>
             </div>
            
           </div>

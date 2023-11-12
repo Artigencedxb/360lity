@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { Fragment } from "react";
 import { useGetAbout } from "../../api/about";
 import AboutusForm from "./AboutusForm";
 
@@ -9,7 +9,7 @@ const AboutusAdmin = () => {
   if (data) {
     return <AboutusForm initialValues={data?.data?.about} />;
   }
-  return null;
+  return <Fragment></Fragment>;
 };
 
 export default AboutusAdmin;

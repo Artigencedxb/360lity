@@ -62,6 +62,7 @@ const ShowcaseBox: React.FC<{
           " rounded-[15px] transition-all relative min-h-[13rem] group overflow-hidden inline-block",
           className
         )}
+        draggable
       >
         <Triangle />
         {data?.image?.length ? (

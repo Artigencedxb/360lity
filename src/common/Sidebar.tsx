@@ -58,7 +58,7 @@ const Sidebar = () => {
          Blogs
           </li>
           </Link>
-          <Link href="/admin/aboutus">
+          <Link href="/admin/about-us">
           <li
             className={cn(
               "mb-4 transition-all duration-300 text-lg hover:text-black font-medium cursor-pointer hover:bg-primary text-center py-2.5 rounded-x",

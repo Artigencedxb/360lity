@@ -33,7 +33,7 @@ const LoadingScreen: React.FC<{ loading: boolean }> = ({ loading }) => {
       initial="initial"
       animate={!loading ? "show" : "hide"}
       className={classNames(
-        "transition-all bg-white h-screen z-[100] relative flex items-center justify-center"
+        "absolute top-0 right-0 transition-all bg-white h-screen z-[4000] flex items-center justify-center"
       )}
     >
       {/* <div>{`${loading}`}</div> */}

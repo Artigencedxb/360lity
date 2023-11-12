@@ -1,6 +1,6 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
-import LayooutView from "./layoout-view";
+import LayooutView from "./layout-view";
 import { Metadata } from "next";
 import ReactQueryProvider from "@/Providers/QueryClientProvider";
 

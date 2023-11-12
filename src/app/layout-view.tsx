@@ -9,14 +9,7 @@ import React, { Fragment, useState, useEffect } from "react";
 import { AnimatePresence, Variants } from "framer-motion";
 
 const LayooutView: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    setTimeout(() => setLoading(true), 5000);
-  }, []);
   const pathname = usePathname();
-
-  console.log(pathname, "dalj");
 
   const footerEnabled =
     !pathname?.includes("admin") &&
@@ -26,19 +19,11 @@ const LayooutView: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
   return (
     <Fragment>
-      <AnimatePresence>
-        {!loading ? (
-          !pathname?.includes("admin") && <LoadingScreen loading={loading} />
-        ) : (
-          <>
-            <div className="h-full relative mr-4 sm:mr-4 lg:mr-[7.2rem]">
-              {pathname === "/" && <Navigation />}
-            </div>
-            {children}
-            {footerEnabled && <Footer />}{" "}
-          </>
-        )}
-      </AnimatePresence>
+      <div className="h-full relative mr-4 sm:mr-4 lg:mr-[7.2rem]">
+        {pathname === "/" && <Navigation />}
+      </div>
+      {children}
+      {footerEnabled && <Footer />}
     </Fragment>
   );
 };

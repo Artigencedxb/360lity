@@ -11,6 +11,8 @@ import React, { useState } from "react";
 import DeleteModal from "../Modal/DeleteModal";
 import { useDeleteProject } from "@/api/project";
 import { useProjectStore } from "@/store/use-projects";
+import { LottieOptions, useLottie } from "lottie-react";
+import animation from "../../../public/animation-white.json"
 
 const ProjectsBox: React.FC<{
   data: IProject["data"]["project"][0] | undefined;
@@ -35,6 +37,15 @@ const ProjectsBox: React.FC<{
     );
   };
   const router = useRouter();
+
+  const options: LottieOptions = {
+    animationData: animation,
+    loop: true,
+    width: 100
+  };
+  const { View } = useLottie(options);
+
+
   return (
     <>
       {deleteModal && (
@@ -78,17 +89,21 @@ const ProjectsBox: React.FC<{
             </button>
           </div>
         ) : (
-          <div className="absolute flex flex-col bg-black/50 w-full h-full opacity-0 justify-center items-center group-hover:opacity-100 z-10">
-            <button
-            className="pb-3"
-              onClick={() => {
-                setProjectIndex(index as number);
-                router.push(`/projects/details`);
-              }}
-            >
-              <Image src={LogoView} alt="360 View Logo" className="" />
-            </button>
-            <div className="text-white font-semibold">{data?.name ?? ""}</div>
+          <div
+            onClick={() => {
+              setProjectIndex(index as number);
+              router.push(`/projects/details`);
+            }}
+            className="cursor-pointer absolute flex flex-col bg-black/50 w-full h-full opacity-0 justify-center items-center group-hover:opacity-100 z-10"
+          >
+            <div className="relative flex flex-col items-center justify-center">
+              {/* <Image src={LogoView} alt="360 View Logo" className="" /> */}
+            
+              {View}
+            
+               <div className="absolute bottom-3 text-white font-semibold">{data?.name ?? ""}</div>
+            </div>
+           
           </div>
         )}
       </div>

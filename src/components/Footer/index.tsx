@@ -110,7 +110,7 @@ const Footer = () => {
             </div>
             <TriangleBlack />
           </div>
-          <p className="text-[11px]">
+          <p className="text-[11px] lg:text-[10px] xl:text-[11px]">
             copyright All rights reserved 360lity.com
           </p>
         </div>

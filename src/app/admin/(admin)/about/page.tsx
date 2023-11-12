@@ -1,4 +1,4 @@
-import AboutusAdmin from "@/components/Aboutus/AboutusAdmin";
+import AboutusAdmin from "../../../../components/Aboutus/AboutusAdmin";
 
 const AboutUsAdminpage = () => {
   return (

@@ -1,6 +1,6 @@
 import Header from "@/common/Header";
-import BlogForm from "@/components/Blog/BlogForm";
 import React from "react";
+import BlogForm from "../../../../../components/Blog/BlogForm";
 
 const AddBlogsPage = () => {
   return (

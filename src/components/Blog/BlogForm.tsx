@@ -3,21 +3,18 @@ import Button from "@/UI/Button";
 import ImagePreview from "@/UI/ImagePreview";
 import Input from "@/UI/Input";
 import Loader from "@/UI/Loader";
-import TextArea from "@/UI/TextArea";
-import ReactQuill, { Quill } from "react-quill";
 import { useCreateBlog, useEditBlog } from "@/api/blog";
 import { useDelete, useUpload } from "@/api/image";
-import { Blog } from "@/types/blog";
 import { transformFile } from "@/utils/transformFile";
 import { ArrowUpTrayIcon } from "@heroicons/react/20/solid";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import React from "react";
-import { SubmitHandler, useForm, Controller } from "react-hook-form";
+import { Controller, SubmitHandler, useForm } from "react-hook-form";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 import { toast } from "sonner";
 import { z } from "zod";
-import { convert } from "html-to-text";
-import "react-quill/dist/quill.snow.css";
 
 const BlogSchema = z.object({
   title: z.string().min(1, "Please enter a blog title"),
@@ -33,11 +30,11 @@ function htmlDecode(content: string) {
   return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
 }
 
-const BlogForm: React.FC<{ initialValues?: Blog }> = ({ initialValues }) => {
+const BlogForm= () => {
   const router = useRouter();
-  const decodeValue = htmlDecode(initialValues?.description as string);
-  const text = convert(decodeValue as string);
-  console.log(text, "text");
+  // const decodeValue = htmlDecode(initialValues?.description as string);
+  // const text = convert(decodeValue as string);
+  // console.log(text, "text");
 
   const { mutate: create, isPending: createLoader } = useCreateBlog();
   const { mutate: edit, isPending: editLoader } = useEditBlog();
@@ -45,7 +42,7 @@ const BlogForm: React.FC<{ initialValues?: Blog }> = ({ initialValues }) => {
   const { mutate: deleteImage, isPending: deleteLoader } = useDelete();
   const imageloader = uploadLoader || deleteLoader;
   const loader = createLoader || editLoader;
-  const buttonText = initialValues ? "Edit Blog" : "Add Blog";
+  const buttonText = "Add Blog";
   const {
     register,
     handleSubmit,
@@ -57,24 +54,25 @@ const BlogForm: React.FC<{ initialValues?: Blog }> = ({ initialValues }) => {
   } = useForm<BlogSchemaType>({
     resolver: zodResolver(BlogSchema),
     mode: "onChange",
-    defaultValues: { ...initialValues, description: text },
+   
   });
 
   const onSubmit: SubmitHandler<BlogSchemaType> = (data) => {
-    if (initialValues) {
-      edit(
-        {
-          ...data,
-          id: initialValues?._id,
-          ...(data?.image?.length ? { image: data?.image } : { image: null }),
-        },
-        {
-          onSuccess: (res) => {
-            toast.success("Blog updated.");
-          },
-        }
-      );
-    } else {
+    // if (initialValues) {
+    //   edit(
+    //     {
+    //       ...data,
+    //       id: initialValues?._id,
+    //       ...(data?.image?.length ? { image: data?.image } : { image: null }),
+    //     },
+    //     {
+    //       onSuccess: (res) => {
+    //         toast.success("Blog updated.");
+    //       },
+    //     }
+    //   );
+    // } 
+    // else {
       create(
         {
           ...data,
@@ -87,7 +85,7 @@ const BlogForm: React.FC<{ initialValues?: Blog }> = ({ initialValues }) => {
           },
         }
       );
-    }
+    // }
   };
 
   const imageHandler = async (e: React.ChangeEvent<HTMLInputElement>) => {

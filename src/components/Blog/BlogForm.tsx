@@ -38,7 +38,7 @@ function htmlDecode(content: string) {
   e.innerHTML = content;
   return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
 }
-const BlogAddForm: React.FC<{ initialValues: Blog }> = ({ initialValues }) => {
+const BlogAddForm: React.FC<{ initialValues?: Blog }> = ({ initialValues }) => {
   const router = useRouter();
   const decodeValue = htmlDecode(initialValues?.description as string);
   const text = convert(decodeValue as string);

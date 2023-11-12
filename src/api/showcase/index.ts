@@ -71,7 +71,7 @@ export const useDeleteShowcase = () => {
 
 export const useShowcase = (page?: number, limit?: number, sort?: string) => {
   return useQuery({
-    queryKey: [routes["showcase"], sort],
+    queryKey: [routes["showcase"], page,limit,sort],
     queryFn: () => allShowcase(page, limit, sort),
   });
 };

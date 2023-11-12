@@ -75,12 +75,13 @@ const Navigation = () => {
       className="absolute z-[3000] top-0 right-0 px-[2rem] sm:px-[3rem] lg:px-[1.5rem] space-y-2"
       ref={ref}
     >
-      <div className="bg-white w-[140px] h-[125px] p-7 relative rounded-bl-[10px] rounded-br-[10px] flex items-center justify-center">
-        <Link href="/">
+      <Link href="/">
+        <div className="bg-white w-[140px] h-[125px] p-7 relative rounded-bl-[10px] rounded-br-[10px] flex items-center justify-center">
           <Image src={LogoText} alt="360 lity logo" />
-        </Link>
-        {/* <Triangle /> */}
-      </div>
+
+          {/* <Triangle /> */}
+        </div>
+      </Link>
       <AnimatePresence>
         <div>
           {!viewMore ? (

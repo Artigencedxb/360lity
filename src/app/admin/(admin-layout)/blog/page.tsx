@@ -6,7 +6,7 @@ import { useLottie } from "lottie-react";
 import animation from "../../../../../public/animation.json";
 
 const AdminBlogsPage = () => {
-  const { data, isPending } = useBlog();
+  const { data, isPending } = useBlog(undefined, undefined, "priority");
   console.log(data, "data");
   const blogs = data?.data?.blog;
   const options = {

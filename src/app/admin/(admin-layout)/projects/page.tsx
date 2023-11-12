@@ -7,7 +7,7 @@ import React from "react";
 import animation from "../../../../../public/animation.json";
 import { useLottie } from "lottie-react";
 const AdminProjectspage = () => {
-  const { data, isPending } = useProjects();
+  const { data, isPending } = useProjects(undefined, undefined, "priority");
   console.log(data, "data");
   const projects = data?.data?.project;
 

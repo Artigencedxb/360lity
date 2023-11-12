@@ -6,7 +6,7 @@ import { useLottie } from "lottie-react";
 import animation from "../../../../../public/animation.json";
 
 const AdminShowcasepage = () => {
-  const { data, isPending } = useShowcase();
+  const { data, isPending } = useShowcase(undefined, undefined, "priority");
   console.log(data, "data");
   const showcase = data?.data?.showcase;
   const options = {

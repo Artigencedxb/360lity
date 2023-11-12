@@ -5,7 +5,7 @@ import React from "react";
 
 const ProjectPage = () => {
   return (
-    <div className="py-10 h-screen">
+    <div className="py-10 h-full">
       <Header heading="Projects" />
 
       <ProjectSlider />

@@ -22,6 +22,7 @@ const ProjectsBox: React.FC<{
 }> = ({ data, index, className, admin = false }) => {
   const [deleteModal, setDeleteModal] = useState(false);
   const { setProjectIndex } = useProjectStore();
+console.log(index, "index");
 
   //delete api
   const { mutate, isPending } = useDeleteProject();

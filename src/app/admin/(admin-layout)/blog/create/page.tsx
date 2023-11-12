@@ -6,7 +6,7 @@ const AddBlogsPage = () => {
   return (
     <div className="py-10">
       <Header heading="Add Blog" />
-      {/* <BlogForm /> */}
+      <BlogForm />
     </div>
   );
 };

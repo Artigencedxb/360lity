@@ -167,6 +167,7 @@ const ProjectForm: React.FC<{ initialValues?: Project }> = ({
                 {errors?.image?.message}
               </p>
             )}
+            <div className="text-sm text-gray-400 mt-2 ml-7">(250px x 144px)</div>
           </div>
         )}
         <Input

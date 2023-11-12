@@ -44,7 +44,7 @@ const ContactusForm: React.FC<{ initialValues?: Contact }> = ({
   const imageloader = uploadLoader || deleteLoader;
   const loader = editLoader;
   const queryClient = useQueryClient();
-  const buttonText = "Edit Contact Details" ;
+  const buttonText = "Edit Contact Details";
   const {
     register,
     handleSubmit,
@@ -158,6 +158,9 @@ const ContactusForm: React.FC<{ initialValues?: Contact }> = ({
                 {errors?.image?.message}
               </p>
             )}
+            <div className="text-sm text-gray-400 mt-2 ml-7">
+              (250px x 144px)
+            </div>
           </div>
         )}
         <Input

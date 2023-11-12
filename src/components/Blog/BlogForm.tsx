@@ -15,15 +15,15 @@ import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import "react-quill/dist/quill.snow.css";
 import { toast } from "sonner";
 import { z } from "zod";
-import dynamic from 'next/dynamic'
+import dynamic from "next/dynamic";
 
+const QuillNoSSRWrapper = dynamic(() => import("react-quill"), {
+  ssr: false,
+  loading: () => <p>Loading ...</p>,
+});
 
-const QuillNoSSRWrapper = dynamic(
-  () => import('react-quill'),
-  { ssr: false, loading: () => <p>Loading ...</p> },
-)
-
-const ReactQuill = typeof window === 'object' ? require('react-quill') : () => false;
+const ReactQuill =
+  typeof window === "object" ? require("react-quill") : () => false;
 
 const BlogSchema = z.object({
   title: z.string().min(1, "Please enter a blog title"),
@@ -173,6 +173,9 @@ const BlogAddForm = () => {
                 {errors?.image?.message}
               </p>
             )}
+            <div className="text-sm text-gray-400 mt-2 ml-7">
+              (250px x 144px)
+            </div>
           </div>
         )}
         <Input
@@ -183,22 +186,21 @@ const BlogAddForm = () => {
           error={errors?.title?.message}
           className="w-full"
         />
-        
-          <Controller
-            control={control}
-            name="description"
-            render={({ field: { onChange, value, name } }) => {
-              return (
-                <QuillNoSSRWrapper
-                  className="bg-white rounded-x min-h-[250px]"
-                  theme="snow"
-                  value={value}
-                  onChange={onChange}
-                ></QuillNoSSRWrapper>
-              );
-            }}
-          />
-        
+
+        <Controller
+          control={control}
+          name="description"
+          render={({ field: { onChange, value, name } }) => {
+            return (
+              <QuillNoSSRWrapper
+                className="bg-white rounded-x min-h-[250px]"
+                theme="snow"
+                value={value}
+                onChange={onChange}
+              ></QuillNoSSRWrapper>
+            );
+          }}
+        />
 
         <Button
           loading={loader}

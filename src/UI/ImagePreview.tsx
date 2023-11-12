@@ -1,6 +1,6 @@
 import { TrashIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
-import React from "react";
+import React, { Fragment } from "react";
 
 const ImagePreview: React.FC<{
   src: string;
@@ -8,6 +8,7 @@ const ImagePreview: React.FC<{
   deleteHandler?: () => void;
 }> = ({ src, alt, deleteHandler }) => {
   return (
+    <Fragment>
     <div className="relative w-[250px] h-[9rem] rounded-x">
       <Image src={src} alt={alt} fill className="rounded-x" />
       <button
@@ -18,6 +19,7 @@ const ImagePreview: React.FC<{
         <TrashIcon className="w-5 h-5 text-white" />
       </button>
     </div>
+    </Fragment>
   );
 };
 

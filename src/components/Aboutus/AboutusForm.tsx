@@ -10,7 +10,7 @@ import { convert } from "html-to-text";
 import { useRouter } from "next/navigation";
 import React, { useRef } from "react";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
-import ReactQuill, {Quill} from "react-quill";
+import ReactQuill, { Quill } from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { toast } from "sonner";
 import { z } from "zod";
@@ -19,13 +19,12 @@ import { About } from "../../types/about";
 import "react-quill/dist/quill.snow.css";
 import Input from "../../UI/Input";
 
-import dynamic from 'next/dynamic'
+import dynamic from "next/dynamic";
 
-
-const QuillNoSSRWrapper = dynamic(
-  () => import('react-quill'),
-  { ssr: false, loading: () => <p>Loading ...</p> },
-)
+const QuillNoSSRWrapper = dynamic(() => import("react-quill"), {
+  ssr: false,
+  loading: () => <p>Loading ...</p>,
+});
 
 const BlogSchema = z.object({
   title: z.string().min(1, "Please enter a title"),
@@ -41,13 +40,10 @@ function htmlDecode(content: string) {
   return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
 }
 
-const AboutusForm: React.FC<{ initialValues: About }> = ({
-  initialValues,
-}) => {
+const AboutusForm: React.FC<{ initialValues: About }> = ({ initialValues }) => {
   const router = useRouter();
   const decodeValue = htmlDecode(initialValues?.description as string);
   const text = convert(decodeValue as string);
-
 
   const { mutate: edit, isPending: editLoader } = useEditAbout();
   const { mutate: upload, isPending: uploadLoader } = useUpload();
@@ -164,6 +160,9 @@ const AboutusForm: React.FC<{ initialValues: About }> = ({
                 {errors?.image?.message}
               </p>
             )}
+            <div className="text-sm text-gray-400 mt-2 ml-7">
+              (250px x 144px)
+            </div>
           </div>
         )}
         <Input

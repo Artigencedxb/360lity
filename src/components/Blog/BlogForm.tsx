@@ -30,18 +30,18 @@ function htmlDecode(content: string) {
   return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
 }
 
-const BlogForm= () => {
+const BlogAddForm = () => {
   const router = useRouter();
   // const decodeValue = htmlDecode(initialValues?.description as string);
   // const text = convert(decodeValue as string);
   // console.log(text, "text");
 
   const { mutate: create, isPending: createLoader } = useCreateBlog();
-  const { mutate: edit, isPending: editLoader } = useEditBlog();
+  // const { mutate: edit, isPending: editLoader } = useEditBlog();
   const { mutate: upload, isPending: uploadLoader } = useUpload();
   const { mutate: deleteImage, isPending: deleteLoader } = useDelete();
   const imageloader = uploadLoader || deleteLoader;
-  const loader = createLoader || editLoader;
+  const loader = createLoader;
   const buttonText = "Add Blog";
   const {
     register,
@@ -54,7 +54,6 @@ const BlogForm= () => {
   } = useForm<BlogSchemaType>({
     resolver: zodResolver(BlogSchema),
     mode: "onChange",
-   
   });
 
   const onSubmit: SubmitHandler<BlogSchemaType> = (data) => {
@@ -71,20 +70,20 @@ const BlogForm= () => {
     //       },
     //     }
     //   );
-    // } 
+    // }
     // else {
-      create(
-        {
-          ...data,
-          ...(data?.image?.length ? { image: data?.image } : { image: null }),
+    create(
+      {
+        ...data,
+        ...(data?.image?.length ? { image: data?.image } : { image: null }),
+      },
+      {
+        onSuccess: (res) => {
+          toast.success("New blog added.");
+          router.replace("/admin/blog");
         },
-        {
-          onSuccess: (res) => {
-            toast.success("New blog added.");
-            router.replace("/admin/blog");
-          },
-        }
-      );
+      }
+    );
     // }
   };
 
@@ -185,7 +184,6 @@ const BlogForm= () => {
                 className="bg-white rounded-x min-h-[250px]"
                 theme="snow"
                 value={value}
-               
                 onChange={onChange}
               ></ReactQuill>
             );
@@ -203,4 +201,4 @@ const BlogForm= () => {
   );
 };
 
-export default BlogForm;
+export default BlogAddForm;

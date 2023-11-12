@@ -15,7 +15,7 @@ const EditProjectsPage: React.FC<{ params: { projectId: string } }> = ({
   if (data) {
     return (
       <div className="py-10">
-        <Header heading="Edit Project" />
+        <Header heading="Update Project" />
 
         <ProjectForm initialValues={data?.data?.project} />
       </div>

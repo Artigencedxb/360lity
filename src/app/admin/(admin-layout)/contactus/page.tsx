@@ -2,12 +2,19 @@
 import React from "react";
 import { useGetContact } from "../../../../api/contactus";
 import ContactusForm from "@/components/Contactus/ContactusForm";
+import Header from "../../../../common/Header";
 
 const ContactUsAdminpage = () => {
   const { data } = useGetContact();
 
   if (data) {
-    return <ContactusForm initialValues={data?.data?.contact} />;
+    return (
+      <div>
+        {" "}
+        <Header heading="Contact us" back={false} />{" "}
+        <ContactusForm initialValues={data?.data?.contact} />
+      </div>
+    );
   }
   return null;
 };

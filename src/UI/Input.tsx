@@ -8,16 +8,19 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
   error?: string;
   className?: string;
-  register: UseFormRegister<any>; // declare register props
+  register: UseFormRegister<any>;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void// declare register props
 }
 
 const Input: React.FC<InputProps> = React.forwardRef(
-  ({ id, label, register, name, type = "text", error, className, ...rest }) => {
+  ({ id, label, register, name, type = "text", error, className,onChange, ...rest }) => {
     return (
       <div className="space-y-2">
         <input
           {...rest}
-          {...register(name)}
+          {...register(name, {
+            onChange: onChange
+          })}
           name={name}
           placeholder={label || ""}
           type={type}

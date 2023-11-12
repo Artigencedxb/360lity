@@ -2,6 +2,7 @@ export interface PostProject {
   name: string;
   link: string;
   description: string;
+  priority?: number;
   image?: string | null;
 }
 
@@ -9,6 +10,7 @@ export interface PatchProject {
   id?: string;
   name: string;
   link: string;
+  priority?: number;
   description: string;
   image?: string | null;
 }
@@ -35,6 +37,7 @@ export interface Project {
   name: string;
   image: string;
   link: string;
+  priority: number;
   description: string;
   id: string;
 }

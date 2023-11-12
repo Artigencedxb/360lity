@@ -30,11 +30,13 @@ const deleteShowcase = async (val: { id: string }) => {
 
 const allShowcase = async (
   page?: number,
-  limit?: number
+  limit?: number,
+  sort?: string
 ): Promise<IShowcase> => {
   const { data } = await axiosInstance?.get(routes.showcase, {
     params: {
       ...(page && { page, limit }),
+      ...(sort?.length && { sort }),
     },
   });
   return data;
@@ -67,10 +69,10 @@ export const useDeleteShowcase = () => {
   });
 };
 
-export const useShowcase = (page?: number, limit?: number) => {
+export const useShowcase = (page?: number, limit?: number, sort?: string) => {
   return useQuery({
-    queryKey: [routes["showcase"]],
-    queryFn: () => allShowcase(page, limit),
+    queryKey: [routes["showcase"], sort],
+    queryFn: () => allShowcase(page, limit, sort),
   });
 };
 

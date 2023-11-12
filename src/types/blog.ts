@@ -20,6 +20,7 @@ export type IBlog =
 export interface PostBlog {
   title: string;
   description: string;
+  priority: number;
   image?: string | null;
 }
 
@@ -27,6 +28,7 @@ export interface PatchBlog {
   id?: string;
   title: string;
   description: string;
+  priority: number;
   image?: string | null;
 }
 
@@ -52,5 +54,6 @@ export interface Blog {
   title: string;
   image: string;
   description: string;
+  priority: number;
   id: string;
 }

@@ -21,6 +21,7 @@ const ShowcaseSchema = z.object({
   name: z.string().min(1, "Please enter a showcase name"),
   link: z.string().min(3, "Please enter a 360 video link for showcase"),
   image: z.string().min(3, "Please upload a showcase photo"),
+  priority: z.coerce.number().gte(1, "Please enter a priority"),
   description: z.string().min(3, "Please enter a description"),
 });
 
@@ -35,7 +36,7 @@ const ShowcaseForm: React.FC<{ initialValues?: Showcase }> = ({
   const { mutate: deleteImage, isPending: deleteLoader } = useDelete();
   const imageloader = uploadLoader || deleteLoader;
   const loader = createLoader || editLoader;
-  const buttonText = initialValues ? "Edit Showcase" : "Add Showcase";
+  const buttonText = initialValues ? "Update" : "Add Showcase";
 
   const router = useRouter();
   const {
@@ -193,6 +194,15 @@ const ShowcaseForm: React.FC<{ initialValues?: Showcase }> = ({
           error={errors?.description?.message}
           className="w-full"
           rows={4}
+        />
+         <Input
+          id={"priority"}
+          name="priority"
+          type="tel"
+          register={register}
+          label="Display Priority"
+          error={errors?.priority?.message}
+          className="w-full"
         />
         <Button
           loading={loader}

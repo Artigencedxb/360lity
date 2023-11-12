@@ -20,6 +20,7 @@ const AdminBlogsPage = () => {
         heading="Blogs"
         buttonText="+ Add blog"
         buttonUrl="/admin/blog/create"
+        back={false}
       />
       {isPending && <div>{View}</div>}
       {!blogs?.length && !isPending && (

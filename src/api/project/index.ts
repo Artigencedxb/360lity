@@ -30,11 +30,13 @@ const deleteProject = async (val: { id: string }) => {
 
 const allProjects = async (
   page?: number,
-  limit?: number
+  limit?: number,
+  sort?: string
 ): Promise<IProject> => {
   const { data } = await axiosInstance?.get(routes.project, {
     params: {
       ...(page && { page, limit }),
+      ...(sort?.length && { sort }),
     },
   });
   return data;
@@ -67,10 +69,10 @@ export const useDeleteProject = () => {
   });
 };
 
-export const useProjects = (page?: number, limit?: number) => {
+export const useProjects = (page?: number, limit?: number, sort?: string) => {
   return useQuery({
-    queryKey: [routes["project"], page, limit],
-    queryFn: () => allProjects(page, limit),
+    queryKey: [routes["project"], page, limit, sort],
+    queryFn: () => allProjects(page, limit, sort),
   });
 };
 

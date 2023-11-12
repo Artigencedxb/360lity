@@ -12,7 +12,8 @@ const Header: React.FC<{
   buttonText?: string;
   buttonUrl?: string;
   disabled?: boolean;
-}> = ({ result, heading, buttonText, buttonUrl = "#", disabled = false }) => {
+  back? :boolean
+}> = ({ result, heading, buttonText, buttonUrl = "#", disabled = false, back = true }) => {
   const router = useRouter();
 
   const clickHandler = () => {
@@ -24,12 +25,12 @@ const Header: React.FC<{
 
   return (
     <div className="flex items-center gap-3">
-      <button
+      {back && <button
         className="relative w-[25px] h-[25px] md:w-[41px] md:h-[41px]"
         onClick={() => router.back()}
       >
         <Image fill src={Logo} alt="" />
-      </button>
+      </button>}
       <h1>{heading}</h1>
       {buttonText?.length && (
         <Button

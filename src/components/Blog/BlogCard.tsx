@@ -72,6 +72,14 @@ const BlogCard: React.FC<{ data: Blog; admin?: boolean }> = ({
             <Triangle />
             {admin && (
               <div className="top-0 left-0 absolute bg-black/50 w-full h-full opacity-0 flex justify-center gap-8 items-center group-hover:opacity-100 z-10">
+                <button
+                  type="button"
+                  onClick={() =>
+                    router.push(`/admin/blog/${data?._id as string}`)
+                  }
+                >
+                  <PencilSquareIcon className="w-8 h-8 text-white" />
+                </button>
                 <button onClick={() => setDeleteModal(true)}>
                   <TrashIcon className="w-8 h-8 text-white" />
                 </button>

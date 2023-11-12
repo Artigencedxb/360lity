@@ -5,7 +5,7 @@ import Input from "@/UI/Input";
 import Loader from "@/UI/Loader";
 import TextArea from "@/UI/TextArea";
 import { useDelete, useUpload } from "@/api/image";
-import { useCreateProject, useEditProject } from "@/api/project";
+import { useCreateProject, useEditProject, useProjects } from "@/api/project";
 import { Project } from "@/types/project";
 import { resizeFile } from "@/utils/resizeFile";
 import { transformFile } from "@/utils/transformFile";
@@ -22,6 +22,7 @@ const ProjectSchema = z.object({
   name: z.string().min(1, "Please enter a project name"),
   link: z.string().min(3, "Please enter a 360 video link for project"),
   description: z.string().min(3, "Please enter a description"),
+  priority: z.coerce.number().gte(1, "Please enter a priority"),
   image: z.string().optional(),
 });
 
@@ -30,9 +31,11 @@ type ProjectSchemaType = z.infer<typeof ProjectSchema>;
 const ProjectForm: React.FC<{ initialValues?: Project }> = ({
   initialValues,
 }) => {
-  console.log(initialValues, "initial");
+  // console.log(initialValues, "initial");
 
   const router = useRouter();
+  const { data } = useProjects();
+  const projects = data?.data?.project;
   const { mutate: create, isPending: createLoader } = useCreateProject();
   const { mutate: edit, isPending: editLoader } = useEditProject();
   const { mutate: upload, isPending: uploadLoader } = useUpload();
@@ -40,7 +43,7 @@ const ProjectForm: React.FC<{ initialValues?: Project }> = ({
   const imageloader = uploadLoader || deleteLoader;
   const loader = createLoader || editLoader;
   const queryClient = useQueryClient();
-  const buttonText = initialValues ? "Edit Project" : "Add Project";
+  const buttonText = initialValues ? "Update" : "Add Project";
   const {
     register,
     handleSubmit,
@@ -48,6 +51,7 @@ const ProjectForm: React.FC<{ initialValues?: Project }> = ({
     getValues,
     watch,
     reset,
+    setError,
     formState: { errors },
   } = useForm<ProjectSchemaType>({
     resolver: zodResolver(ProjectSchema),
@@ -167,7 +171,9 @@ const ProjectForm: React.FC<{ initialValues?: Project }> = ({
                 {errors?.image?.message}
               </p>
             )}
-            <div className="text-sm text-gray-400 mt-2 ml-7">(250px x 144px)</div>
+            <div className="text-sm text-gray-400 mt-2 ml-7">
+              (250px x 144px)
+            </div>
           </div>
         )}
         <Input
@@ -196,6 +202,15 @@ const ProjectForm: React.FC<{ initialValues?: Project }> = ({
           error={errors?.description?.message}
           className="w-full"
           rows={4}
+        />
+        <Input
+          id={"priority"}
+          name="priority"
+          type="tel"
+          register={register}
+          label="Display Priority"
+          error={errors?.priority?.message}
+          className="w-full"
         />
         <Button
           loading={loader}

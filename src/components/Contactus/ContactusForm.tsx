@@ -180,14 +180,14 @@ const ContactusForm: React.FC<{ initialValues?: Contact }> = ({
           error={errors?.phone?.message}
           className="w-full"
         />
-        <TextArea
+        <Input
           id={"whatsapp"}
           name="whatsapp"
           register={register}
           label="Whatsapp Number"
           error={errors?.whatsapp?.message}
           className="w-full"
-          rows={4}
+      
         />
         <Button
           loading={loader}

@@ -17,7 +17,7 @@ const EditShowcasePage: React.FC<{ params: { showcaseId: string } }> = ({
   if (data) {
     return (
       <div className="py-10">
-        <Header heading="Edit Showcase" />
+        <Header heading="Update Showcase" />
 
         <ShowcaseForm initialValues={data?.data?.showcase} />
       </div>

@@ -23,6 +23,7 @@ const AdminProjectspage = () => {
         heading="Projects"
         buttonText="+ Add Projects"
         buttonUrl="/admin/projects/create"
+        back={false}
       />
       {isPending && <div>{View}</div>}
       {!projects?.length && !isPending && (

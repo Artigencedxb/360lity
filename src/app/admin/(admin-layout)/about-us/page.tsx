@@ -17,7 +17,7 @@ const AboutPage = () => {
   if (about && state) {
     return (
       <div className="pb-10">
-        <Header heading="About us" />{" "}
+        <Header heading="About us" back={false} />
         <AboutusForm initialValues={data?.data?.about} />
       </div>
     );

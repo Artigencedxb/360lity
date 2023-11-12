@@ -19,7 +19,13 @@ import { About } from "../../types/about";
 import "react-quill/dist/quill.snow.css";
 import Input from "../../UI/Input";
 
-const Inline = Quill.import("blots/inline");
+import dynamic from 'next/dynamic'
+
+
+const QuillNoSSRWrapper = dynamic(
+  () => import('react-quill'),
+  { ssr: false, loading: () => <p>Loading ...</p> },
+)
 
 const BlogSchema = z.object({
   title: z.string().min(1, "Please enter a title"),
@@ -173,13 +179,13 @@ const AboutusForm: React.FC<{ initialValues: About }> = ({
           name="description"
           render={({ field: { onChange, value, name } }) => {
             return (
-              <ReactQuill
+              <QuillNoSSRWrapper
                 className="bg-white rounded-x min-h-[250px]"
                 theme="snow"
                 value={value}
                 defaultValue={initialValues?.description}
                 onChange={onChange}
-              ></ReactQuill>
+              ></QuillNoSSRWrapper>
             );
           }}
         />

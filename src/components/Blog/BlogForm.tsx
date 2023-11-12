@@ -11,10 +11,19 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import React from "react";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
-import ReactQuill from "react-quill";
+// import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { toast } from "sonner";
 import { z } from "zod";
+import dynamic from 'next/dynamic'
+
+
+const QuillNoSSRWrapper = dynamic(
+  () => import('react-quill'),
+  { ssr: false, loading: () => <p>Loading ...</p> },
+)
+
+const ReactQuill = typeof window === 'object' ? require('react-quill') : () => false;
 
 const BlogSchema = z.object({
   title: z.string().min(1, "Please enter a blog title"),
@@ -29,7 +38,6 @@ function htmlDecode(content: string) {
   e.innerHTML = content;
   return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
 }
-
 const BlogAddForm = () => {
   const router = useRouter();
   // const decodeValue = htmlDecode(initialValues?.description as string);
@@ -175,20 +183,22 @@ const BlogAddForm = () => {
           error={errors?.title?.message}
           className="w-full"
         />
-        <Controller
-          control={control}
-          name="description"
-          render={({ field: { onChange, value, name } }) => {
-            return (
-              <ReactQuill
-                className="bg-white rounded-x min-h-[250px]"
-                theme="snow"
-                value={value}
-                onChange={onChange}
-              ></ReactQuill>
-            );
-          }}
-        />
+        
+          <Controller
+            control={control}
+            name="description"
+            render={({ field: { onChange, value, name } }) => {
+              return (
+                <QuillNoSSRWrapper
+                  className="bg-white rounded-x min-h-[250px]"
+                  theme="snow"
+                  value={value}
+                  onChange={onChange}
+                ></QuillNoSSRWrapper>
+              );
+            }}
+          />
+        
 
         <Button
           loading={loader}

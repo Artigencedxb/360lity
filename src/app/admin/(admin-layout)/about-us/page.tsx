@@ -1,6 +1,6 @@
 "use client";
-import { useGetAbout } from "./../../../../api/about";
-import Header from "../../../../common/Header";
+import { useGetAbout } from "../../../../api/about";
+import Header from "@/common/Header";
 import AboutusForm from "@/components/Aboutus/AboutusForm";
 
 const AboutPage = () => {
@@ -12,7 +12,7 @@ const AboutPage = () => {
     return (
       <div className="pb-10">
         <Header heading="About us" />{" "}
-        <AboutusForm initialValues={data?.data?.about} />
+        {/* <AboutusForm initialValues={data?.data?.about} /> */}
       </div>
     );
   }

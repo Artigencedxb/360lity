@@ -10,9 +10,8 @@ import animation from "../../../public/animation.json";
 import { useLottie } from "lottie-react";
 
 const Showcase = () => {
-  const { data, isPending } = useShowcase(1, 8, "priority");
+  const { data, isPending } = useShowcase(undefined, undefined, "priority");
   const showcase = data?.data?.showcase;
-  
 
   const options = {
     animationData: animation,

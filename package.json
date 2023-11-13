@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emailjs/browser": "^3.11.0",
     "@headlessui/react": "^1.7.17",
     "@heroicons/react": "^2.0.18",
     "@hookform/resolvers": "^3.3.2",
@@ -28,7 +29,6 @@
     "react-hook-form": "^7.47.0",
     "react-image-file-resizer": "^0.4.8",
     "react-quill": "^2.0.0",
-    "sharp": "^0.32.6",
     "sonner": "^1.0.3",
     "tailwind-scrollbar": "^3.0.5",
     "zod": "^3.22.4",

@@ -6,7 +6,8 @@ import { z } from "zod";
 import Input from "../../UI/Input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import TextArea from "../../UI/TextArea";
-import classNames from 'classnames';
+import emailjs from "@emailjs/browser";
+import classNames from "classnames";
 
 const mailSchema = z.object({
   name: z.string().min(1, "Please enter a name"),
@@ -36,7 +37,23 @@ const MailForm = () => {
     resolver: zodResolver(mailSchema),
   });
 
-  const onSubmit: SubmitHandler<mailSchemaType> = (data) => {};
+  const onSubmit: SubmitHandler<mailSchemaType> = (data) => {
+    emailjs
+      .sendForm(
+        process.env.NEXT_PUBLIC_EMAIL_SERVICE_ID!,
+        process.env.NEXT_PUBLIC_EMAIL_TEMPLATE_ID!,
+        data as any,
+        process.env.NEXT_PUBLIC_EMAIL_PUBLIC_KEY!
+      )
+      .then(
+        (result) => {
+          console.log(result.text);
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
+  };
   return (
     <div className="basis-[30%] self-stretch w-full h-full">
       <form

@@ -17,9 +17,6 @@ const Header: React.FC<{
   const router = useRouter();
 
   const clickHandler = () => {
-    if (result === 6 && heading === "Showcase") {
-      return toast.error("You can only add 6 showcases.");
-    }
     router?.push(buttonUrl as string);
   };
 

@@ -21,7 +21,6 @@ const AdminShowcasepage = () => {
         heading="Showcase"
         buttonText="+ Add Showcase"
         buttonUrl="/admin/showcase/create"
-        disabled={data?.result === 8}
         back={false}
       />
       {isPending && <div>{View}</div>}

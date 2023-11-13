@@ -8,6 +8,7 @@ import Image from "next/image";
 import React, { Fragment, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import {
+  FullScreenIcon,
   InfoIcon,
   ReduceIcon,
   ViewBackIcon,
@@ -68,6 +69,7 @@ const Viewer360: React.FC<{ data?: Showcase[] | Project[] }> = ({ data }) => {
               {pathname === "view-showcase" && (
                 <Fragment>
                   <button
+                    className="outline-none bg-black/50 rounded-full w-[50px] h-[50px] flex items-center justify-center"
                     disabled={data?.length === Number(currentSlide) + 1}
                     onClick={() => setCurrentSlide((prev) => prev + 1)}
                   >
@@ -79,6 +81,7 @@ const Viewer360: React.FC<{ data?: Showcase[] | Project[] }> = ({ data }) => {
                     />
                   </button>
                   <button
+                    className="outline-none bg-black/50 rounded-full w-[50px] h-[50px] flex items-center justify-center"
                     disabled={currentSlide === 0}
                     onClick={() => setCurrentSlide((prev) => prev - 1)}
                   >
@@ -89,25 +92,27 @@ const Viewer360: React.FC<{ data?: Showcase[] | Project[] }> = ({ data }) => {
                       alt="information icon"
                     />
                   </button>
-                  <button
-                    className="outline-none"
-                    onClick={() => setShowInfo(!showInfo)}
-                  >
-                    <Image
-                      width={23}
-                      height={23}
-                      src={InfoIcon}
-                      alt="information icon"
-                    />
-                  </button>
                 </Fragment>
               )}
-
-              <button onClick={() => setFullScreen((prev) => !prev)}>
+              <button
+                className="outline-none bg-black/50 rounded-full w-[50px] h-[50px] flex items-center justify-center"
+                onClick={() => setShowInfo(!showInfo)}
+              >
                 <Image
                   width={23}
                   height={23}
-                  src={ReduceIcon}
+                  src={InfoIcon}
+                  alt="information icon"
+                />
+              </button>
+              <button
+                className="outline-none bg-black/50 rounded-full w-[50px] h-[50px] flex items-center justify-center"
+                onClick={() => setFullScreen((prev) => !prev)}
+              >
+                <Image
+                  width={23}
+                  height={23}
+                  src={!fullScreen ? FullScreenIcon : ReduceIcon}
                   alt="Reduce size icon"
                 />
               </button>

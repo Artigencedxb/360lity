@@ -6,6 +6,7 @@ import * as DOMPurify from "dompurify";
 import Image from "next/image";
 import React from "react";
 import { ShareIcon } from "../../../../assets";
+import { useParams } from "next/navigation";
 
 // export const metadata: Metadata = {
 //   title: "Blog",
@@ -28,19 +29,19 @@ const BlogPage: React.FC<{ params: { blogId: string } }> = ({ params }) => {
 
   console.log(description, "clean");
 
-  // const desc =
-  //   blog?.description1! +
-  //     blog?.description2! +
-  //     blog?.description3 +
-  //     blog?.description4 +
-  //     blog?.description5 +
-  //     blog?.description6 ??
-  //   "" + blog?.description7 ??
-  //   "" + blog?.description8 ??
-  //   "" + blog?.description9 ??
-  //   "";
+  const shareData = {
+    title: "Projects",
+    text: "360lity projects!",
+    url: `${window.location.origin}/blog/${params?.blogId}`,
+  };
 
-  // const conc = blog?.conclusion1! + blog?.conclusion2 ?? "";
+  const shareButton = async () => {
+    try {
+      await navigator.share(shareData);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   if (blog) {
     return (
       <div className="py-[4.8rem] md:py-10 space-y-5">
@@ -78,14 +79,16 @@ const BlogPage: React.FC<{ params: { blogId: string } }> = ({ params }) => {
             />
           </div>
         </div>
-        <div className="bg-white rounded-[15px] p-5">
+        <div className="bg-white rounded-[15px] p-5 flex flex-col">
           <div dangerouslySetInnerHTML={{ __html: clean }} />
           {/* <div className="text-sm font-semibold whitespace-pre-wrap">
           {blog?.title}
         </div>
         <div className="text-sm font-normal whitespace-pre-wrap">{desc}</div>
         <div className="text-sm font-normal whitespace-pre-wrap">{conc}</div> */}
-          <Image className="mt-8 ml-auto" src={ShareIcon} alt="share icon" />
+          <button className="mt-8  ml-auto" onClick={shareButton}>
+            <Image src={ShareIcon} alt="share icon" />
+          </button>
         </div>
 
         {/* <ProjectDetails blogId={params?.blogId} data={project} /> */}

@@ -2,15 +2,22 @@
 import React, { Fragment, useEffect, useState } from "react";
 import LoadingScreen from "../../common/LoadingScreen";
 import { AnimatePresence } from "framer-motion";
+import { usePathname } from "next/navigation";
 
 const LoadingWrapper: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [loading, setLoading] = useState(false);
+  const pathname = usePathname()
 
   useEffect(() => {
+    if(pathname === "/") {
     setTimeout(() => setLoading(true), 5000);
-  }, []);
+  } else {
+    setLoading(true)
+  }
+  }, [pathname]);
+
   return (
     <div className="relative">
       {!loading ? (

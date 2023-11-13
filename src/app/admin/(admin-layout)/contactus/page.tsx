@@ -9,7 +9,7 @@ const ContactUsAdminpage = () => {
 
   if (data) {
     return (
-      <div>
+      <div className="pb-10">
         {" "}
         <Header heading="Contact us" back={false} />{" "}
         <ContactusForm initialValues={data?.data?.contact} />

@@ -6,15 +6,22 @@ import ProjectDetails from "./ProjectDetails";
 import { AnimatePresence } from "framer-motion";
 import "keen-slider/keen-slider.min.css";
 import { useKeenSlider } from "keen-slider/react";
+import { useParams } from "next/navigation";
 
 const ProjectSlider = () => {
+  const params = useParams()
+  console.log(params?.projectId, "id");
+  const projectId = Number(params?.projectId)
   const { projectIndex } = useProjectStore();
-  const [currentSlide, setCurrentSlide] = React.useState(projectIndex);
+  const [currentSlide, setCurrentSlide] = React.useState(projectId);
+ 
+ 
+  
   const [loaded, setLoaded] = React.useState(false);
   console.log(projectIndex, "index");
 
   const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>({
-    initial: currentSlide,
+    initial: projectId,
     mode: "free-snap",
     loop: false,
     slideChanged(slider) {

@@ -2,11 +2,12 @@
 import { LeftArrow, LogoView, RightArrow, ShareIcon } from "@/assets";
 import { Project } from "@/types/project";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import React, { useState } from "react";
 import Triangle from "../../common/Triangle";
-import 'keen-slider/keen-slider.min.css'
+import "keen-slider/keen-slider.min.css";
 import { AnimatePresence, motion } from "framer-motion";
+import cn from "classnames";
 const ProjectDetails: React.FC<{
   currentSlide: number;
   direction: string;
@@ -24,16 +25,33 @@ const ProjectDetails: React.FC<{
   setDirection,
   direction,
   projectIndex,
-  instanceRef
+  instanceRef,
 }) => {
   const router = useRouter();
+  const params = useParams()
+  const projectId = params?.projectId
   const [isReadMore, setIsReadMore] = useState(true);
+
+
+  const shareData = {
+    title: "Projects",
+    text: "360lity projects!",
+    url: `${window.location.origin}/projects/${projectId}`,
+  };
 
   console.log(Number(currentSlide) + 1, "test");
 
   const toggleReadMore = () => {
     setIsReadMore(!isReadMore);
   };
+
+  const shareButton = async () => {
+    try {
+    await navigator.share(shareData);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   return (
     <div className="keen-slider__slide mt-5 grid lg:grid-cols-2 gap-x-6 grid-cols-1 gap-y-8">
@@ -56,44 +74,58 @@ const ProjectDetails: React.FC<{
         </div>
       </div>
       <div className=" py-10 px-8 rounded-[10px] flex flex-col bg-white justify-between">
-        <div className=" space-y-4 block">
+        <div className="space-y-4 block">
           <h2>{val?.name}</h2>
-          <p className="text-base font-medium">
-            {isReadMore ? val?.description?.slice(0, 400) : val?.description}
-            {val?.description?.length > 400 && (
-              <span onClick={toggleReadMore} className="text-[#0060E4]">
-                {isReadMore ? "...Read more" : "...Show less"}
-              </span>
-            )}
-          </p>
+          <div
+            className={cn("", {
+              "h-[13rem] md:h-[8rem] lg:h-[12rem] scrollbar-thin overflow-y-auto scrollbar-thumb-gray-400 crollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-track-gray-100":
+                !isReadMore,
+            })}
+          >
+            <p className="text-base font-medium">
+              {isReadMore ? val?.description?.slice(0, 400) : val?.description}
+              {val?.description?.length > 400 && (
+                <span
+                  onClick={toggleReadMore}
+                  className="text-[#0060E4] cursor-pointer"
+                >
+                  {isReadMore ? "...Read more" : "...Show less"}
+                </span>
+              )}
+            </p>
+          </div>
         </div>
-        <div className="flex mt-auto items-center justify-between">
+        <div className="flex mt-5 items-center justify-between">
           {currentSlide != 0 && (
             <button
               // onClick={(e: any) => {
               //   setDirection("left");
               //   setCurrentSlide((prev) => prev - 1);
               // }}
-              onClick={(e: any) =>
-                e.stopPropagation() || instanceRef.current?.prev()
-              }
+              onClick={(e: any) => {
+                setIsReadMore(true);
+                e.stopPropagation() || instanceRef.current?.prev();
+              }}
               disabled={currentSlide === 0}
             >
               <Image src={LeftArrow} alt="right arrow icon" />
             </button>
           )}
           <div className="self-end flex items-center gap-5 ml-auto">
+            <button onClick={shareButton}>
             <Image src={ShareIcon} alt="share icon" />
+            </button>
             {currentSlide !==
-                  instanceRef.current?.track?.details?.slides.length - 1 && (
+              instanceRef.current?.track?.details?.slides.length - 1 && (
               <button
                 // onClick={(e: any) => {
                 //   setDirection("right");
                 //   setCurrentSlide((prev) => prev + 1);
                 // }}
-                onClick={(e: any) =>
-                  e.stopPropagation() || instanceRef.current?.next()
-                }
+                onClick={(e: any) => {
+                  setIsReadMore(true);
+                  e.stopPropagation() || instanceRef.current?.next();
+                }}
                 disabled={
                   currentSlide ===
                   instanceRef.current?.track?.details?.slides.length - 1

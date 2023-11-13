@@ -26,11 +26,21 @@ const Footer = () => {
           <Image src={LogoWhite} alt="White logo" width={37} height={37} />
           <p className="text-sm font-normal">360lity.com</p>
           <div className="flex items-center gap-3">
+            <Link href="https://www.facebook.com/threesixtylity/" target="_blank">
             <Image src={FacebookIcon} alt="Facebook icon" />
+            </Link>
+            <Link href="https://www.instagram.com/360lity/" target="_blank">
             <Image src={InstagramIcon} alt="Instagram icon" />
+            </Link>
+            <Link href="https://www.tiktok.com/@360lity" target="_blank">
             <Image src={TiktokIcon} alt="Tiktok icon" />
+            </Link>
+            <Link href="https://twitter.com/360lity" target="_blank">
             <Image src={TwitterIcon} alt="Twitter icon" />
+            </Link>
+            <Link href="https://www.youtube.com/channel/UClt1CyYnBgq3H_mWtrFfrPg" target="_blank">
             <Image src={YoutubeIcon} alt="Youtube icon" />
+            </Link>
           </div>
         </div>
 
@@ -74,7 +84,7 @@ const Footer = () => {
           <p className="text-sm">VR/AR</p>
           <p className="text-sm">3D-Studio</p>
           <p className="text-sm">Animation</p>
-          <p className="text-sm">Photoraphy</p>
+          <p className="text-sm">Photography</p>
           <p className="text-sm">Videography</p>
         </div>
         <div className="px-5 space-y-1.5 text-start lg:text-start flex flex-col">

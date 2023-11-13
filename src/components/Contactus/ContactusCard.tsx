@@ -30,8 +30,7 @@ const ContactusCard = () => {
       </div>
       <div className="bg-white rounded-[15px] p-8">
         <div className="text-sm font-normal whitespace-pre-wrap">
-          Ready to embark on a journey beyond reality? Contact us today, and
-          let&apos;s craft immersive realities together.
+          {contact?.description ?? ""}
         </div>
         <div className="flex items-center gap-4 justify-center mt-6">
           <Link href={`tel:${contact?.phone}`}>

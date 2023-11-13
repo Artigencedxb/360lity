@@ -19,7 +19,7 @@ const LayooutView: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
   return (
     <Fragment>
-      <div className="h-full relative mr-4 sm:mr-4 lg:mr-[7.2rem]">
+      <div className="h-full relative mx-auto lg:max-w-6xl px-[2rem] sm:px-[3rem] lg:px-[1.5rem]">
         {pathname === "/" && <Navigation />}
       </div>
       {children}

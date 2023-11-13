@@ -27,7 +27,8 @@ const ProjectSchema = z.object({
     .string()
     .min(3, "Please enter a email")
     .email("Please enter a valid email address"),
-  image: z.string().optional(),
+  image: z.string().optional().nullable(),
+  description: z.string().min(3, "Please enter a description"),
 });
 
 type ProjectSchemaType = z.infer<typeof ProjectSchema>;
@@ -187,7 +188,15 @@ const ContactusForm: React.FC<{ initialValues?: Contact }> = ({
           label="Whatsapp Number"
           error={errors?.whatsapp?.message}
           className="w-full"
-      
+        />
+        <TextArea
+          id={"description"}
+          name="description"
+          register={register}
+          label="Description"
+          error={errors?.description?.message}
+          className="w-full"
+          rows={4}
         />
         <Button
           loading={loader}

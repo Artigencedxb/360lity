@@ -114,7 +114,7 @@ const Footer = () => {
         <div className="flex items-center justify-center flex-col gap-3">
           <div className="bg-white w-[200px] lg:w-full relative flex items-center justify-between rounded-[15px] px-6 py-6">
             <div className="relative w-[50px] h-[50px]">
-              <Image src={FooterLogo} alt="Footer Logo" />
+              <Image fill src={FooterLogo} alt="Footer Logo" />
             </div>
             <div className="relative w-[60px] h-[60px]">
               <Image src={FooterQr} alt="Footer Qr" fill />

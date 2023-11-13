@@ -26,20 +26,26 @@ const Footer = () => {
           <Image src={LogoWhite} alt="White logo" width={37} height={37} />
           <p className="text-sm font-normal">360lity.com</p>
           <div className="flex items-center gap-3">
-            <Link href="https://www.facebook.com/threesixtylity/" target="_blank">
-            <Image src={FacebookIcon} alt="Facebook icon" />
+            <Link
+              href="https://www.facebook.com/threesixtylity/"
+              target="_blank"
+            >
+              <Image src={FacebookIcon} alt="Facebook icon" />
             </Link>
             <Link href="https://www.instagram.com/360lity/" target="_blank">
-            <Image src={InstagramIcon} alt="Instagram icon" />
+              <Image src={InstagramIcon} alt="Instagram icon" />
             </Link>
             <Link href="https://www.tiktok.com/@360lity" target="_blank">
-            <Image src={TiktokIcon} alt="Tiktok icon" />
+              <Image src={TiktokIcon} alt="Tiktok icon" />
             </Link>
             <Link href="https://twitter.com/360lity" target="_blank">
-            <Image src={TwitterIcon} alt="Twitter icon" />
+              <Image src={TwitterIcon} alt="Twitter icon" />
             </Link>
-            <Link href="https://www.youtube.com/channel/UClt1CyYnBgq3H_mWtrFfrPg" target="_blank">
-            <Image src={YoutubeIcon} alt="Youtube icon" />
+            <Link
+              href="https://www.youtube.com/channel/UClt1CyYnBgq3H_mWtrFfrPg"
+              target="_blank"
+            >
+              <Image src={YoutubeIcon} alt="Youtube icon" />
             </Link>
           </div>
         </div>
@@ -94,7 +100,11 @@ const Footer = () => {
             Tel:+9714314431
           </Link>
 
-          <Link target="_blank" href={`https://api.whatsapp.com/send?phone=${contact?.phone}`} className="text-sm">
+          <Link
+            target="_blank"
+            href={`https://api.whatsapp.com/send?phone=${contact?.phone}`}
+            className="text-sm"
+          >
             WhatsApp
           </Link>
           <Link href={`mailto:${contact?.email}`} className="text-sm">
@@ -104,19 +114,10 @@ const Footer = () => {
         <div className="flex items-center justify-center flex-col gap-3">
           <div className="bg-white w-[200px] lg:w-full relative flex items-center justify-between rounded-[15px] px-6 py-6">
             <div className="relative w-[50px] h-[50px]">
-              <Image
-                src={FooterLogo}
-                alt="Footer Logo"
-                className="rounded-[15px]"
-              />
+              <Image src={FooterLogo} alt="Footer Logo" />
             </div>
             <div className="relative w-[60px] h-[60px]">
-              <Image
-                src={FooterQr}
-                alt="Footer Qr"
-                fill
-                className="rounded-[15px]"
-              />
+              <Image src={FooterQr} alt="Footer Qr" fill />
             </div>
             <TriangleBlack />
           </div>

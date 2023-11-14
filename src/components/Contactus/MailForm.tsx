@@ -49,7 +49,7 @@ const MailForm = () => {
           from_name: data?.name,
           whatsapp: data?.whatsapp,
           email: data?.email,
-          message: data?.description,
+          ...(data?.description?.length && { message: data?.description }),
         },
         process.env.NEXT_PUBLIC_EMAIL_PUBLIC_KEY!
       )
@@ -108,7 +108,10 @@ const MailForm = () => {
           error={errors?.description?.message}
           rows={5}
         />
-        <button disabled={loading} className="flex disabled:opacity-75 items-center gap-3 justify-center rounded-[15px] w-[150px] bg-[#0060E4] font-medium py-3 text-white">
+        <button
+          disabled={loading}
+          className="flex disabled:opacity-75 items-center gap-3 justify-center rounded-[15px] w-[150px] bg-[#0060E4] font-medium py-3 text-white"
+        >
           {loading && (
             <Loader className="border-[2px] border-t-white w-[16px] h-[16px]" />
           )}

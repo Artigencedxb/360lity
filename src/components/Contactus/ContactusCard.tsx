@@ -11,9 +11,9 @@ const ContactusCard = () => {
   const { data } = useGetContact();
   const contact = data?.data.contact;
   return (
-    <div className="flex flex-col gap-4 md:w-[300px] h-full">
+    <div className="self-stretch flex flex-col gap-4 md:w-[300px] h-auto">
       <div
-        className={cn("h-[210px] rounded-x relative w-full", {
+        className={cn("h-[200px] rounded-x relative w-full", {
           "": contact?.image?.length,
           "bg-black": !contact?.image?.length,
         })}
@@ -28,7 +28,7 @@ const ContactusCard = () => {
         )}
         <Triangle />
       </div>
-      <div className="bg-white rounded-[15px] p-8">
+      <div className="bg-white flex flex-col justify-end rounded-[15px] p-8">
         <div className="text-sm font-normal whitespace-pre-wrap">
           {contact?.description ?? ""}
         </div>

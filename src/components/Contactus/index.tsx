@@ -9,7 +9,7 @@ const Contactus = () => {
   return (
     <div className="py-[4.3rem] md:py-10">
       <Header heading="Contact Us" />
-      <div className="md:flex-row flex-col flex items-center justify-center md:h-[26rem] gap-4 mt-5 md:mt-14">
+      <div className="md:flex-row flex-col flex items-center justify-center gap-4 mt-5 md:mt-14">
         <ContactusCard />
         <ContactusForm />
       </div>

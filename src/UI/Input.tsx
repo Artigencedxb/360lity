@@ -26,7 +26,7 @@ const Input: React.FC<InputProps> = React.forwardRef(
           type={type}
           id={id}
           className={cn(
-            "outline-none py-2 px-5 border-2 rounded-[10px]",
+            "w-full outline-none py-2 px-5 border-2 rounded-[10px]",
             className,
             {
               "border-0 ring-2 ring-red-300": error?.length,

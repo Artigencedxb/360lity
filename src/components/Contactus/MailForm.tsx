@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
@@ -8,6 +8,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import TextArea from "../../UI/TextArea";
 import emailjs from "@emailjs/browser";
 import classNames from "classnames";
+import Loader from "../../UI/Loader";
 
 const mailSchema = z.object({
   name: z.string().min(1, "Please enter a name"),
@@ -20,6 +21,7 @@ const mailSchema = z.object({
 });
 type mailSchemaType = z.infer<typeof mailSchema>;
 const MailForm = () => {
+  const [loading, setLoading] = useState(false);
   // const imageloader = uploadLoader || deleteLoader;
   // const loader = editLoader;
   // const queryClient = useQueryClient();
@@ -38,24 +40,33 @@ const MailForm = () => {
   });
 
   const onSubmit: SubmitHandler<mailSchemaType> = (data) => {
+    setLoading(true);
     emailjs
-      .sendForm(
+      .send(
         process.env.NEXT_PUBLIC_EMAIL_SERVICE_ID!,
         process.env.NEXT_PUBLIC_EMAIL_TEMPLATE_ID!,
-        data as any,
+        {
+          from_name: data?.name,
+          whatsapp: data?.whatsapp,
+          email: data?.email,
+          message: data?.description,
+        },
         process.env.NEXT_PUBLIC_EMAIL_PUBLIC_KEY!
       )
       .then(
         (result) => {
+          console.log(result, "res");
           console.log(result.text);
+          setLoading(false);
         },
         (error) => {
           console.log(error.text);
+          setLoading(false);
         }
       );
   };
   return (
-    <div className="basis-[30%] self-stretch w-full h-full">
+    <div className="self-stretch">
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="flex flex-col justify-between h-full gap-4 md:gap-2"
@@ -96,9 +107,11 @@ const MailForm = () => {
           className="py-3 px-5 bg-white rounded-[15px]"
           error={errors?.description?.message}
           rows={5}
-          cols={23}
         />
-        <button className="rounded-[15px] w-[150px] bg-[#0060E4] font-medium py-3 text-white">
+        <button disabled={loading} className="flex disabled:opacity-75 items-center gap-3 justify-center rounded-[15px] w-[150px] bg-[#0060E4] font-medium py-3 text-white">
+          {loading && (
+            <Loader className="border-[2px] border-t-white w-[16px] h-[16px]" />
+          )}
           Submit
         </button>
       </form>

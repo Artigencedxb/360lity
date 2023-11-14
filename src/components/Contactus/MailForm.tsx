@@ -30,10 +30,6 @@ const MailForm = () => {
   const {
     register,
     handleSubmit,
-    setValue,
-    getValues,
-    watch,
-    reset,
     formState: { errors },
   } = useForm<mailSchemaType>({
     resolver: zodResolver(mailSchema),

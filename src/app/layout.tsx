@@ -4,6 +4,7 @@ import LayooutView from "./layout-view";
 import { Metadata } from "next";
 import ReactQueryProvider from "@/Providers/QueryClientProvider";
 import { Toaster } from "sonner";
+import LoadingWrapper from "./LoadingWrapper";
 
 export const metadata: Metadata = {
   title: "360-lity",
@@ -22,7 +23,9 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <ReactQueryProvider>
-          <LayooutView>{children}</LayooutView>
+          <LoadingWrapper>
+            <LayooutView>{children}</LayooutView>
+          </LoadingWrapper>
         </ReactQueryProvider>
       </body>
     </html>

@@ -183,7 +183,7 @@ const ProjectForm: React.FC<{ initialValues?: Project }> = ({
           label="Project name"
           error={errors?.name?.message}
           className="w-full"
-          maxLength={14}
+          maxLength={17}
         />
 
         <Input

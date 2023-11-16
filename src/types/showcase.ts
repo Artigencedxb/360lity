@@ -8,6 +8,7 @@ export interface PatchShowcase {
   id?: string;
   name: string;
   link: string;
+  priority?: number;
   image?: string | null;
 }
 
@@ -35,4 +36,5 @@ export interface Showcase {
   link: string;
   description: string;
   id: string;
+  priority: number;
 }

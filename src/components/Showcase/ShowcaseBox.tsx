@@ -1,6 +1,6 @@
 "use client";
 import { useDeleteShowcase } from "@/api/showcase";
-import { LogoView } from "@/assets";
+import { LogoView, PriorityIcon } from "@/assets";
 import Triangle from "@/common/Triangle";
 import { Showcase } from "@/types/showcase";
 import { PencilSquareIcon, TrashIcon } from "@heroicons/react/24/outline";
@@ -12,6 +12,7 @@ import DeleteModal from "../Modal/DeleteModal";
 import { useProjectStore } from "@/store/use-projects";
 import { LottieOptions, useLottie } from "lottie-react";
 import animation from "../../../public/animation-white.json";
+import PriorityModal from "../Modal/priorityModal";
 
 const ShowcaseBox: React.FC<{
   className?: string;
@@ -20,6 +21,7 @@ const ShowcaseBox: React.FC<{
   admin?: boolean;
 }> = ({ className, index, data, admin = false }) => {
   const [deleteModal, setDeleteModal] = useState(false);
+  const [priorityModal, setPriorityModal] = useState(false);
 
   const { setProjectIndex } = useProjectStore();
 
@@ -47,15 +49,19 @@ const ShowcaseBox: React.FC<{
 
   return (
     <>
-      {deleteModal && (
-        <DeleteModal
-          onClick={showcaseDeleteHandler}
-          loading={isPending}
-          open={deleteModal}
-          onClose={() => setDeleteModal(false)}
-          label="showcase"
-        />
-      )}
+     {deleteModal && <DeleteModal
+        onClick={showcaseDeleteHandler}
+        loading={isPending}
+        open={deleteModal}
+        onClose={() => setDeleteModal(false)}
+        label="showcase"
+      />}
+     {priorityModal &&  <PriorityModal
+        initialValues={data as Showcase}
+        onClose={() => setPriorityModal(false)}
+        open={priorityModal}
+        type="showcase"
+      />}
       <div
         className={cn(
           " rounded-[15px] transition-all relative min-h-[13rem] group overflow-hidden inline-block",
@@ -85,6 +91,9 @@ const ShowcaseBox: React.FC<{
               }
             >
               <PencilSquareIcon className="w-8 h-8 text-white" />
+            </button>
+            <button onClick={() => setPriorityModal(true)}>
+              <Image width={35} height={35} src={PriorityIcon} alt="priority" />
             </button>
             <button onClick={() => setDeleteModal(true)}>
               <TrashIcon className="w-8 h-8 text-white" />

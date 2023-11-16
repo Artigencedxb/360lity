@@ -1,8 +1,8 @@
 "use client";
 import { Modal } from "@/UI/Modal";
-import { LogoView } from "@/assets";
+import { LogoView, PriorityIcon } from "@/assets";
 import Triangle from "@/common/Triangle";
-import { IProject } from "@/types/project";
+import { IProject, Project } from "@/types/project";
 import { PencilSquareIcon, TrashIcon } from "@heroicons/react/24/solid";
 import cn from "classnames";
 import Image from "next/image";
@@ -12,7 +12,8 @@ import DeleteModal from "../Modal/DeleteModal";
 import { useDeleteProject } from "@/api/project";
 import { useProjectStore } from "@/store/use-projects";
 import { LottieOptions, useLottie } from "lottie-react";
-import animation from "../../../public/animation-white.json"
+import animation from "../../../public/animation-white.json";
+import PriorityModal from "../Modal/priorityModal";
 
 const ProjectsBox: React.FC<{
   data: IProject["data"]["project"][0] | undefined;
@@ -21,8 +22,9 @@ const ProjectsBox: React.FC<{
   admin?: boolean;
 }> = ({ data, index, className, admin = false }) => {
   const [deleteModal, setDeleteModal] = useState(false);
+  const [priorityModal, setPriorityModal] = useState(false);
   const { setProjectIndex } = useProjectStore();
-console.log(index, "index");
+  console.log(index, "index");
 
   //delete api
   const { mutate, isPending } = useDeleteProject();
@@ -42,10 +44,9 @@ console.log(index, "index");
   const options: LottieOptions = {
     animationData: animation,
     loop: true,
-    width: 100
+    width: 100,
   };
   const { View } = useLottie(options);
-
 
   return (
     <>
@@ -58,6 +59,16 @@ console.log(index, "index");
           label="project"
         />
       )}
+
+      {priorityModal && (
+        <PriorityModal
+          initialValues={data as Project}
+          onClose={() => setPriorityModal(false)}
+          open={priorityModal}
+          type="project"
+        />
+      )}
+
       <div
         className={cn(
           "transition-all h-[13rem] relative group overflow-hidden inline-block w-full rounded-[10px]",
@@ -85,6 +96,9 @@ console.log(index, "index");
             >
               <PencilSquareIcon className="w-8 h-8 text-white" />
             </button>
+            <button onClick={() => setPriorityModal(true)}>
+              <Image width={35} height={35} src={PriorityIcon} alt="priority" />
+            </button>
             <button onClick={() => setDeleteModal(true)}>
               <TrashIcon className="w-8 h-8 text-white" />
             </button>
@@ -99,12 +113,13 @@ console.log(index, "index");
           >
             <div className="flex flex-col items-center justify-center">
               {/* <Image src={LogoView} alt="360 View Logo" className="" /> */}
-            
+
               {View}
-            
-               <div className="absolute bottom-10 text-white font-semibold">{data?.name ?? ""}</div>
+
+              <div className="absolute bottom-10 text-white font-semibold">
+                {data?.name ?? ""}
+              </div>
             </div>
-           
           </div>
         )}
       </div>

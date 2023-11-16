@@ -34,6 +34,7 @@ import YoutubeIcon from "./youtube.svg";
 import FooterLogo from "./footer-logo.svg";
 import FooterQr from "./footer-qr.svg";
 
+import PriorityIcon from "./priority.svg"
 //Triangle
 import TriangleIcon from "./round-triangle.svg";
 import TriangleBlackIcon from "./round-triangle-black.svg";
@@ -65,4 +66,5 @@ export {
   TriangleIcon,
   TriangleBlackIcon,
   CloseIcon,
+  PriorityIcon
 };

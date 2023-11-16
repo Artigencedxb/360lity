@@ -9,6 +9,8 @@ import React, { useState } from "react";
 import DeleteModal from "../Modal/DeleteModal";
 import { TrashIcon } from "@heroicons/react/24/outline";
 import * as DOMPurify from "dompurify";
+import PriorityModal from "../Modal/priorityModal";
+import { PriorityIcon } from "../../assets";
 
 function htmlDecode(content: string) {
   let e = document.createElement("div");
@@ -21,7 +23,7 @@ const BlogCard: React.FC<{ data: Blog; admin?: boolean }> = ({
   admin = false,
 }) => {
   const [deleteModal, setDeleteModal] = useState(false);
-
+  const [priorityModal, setPriorityModal] = useState(false);
   //data
 
   const description = htmlDecode(data?.description as string);
@@ -59,7 +61,14 @@ const BlogCard: React.FC<{ data: Blog; admin?: boolean }> = ({
           label="blog"
         />
       )}
-
+      {priorityModal && (
+        <PriorityModal
+          initialValues={data as Blog}
+          onClose={() => setPriorityModal(false)}
+          open={priorityModal}
+          type="blog"
+        />
+      )}
       <div className="relative flex flex-col gap-4">
         {data?.image?.length ? (
           <div className="group bg-black overflow-hidden inline-block relative w-full h-[180px] md:h-[210px] rounded-[15px]">
@@ -79,6 +88,14 @@ const BlogCard: React.FC<{ data: Blog; admin?: boolean }> = ({
                   }
                 >
                   <PencilSquareIcon className="w-8 h-8 text-white" />
+                </button>
+                <button onClick={() => setPriorityModal(true)}>
+                  <Image
+                    width={35}
+                    height={35}
+                    src={PriorityIcon}
+                    alt="priority"
+                  />
                 </button>
                 <button onClick={() => setDeleteModal(true)}>
                   <TrashIcon className="w-8 h-8 text-white" />

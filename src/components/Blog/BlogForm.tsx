@@ -194,7 +194,7 @@ const BlogAddForm: React.FC<{ initialValues?: Blog }> = ({ initialValues }) => {
           error={errors?.title?.message}
           className="w-full"
         />
-        <Input
+       {!initialValues && <Input
           id={"priority"}
           name="priority"
           type="tel"
@@ -202,7 +202,7 @@ const BlogAddForm: React.FC<{ initialValues?: Blog }> = ({ initialValues }) => {
           label="Display Priority"
           error={errors?.priority?.message}
           className="w-full"
-        />
+        />}
         <Controller
           control={control}
           name="description"

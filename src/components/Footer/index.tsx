@@ -95,7 +95,7 @@ const Footer = () => {
         </div>
         <div className="px-5 space-y-1.5 text-start lg:text-start flex flex-col">
           <h3 className="mb-3 font-semibold">Contact</h3>
-          <p className="text-sm">Feedback</p>
+          <Link href="/contactus" className="text-sm">Feedback</Link>
           <Link href={`tel:${contact?.phone}`} className="text-sm">
             Tel:+9714314431
           </Link>

@@ -28,6 +28,7 @@
     "react-dom": "^18",
     "react-hook-form": "^7.47.0",
     "react-image-file-resizer": "^0.4.8",
+    "react-phone-number-input": "^3.3.7",
     "react-quill": "^2.0.0",
     "sonner": "^1.0.3",
     "tailwind-scrollbar": "^3.0.5",

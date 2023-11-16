@@ -13,12 +13,13 @@ import { ArrowUpTrayIcon } from "@heroicons/react/20/solid";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
 import { useEditContact } from "../../api/contactus";
 import { Contact } from "../../types/contact";
+import ContactSubmitModal from "../Modal/ContactSubmitForm";
 
 const ProjectSchema = z.object({
   phone: z.string().min(1, "Please enter a contact phone number"),
@@ -37,6 +38,7 @@ const ContactusForm: React.FC<{ initialValues?: Contact }> = ({
   initialValues,
 }) => {
   console.log(initialValues, "initial");
+  const [modal, setModal] = useState(false);
 
   const router = useRouter();
   const { mutate: edit, isPending: editLoader } = useEditContact();
@@ -123,89 +125,94 @@ const ContactusForm: React.FC<{ initialValues?: Contact }> = ({
   };
 
   return (
-    <div className="mt-10 max-w-sm">
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className="w-full space-y-4"
-        action=""
-      >
-        {imageloader ? (
-          <div className="flex justify-center py-6 w-[45%]">
-            <Loader className="w-9 h-9" />
-          </div>
-        ) : watch("image")?.length ? (
-          <ImagePreview
-            src={watch("image") as string}
-            alt="contact image"
-            deleteHandler={deleteHandler}
-          />
-        ) : (
-          <div>
-            <label
-              className="bg-[#0060E4] flex items-center w-40 gap-2 cursor-pointer text-sm justify-center rounded-x text-white font-semibold px-5 py-3"
-              htmlFor="image"
-            >
-              <ArrowUpTrayIcon className="w-5 h-5" /> Upload image
-            </label>
-            <input
-              id={"image"}
-              onChange={imageHandler}
-              name="image"
-              className="w-full hidden"
-              type="file"
-            />
-            {errors?.image && (
-              <p className="text-red-700 text-sm font-medium mt-3">
-                {errors?.image?.message}
-              </p>
-            )}
-            <div className="text-sm text-gray-400 mt-2 ml-7">
-              (250px x 144px)
+    <>
+      <div className="mt-10 max-w-sm">
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="w-full space-y-4"
+          action=""
+        >
+          {imageloader ? (
+            <div className="flex justify-center py-6 w-[45%]">
+              <Loader className="w-9 h-9" />
             </div>
-          </div>
-        )}
-        <Input
-          id={"email"}
-          name="email"
-          register={register}
-          label="Email"
-          error={errors?.email?.message}
-          className="w-full"
-        />
+          ) : watch("image")?.length ? (
+            <ImagePreview
+              src={watch("image") as string}
+              alt="contact image"
+              deleteHandler={deleteHandler}
+            />
+          ) : (
+            <div>
+              <label
+                className="bg-[#0060E4] flex items-center w-40 gap-2 cursor-pointer text-sm justify-center rounded-x text-white font-semibold px-5 py-3"
+                htmlFor="image"
+              >
+                <ArrowUpTrayIcon className="w-5 h-5" /> Upload image
+              </label>
+              <input
+                id={"image"}
+                onChange={imageHandler}
+                name="image"
+                className="w-full hidden"
+                type="file"
+              />
+              {errors?.image && (
+                <p className="text-red-700 text-sm font-medium mt-3">
+                  {errors?.image?.message}
+                </p>
+              )}
+              <div className="text-sm text-gray-400 mt-2 ml-7">
+                (250px x 144px)
+              </div>
+            </div>
+          )}
+          <Input
+            id={"email"}
+            name="email"
+            register={register}
+            label="Email"
+            error={errors?.email?.message}
+            className="w-full"
+          />
 
-        <Input
-          id={"phone"}
-          name="phone"
-          register={register}
-          label="Phone number"
-          error={errors?.phone?.message}
-          className="w-full"
-        />
-        <Input
-          id={"whatsapp"}
-          name="whatsapp"
-          register={register}
-          label="Whatsapp Number"
-          error={errors?.whatsapp?.message}
-          className="w-full"
-        />
-        <TextArea
-          id={"description"}
-          name="description"
-          register={register}
-          label="Description"
-          error={errors?.description?.message}
-          className="w-full"
-          rows={4}
-        />
-        <Button
-          loading={loader}
-          disabled={loader || imageloader}
-          type="submit"
-          text={buttonText}
-        />
-      </form>
-    </div>
+          <Input
+            id={"phone"}
+            name="phone"
+            register={register}
+            label="Phone number"
+            error={errors?.phone?.message}
+            className="w-full"
+          />
+          <Input
+            id={"whatsapp"}
+            name="whatsapp"
+            register={register}
+            label="Whatsapp Number"
+            error={errors?.whatsapp?.message}
+            className="w-full"
+          />
+          <TextArea
+            id={"description"}
+            name="description"
+            register={register}
+            label="Description"
+            error={errors?.description?.message}
+            className="w-full"
+            rows={4}
+          />
+          <Button
+            loading={loader}
+            onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+              e.preventDefault();
+              setModal(true);
+            }}
+            disabled={loader || imageloader}
+            text={buttonText}
+          />
+        </form>
+      </div>
+    </>
   );
 };
 

@@ -11,10 +11,10 @@ const XVT = () => {
     <div className="py-[4.3rem] md:py-10 space-y-5">
       <Header heading="XVT" />
 
-      {/* <div className="bg-black rounded-[10px] relative w-full py-20 flex items-center justify-center">
+      <div className="bg-black rounded-[10px] relative w-full py-20 flex items-center justify-center">
         <Image src={LogoWhite} alt="" />
         <Triangle />
-      </div> */}
+      </div>
 
       <div className="bg-white rounded-[15px] py-8 px-14 flex flex-col space-y-14">
         <div className="flex justify-between items-center gap-10 flex-col-reverse lg:flex-row">

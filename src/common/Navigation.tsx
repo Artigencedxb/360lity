@@ -76,8 +76,8 @@ const Navigation = () => {
       ref={ref}
     >
       <Link href="/">
-        <div className="bg-white w-[140px] h-[125px] p-7 relative rounded-bl-[10px] rounded-br-[10px] flex items-center justify-center">
-          <Image src={LogoText} alt="360 lity logo" />
+        <div className="bg-white group w-[140px] h-[125px] p-7 relative rounded-bl-[10px] rounded-br-[10px] flex items-center justify-center">
+          <Image src={LogoText} className="transition-all duration-300 group-hover:scale-105" alt="360 lity logo" />
 
           {/* <Triangle /> */}
         </div>

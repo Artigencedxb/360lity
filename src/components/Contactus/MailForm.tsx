@@ -1,14 +1,16 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import { SubmitHandler, useForm } from "react-hook-form";
-import { toast } from "sonner";
+import emailjs from "@emailjs/browser";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useState } from "react";
+import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
 import Input from "../../UI/Input";
-import { zodResolver } from "@hookform/resolvers/zod";
-import TextArea from "../../UI/TextArea";
-import emailjs from "@emailjs/browser";
-import classNames from "classnames";
 import Loader from "../../UI/Loader";
+import TextArea from "../../UI/TextArea";
+import ContactSubmitModal from "../Modal/ContactSubmitForm";
+import { toast } from "sonner";
+import "react-phone-number-input/style.css";
+import PhoneInput from "react-phone-number-input";
 
 const mailSchema = z.object({
   name: z.string().min(1, "Please enter a name"),
@@ -22,6 +24,7 @@ const mailSchema = z.object({
 type mailSchemaType = z.infer<typeof mailSchema>;
 const MailForm = () => {
   const [loading, setLoading] = useState(false);
+  const [modal, setModal] = useState(false);
   // const imageloader = uploadLoader || deleteLoader;
   // const loader = editLoader;
   // const queryClient = useQueryClient();
@@ -30,13 +33,20 @@ const MailForm = () => {
   const {
     register,
     handleSubmit,
+    trigger,
+    watch,
+    control,
     formState: { errors },
   } = useForm<mailSchemaType>({
     resolver: zodResolver(mailSchema),
   });
 
+  const dirties = Object.keys(errors).length === 0;
+  console.log(dirties, "dirty");
   const onSubmit: SubmitHandler<mailSchemaType> = (data) => {
     setLoading(true);
+    console.log(data, "data");
+
     emailjs
       .send(
         process.env.NEXT_PUBLIC_EMAIL_SERVICE_ID!,
@@ -51,9 +61,11 @@ const MailForm = () => {
       )
       .then(
         (result) => {
+          toast.success("Contact details submitted successfully.");
           console.log(result, "res");
           console.log(result.text);
           setLoading(false);
+          setModal(false);
         },
         (error) => {
           console.log(error.text);
@@ -61,12 +73,22 @@ const MailForm = () => {
         }
       );
   };
+
   return (
     <div className="self-stretch">
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="flex flex-col justify-between h-full gap-4 md:gap-2"
       >
+        {/* <ContactSubmitModal
+          loading={loading}
+          onClose={(e) => {
+            e.preventDefault;
+            setModal(false);
+          }}
+          onClick={onSubmit as any}
+          open={modal}
+        /> */}
         <Input
           id={"name"}
           name="name"
@@ -84,16 +106,32 @@ const MailForm = () => {
           placeholder="E-mail"
           className="outline-none py-3 px-5 bg-white rounded-[15px]"
           error={errors?.email?.message}
+          autoComplete="off"
         />
-        <Input
-          id={"whatsapp"}
+        <Controller
           name="whatsapp"
-          label={"WhatsApp No"}
-          register={register}
-          placeholder="WhatsApp No"
-          className="outline-none py-3 px-5 bg-white rounded-[15px]"
-          error={errors?.whatsapp?.message}
+          control={control}
+          render={({ field }) => {
+            return (
+              <PhoneInput
+                id={"phone"}
+                name="whatsapp"
+                label={"Phone Number"}
+                defaultCountry="AE"
+                placeholder="WhatsApp number"
+                value={field.value}
+                onChange={field.onChange}
+                className="outline-none py-3 px-5 bg-white rounded-[15px]"
+                autoComplete="off"
+              />
+            );
+          }}
         />
+        {errors?.whatsapp && (
+          <div className="text-red-700 text-sm font-medium">
+            {errors?.whatsapp?.message}
+          </div>
+        )}
         <TextArea
           id={"description"}
           name="description"
@@ -105,6 +143,12 @@ const MailForm = () => {
           rows={5}
         />
         <button
+          type={"submit"}
+          // onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+          //   e.preventDefault();
+          //   trigger();
+          //   if (dirties) setModal(true);
+          // }}
           disabled={loading}
           className="flex disabled:opacity-75 items-center gap-3 justify-center rounded-[15px] w-[150px] bg-[#0060E4] font-medium py-3 text-white"
         >

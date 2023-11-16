@@ -11,7 +11,7 @@ const ContactusCard = () => {
   const { data } = useGetContact();
   const contact = data?.data.contact;
   return (
-    <div className="self-stretch flex flex-col gap-4 md:w-[300px] h-auto">
+    <div className="self-stretch justify-between flex flex-col gap-5 md:w-[300px] h-auto">
       <div
         className={cn("h-[200px] rounded-x relative w-full", {
           "": contact?.image?.length,

@@ -3,6 +3,7 @@ import "./globals.css";
 import LayooutView from "./layout-view";
 import { Metadata } from "next";
 import ReactQueryProvider from "@/Providers/QueryClientProvider";
+import { Toaster } from "sonner";
 
 export const metadata: Metadata = {
   title: "360-lity",

@@ -75,7 +75,7 @@ const Viewer360: React.FC<{ data?: Showcase[] | Project[] }> = ({ data }) => {
               </button>
             </div>
             <div className="absolute bottom-4 right-4 flex flex-col gap-6">
-              {pathname === "view-showcase" && (
+              {pathname === "/view-showcase" && (
                 <Fragment>
                   <button
                     className="outline-none bg-black/50 rounded-full w-[50px] h-[50px] flex items-center justify-center"
@@ -83,8 +83,8 @@ const Viewer360: React.FC<{ data?: Showcase[] | Project[] }> = ({ data }) => {
                     onClick={() => setCurrentSlide((prev) => prev + 1)}
                   >
                     <Image
-                      width={14}
-                      height={14}
+                      width={10}
+                      height={10}
                       src={ViewNextIcon}
                       alt="information icon"
                     />
@@ -95,25 +95,26 @@ const Viewer360: React.FC<{ data?: Showcase[] | Project[] }> = ({ data }) => {
                     onClick={() => setCurrentSlide((prev) => prev - 1)}
                   >
                     <Image
-                      width={14}
-                      height={14}
+                      width={10}
+                      height={10}
                       src={ViewBackIcon}
+                      alt="information icon"
+                    />
+                  </button>
+                  <button
+                    className="outline-none bg-black/50 rounded-full w-[50px] h-[50px] flex items-center justify-center"
+                    onClick={() => setShowInfo(!showInfo)}
+                  >
+                    <Image
+                      width={23}
+                      height={23}
+                      src={InfoIcon}
                       alt="information icon"
                     />
                   </button>
                 </Fragment>
               )}
-              <button
-                className="outline-none bg-black/50 rounded-full w-[50px] h-[50px] flex items-center justify-center"
-                onClick={() => setShowInfo(!showInfo)}
-              >
-                <Image
-                  width={23}
-                  height={23}
-                  src={InfoIcon}
-                  alt="information icon"
-                />
-              </button>
+
               <button
                 className="outline-none bg-black/50 rounded-full w-[50px] h-[50px] flex items-center justify-center"
                 onClick={() => setFullScreen((prev) => !prev)}

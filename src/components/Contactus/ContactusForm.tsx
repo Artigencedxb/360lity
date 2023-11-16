@@ -38,7 +38,6 @@ const ContactusForm: React.FC<{ initialValues?: Contact }> = ({
   initialValues,
 }) => {
   console.log(initialValues, "initial");
-  const [modal, setModal] = useState(false);
 
   const router = useRouter();
   const { mutate: edit, isPending: editLoader } = useEditContact();
@@ -47,7 +46,7 @@ const ContactusForm: React.FC<{ initialValues?: Contact }> = ({
   const imageloader = uploadLoader || deleteLoader;
   const loader = editLoader;
   const queryClient = useQueryClient();
-  const buttonText = "Edit Contact Details";
+  const buttonText = "Update Contact Details";
   const {
     register,
     handleSubmit,
@@ -125,7 +124,6 @@ const ContactusForm: React.FC<{ initialValues?: Contact }> = ({
   };
 
   return (
-    <>
       <div className="mt-10 max-w-sm">
         <form
           onSubmit={handleSubmit(onSubmit)}
@@ -202,17 +200,14 @@ const ContactusForm: React.FC<{ initialValues?: Contact }> = ({
             rows={4}
           />
           <Button
+            type="submit"
             loading={loader}
-            onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-              e.preventDefault();
-              setModal(true);
-            }}
             disabled={loader || imageloader}
             text={buttonText}
           />
         </form>
       </div>
-    </>
+
   );
 };
 

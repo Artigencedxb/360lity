@@ -50,7 +50,7 @@ const AboutusForm: React.FC<{ initialValues: About }> = ({ initialValues }) => {
   const { mutate: deleteImage, isPending: deleteLoader } = useDelete();
   const imageloader = uploadLoader || deleteLoader;
   const loader = editLoader;
-  const buttonText = "Edit About details";
+  const buttonText = "Update About details";
   const {
     register,
     handleSubmit,

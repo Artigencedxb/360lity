@@ -194,15 +194,17 @@ const BlogAddForm: React.FC<{ initialValues?: Blog }> = ({ initialValues }) => {
           error={errors?.title?.message}
           className="w-full"
         />
-       {!initialValues && <Input
-          id={"priority"}
-          name="priority"
-          type="tel"
-          register={register}
-          label="Display Priority"
-          error={errors?.priority?.message}
-          className="w-full"
-        />}
+        {!initialValues && (
+          <Input
+            id={"priority"}
+            name="priority"
+            type="tel"
+            register={register}
+            label="Display Priority"
+            error={errors?.priority?.message}
+            className="w-full"
+          />
+        )}
         <Controller
           control={control}
           name="description"
@@ -219,9 +221,9 @@ const BlogAddForm: React.FC<{ initialValues?: Blog }> = ({ initialValues }) => {
         />
 
         <Button
+          type="submit"
           loading={loader}
           disabled={loader || imageloader}
-          type="submit"
           text={buttonText}
         />
       </form>

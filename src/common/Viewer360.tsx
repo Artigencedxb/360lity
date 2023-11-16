@@ -61,8 +61,17 @@ const Viewer360: React.FC<{ data?: Showcase[] | Project[] }> = ({ data }) => {
               </div>
             )}
             <div className="absolute top-4 right-4">
-              <button onClick={() => router.back()}>
-                <Image src={CloseIcon} alt="Close icon" />
+              <button
+                className="outline-none group bg-black/50 rounded-full w-[45px] h-[45px] flex items-center justify-center"
+                onClick={() => router.back()}
+              >
+                <Image
+                  width={23}
+                  height={23}
+                  src={CloseIcon}
+                  alt="Close icon"
+                  className="group-hover:scale-105 transition-all duration-300"
+                />
               </button>
             </div>
             <div className="absolute bottom-4 right-4 flex flex-col gap-6">

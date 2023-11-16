@@ -111,7 +111,7 @@ const Footer = () => {
             E mail
           </Link>
         </div>
-        <div className="flex items-center justify-center flex-col gap-3">
+        <div className="flex items-center justify-start flex-col gap-4">
           <div className="bg-white w-[200px] lg:w-full relative flex items-center justify-between rounded-[15px] px-6 py-6">
             <div className="relative w-[50px] h-[50px]">
               <Image fill src={FooterLogo} alt="Footer Logo" />

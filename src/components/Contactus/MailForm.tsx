@@ -36,6 +36,7 @@ const MailForm = () => {
     trigger,
     watch,
     control,
+    reset,
     formState: { errors },
   } = useForm<mailSchemaType>({
     resolver: zodResolver(mailSchema),
@@ -62,6 +63,7 @@ const MailForm = () => {
       .then(
         (result) => {
           toast.success("Contact details submitted successfully.");
+          reset();
           console.log(result, "res");
           console.log(result.text);
           setLoading(false);

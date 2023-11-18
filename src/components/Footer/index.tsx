@@ -108,7 +108,7 @@ const Footer = () => {
 
             <Link
               target="_blank"
-              href={`https://web.whatsapp.com/send?phone=${contact?.phone}`}
+              href={`https://wa.me/${contact?.whatsapp}`}
               className="text-sm"
             >
               WhatsApp

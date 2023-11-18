@@ -10,6 +10,8 @@ import cn from "classnames";
 const ContactusCard = () => {
   const { data } = useGetContact();
   const contact = data?.data.contact;
+  console.log(contact?.phone, "phone");
+  
   return (
     <div className="self-stretch justify-between flex flex-col gap-5 md:w-[300px] h-auto">
       <div
@@ -37,8 +39,8 @@ const ContactusCard = () => {
             <Image src={PhoneIcon} alt="Phone icon" />
           </Link>
           <Link
-            target="_blank"
-            href={`https://api.whatsapp.com/send?phone=${contact?.phone}`}
+          target="_blank"
+          href={`https://wa.me/${contact?.whatsapp}`}
           >
             <Image src={WhatsappIcon} alt="Whatsapp icon" />
           </Link>

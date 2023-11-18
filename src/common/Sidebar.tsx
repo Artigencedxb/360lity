@@ -22,65 +22,78 @@ const Sidebar = () => {
       <nav className="flex flex-col justify-center items-center">
         <Image src={LogoTextWhite} className="mb-8" alt="" />
         <ul className="w-full">
-        <Link href="/admin/showcase">
-          <li
-            className={cn(
-              "mb-4 transition-all duration-300 text-lg hover:text-black font-medium cursor-pointer hover:bg-primary text-center py-2.5 rounded-x",
-              {
-                "bg-primary text-black": pathname === "/admin/showcase",
-              }
-            )}
-          >
-            Showcase
-          </li>
+          <Link href="/admin/showcase">
+            <li
+              className={cn(
+                "mb-4 transition-all duration-300 text-lg hover:text-black font-medium cursor-pointer hover:bg-primary text-center py-2.5 rounded-x",
+                {
+                  "bg-primary text-black": pathname === "/admin/showcase",
+                }
+              )}
+            >
+              Showcase
+            </li>
           </Link>
           <Link href="/admin/projects">
-          <li
-            className={cn(
-              "mb-4 transition-all duration-300 text-lg hover:text-black font-medium cursor-pointer hover:bg-primary text-center py-2.5 rounded-x",
-              {
-                "bg-primary text-black": pathname?.includes("/admin/projects"),
-              }
-            )}
-          >
-           Projects
-          </li>
+            <li
+              className={cn(
+                "mb-4 transition-all duration-300 text-lg hover:text-black font-medium cursor-pointer hover:bg-primary text-center py-2.5 rounded-x",
+                {
+                  "bg-primary text-black":
+                    pathname?.includes("/admin/projects"),
+                }
+              )}
+            >
+              Projects
+            </li>
           </Link>
-             <Link href="/admin/blog">
-          <li
-            className={cn(
-              "mb-4 transition-all duration-300 text-lg hover:text-black font-medium cursor-pointer hover:bg-primary text-center py-2.5 rounded-x",
-              {
-                "bg-primary text-black": pathname?.includes("/admin/blog"),
-              }
-            )}
-          >
-         Blogs
-          </li>
+          <Link href="/admin/blog">
+            <li
+              className={cn(
+                "mb-4 transition-all duration-300 text-lg hover:text-black font-medium cursor-pointer hover:bg-primary text-center py-2.5 rounded-x",
+                {
+                  "bg-primary text-black": pathname?.includes("/admin/blog"),
+                }
+              )}
+            >
+              Blogs
+            </li>
+          </Link>
+          <Link href="/admin/xvt">
+            <li
+              className={cn(
+                "mb-4 transition-all duration-300 text-lg hover:text-black font-medium cursor-pointer hover:bg-primary text-center py-2.5 rounded-x",
+                {
+                  "bg-primary text-black": pathname?.includes("/admin/xvt"),
+                }
+              )}
+            >
+              Xvt
+            </li>
           </Link>
           <Link href="/admin/about-us">
-          <li
-            className={cn(
-              "mb-4 transition-all duration-300 text-lg hover:text-black font-medium cursor-pointer hover:bg-primary text-center py-2.5 rounded-x",
-              {
-                "bg-primary text-black": pathname === "/admin/about-us",
-              }
-            )}
-          >
-            About
-          </li>
+            <li
+              className={cn(
+                "mb-4 transition-all duration-300 text-lg hover:text-black font-medium cursor-pointer hover:bg-primary text-center py-2.5 rounded-x",
+                {
+                  "bg-primary text-black": pathname === "/admin/about-us",
+                }
+              )}
+            >
+              About
+            </li>
           </Link>
           <Link href="/admin/contactus">
-          <li
-            className={cn(
-              "mb-4 transition-all duration-300 text-lg hover:text-black font-medium cursor-pointer hover:bg-primary text-center py-2.5 rounded-x",
-              {
-                "bg-primary text-black": pathname === "/admin/contactus",
-              }
-            )}
-          >
-           Contact
-          </li>
+            <li
+              className={cn(
+                "mb-4 transition-all duration-300 text-lg hover:text-black font-medium cursor-pointer hover:bg-primary text-center py-2.5 rounded-x",
+                {
+                  "bg-primary text-black": pathname === "/admin/contactus",
+                }
+              )}
+            >
+              Contact
+            </li>
           </Link>
         </ul>
       </nav>

@@ -26,6 +26,6 @@ export interface About {
   createdAt: string;
   description: string;
   title: string;
-  image: string;
+  image?: string;
   id: string;
 }

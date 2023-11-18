@@ -6,7 +6,7 @@ export const axiosInstance = axios.create({
 // Add a request interceptor
 axiosInstance.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem("access-token");
+    const token = localStorage.getItem("token");
     if (token) {
       config.headers["Authorization"] = "Bearer " + token;
       config.headers["Accept"] = "application/json";
@@ -30,7 +30,7 @@ axiosInstance.interceptors.response.use(
       error?.response?.status === 401
       // && originalRequest.url === 'http://127.0.0.1:3000/v1/auth/token'
     ) {
-      window.location.replace("/login");
+      window.location.replace("/admin");
       return Promise.reject(error);
     }
 

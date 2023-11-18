@@ -10,8 +10,6 @@ const LoadingWrapper: React.FC<{ children: React.ReactNode }> = ({
   const [loading, setLoading] = useState(false);
   const pathname = usePathname();
 
-  console.log(pathname, "path");
-
   useEffect(() => {
     if (pathname === "/") {
       setTimeout(() => setLoading(true), 5000);

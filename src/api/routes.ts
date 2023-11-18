@@ -6,5 +6,6 @@ export const routes = {
   showcase: "/showcase",
   blog: "/blog",
   contact: "/contact",
-  about: "/about"
+  about: "/about",
+  xvt: "/xvt",
 };

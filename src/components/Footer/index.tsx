@@ -93,24 +93,34 @@ const Footer = () => {
           <p className="text-sm">Photography</p>
           <p className="text-sm">Videography</p>
         </div>
-        <div className="px-5 space-y-1.5 text-start lg:text-start flex flex-col">
-          <h3 className="mb-3 font-semibold">Contact</h3>
-          <Link href="/contactus" className="text-sm hover:text-zinc-100">Feedback</Link>
-          <Link href={`tel:${contact?.phone}`} className="text-sm hover:text-zinc-100">
-            Tel: {contact?.phone}
-          </Link>
+        {
+          <div className="px-5 space-y-1.5 text-start lg:text-start flex flex-col">
+            <h3 className="mb-3 font-semibold">Contact</h3>
+            <Link href="/contactus" className="text-sm hover:text-zinc-100">
+              Feedback
+            </Link>
+            <Link
+              href={`tel:${contact?.phone}`}
+              className="text-sm hover:text-zinc-100"
+            >
+              Tel: {contact?.phone}
+            </Link>
 
-          <Link
-            target="_blank"
-            href={`https://wa.me/${contact?.phone}`}
-            className="text-sm"
-          >
-            WhatsApp
-          </Link>
-          <Link href={`mailto:${contact?.email}`} className="text-sm hover:text-zinc-100">
-            E mail
-          </Link>
-        </div>
+            <Link
+              target="_blank"
+              href={`https://web.whatsapp.com/send?phone=${contact?.phone}`}
+              className="text-sm"
+            >
+              WhatsApp
+            </Link>
+            <Link
+              href={`mailto:${contact?.email}`}
+              className="text-sm hover:text-zinc-100"
+            >
+              E mail
+            </Link>
+          </div>
+        }
         <div className="flex items-center justify-start flex-col gap-4">
           <div className="bg-white w-[200px] lg:w-full relative flex items-center justify-between rounded-x px-6 py-6">
             <div className="relative w-[50px] h-[50px]">

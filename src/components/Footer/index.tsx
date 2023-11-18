@@ -53,33 +53,33 @@ const Footer = () => {
         <ul className="px-5 space-y-1.5 text-start lg:text-start">
           <li className="mb-3 font-semibold">360lity</li>
 
-          <li className="text-sm">
+          <li className="text-sm hover:text-zinc-100">
             {" "}
             <Link href="/showcase">Showcase</Link>
           </li>
 
-          <li className="text-sm">
+          <li className="text-sm hover:text-zinc-100">
             <Link href="/projects">Projects</Link>
           </li>
 
-          <li className="text-sm">
+          <li className="text-sm hover:text-zinc-100">
             {" "}
             <Link href="/xvt">XVT</Link>
           </li>
 
-          <li className="text-sm">
+          <li className="text-sm hover:text-zinc-100">
             <Link href="/blog">Blogs</Link>
           </li>
 
-          <li className="text-sm">
+          <li className="text-sm hover:text-zinc-100">
             <Link href="/aboutus">About</Link>
           </li>
 
-          <li className="text-sm">
+          <li className="text-sm hover:text-zinc-100">
             <Link href="/contactus">Contact</Link>
           </li>
 
-          <li className="text-sm">
+          <li className="text-sm hover:text-zinc-100">
             <Link href="#">Team</Link>
           </li>
         </ul>
@@ -95,9 +95,9 @@ const Footer = () => {
         </div>
         <div className="px-5 space-y-1.5 text-start lg:text-start flex flex-col">
           <h3 className="mb-3 font-semibold">Contact</h3>
-          <Link href="/contactus" className="text-sm">Feedback</Link>
-          <Link href={`tel:${contact?.phone}`} className="text-sm">
-            Tel:+9714314431
+          <Link href="/contactus" className="text-sm hover:text-zinc-100">Feedback</Link>
+          <Link href={`tel:${contact?.phone}`} className="text-sm hover:text-zinc-100">
+            Tel:{contact?.phone}
           </Link>
 
           <Link
@@ -107,7 +107,7 @@ const Footer = () => {
           >
             WhatsApp
           </Link>
-          <Link href={`mailto:${contact?.email}`} className="text-sm">
+          <Link href={`mailto:${contact?.email}`} className="text-sm hover:text-zinc-100">
             E mail
           </Link>
         </div>

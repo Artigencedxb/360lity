@@ -54,8 +54,8 @@ const ProjectDetails: React.FC<{
   }
 
   return (
-    <div className="keen-slider__slide mt-5 grid lg:grid-cols-2 gap-x-6 grid-cols-1 gap-y-8">
-      <div className="relative rounded-x w-full h-[375px] group overflow-hidden inline-block">
+    <div className="keen-slider__slide mt-12 lg:mt-5 grid lg:grid-cols-2 lg:gap-x-6 grid-cols-1">
+      <div className="relative rounded-x w-full h-[300px] lg:h-[375px] group overflow-hidden inline-block">
         <Triangle />
         {val?.image?.length ? (
           <Image
@@ -73,12 +73,12 @@ const ProjectDetails: React.FC<{
           </button>
         </div>
       </div>
-      <div className=" py-10 px-8 rounded-[10px] flex flex-col bg-white justify-between">
+      <div className="py-10 px-8 rounded-[10px] flex flex-col bg-white justify-between">
         <div className="space-y-4 block">
           <h2>{val?.name}</h2>
           <div
             className={cn("", {
-              "h-[13rem] md:h-[8rem] lg:h-[12rem] scrollbar-thin overflow-y-auto scrollbar-thumb-gray-400 crollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-track-gray-100":
+              "h-[13rem] md:h-[8rem] lg:h-[12rem] scrollbar-thin overflow-y-auto scrollbar-thumb-gray-400 scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-track-gray-100":
                 !isReadMore,
             })}
           >

@@ -79,7 +79,7 @@ const Aboutus = () => {
             </div>
           </>
         )}
-        <div className="bg-white rounded-[15px] p-5">
+        <div className="bg-white rounded-x p-5">
           <div dangerouslySetInnerHTML={{ __html: clean }} />
           {/* <div className="text-sm font-semibold whitespace-pre-wrap">
           {blog?.title}

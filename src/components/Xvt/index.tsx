@@ -78,7 +78,7 @@ const XVT = () => {
         </>
       )}
 
-      <div className="bg-white rounded-[15px] py-8 px-14 flex flex-col space-y-14">
+      <div className="bg-white rounded-x py-8 px-14 flex flex-col space-y-14">
         <div className="flex justify-between items-center gap-10 flex-col-reverse lg:flex-row">
           <div className="basis-[50%]">
             <div

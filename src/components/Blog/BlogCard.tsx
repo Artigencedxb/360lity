@@ -71,7 +71,7 @@ const BlogCard: React.FC<{ data: Blog; admin?: boolean }> = ({
       )}
       <div className="relative flex flex-col gap-4">
         {data?.image?.length ? (
-          <div className="group bg-black overflow-hidden inline-block relative w-full h-[180px] md:h-[210px] rounded-[15px]">
+          <div className="group bg-black overflow-hidden inline-block relative w-full h-[180px] md:h-[210px] rounded-X">
             <Image
               fill
               src={data?.image}
@@ -104,7 +104,7 @@ const BlogCard: React.FC<{ data: Blog; admin?: boolean }> = ({
             )}
           </div>
         ) : (
-          <div className="relative w-full bg-black h-[180px] md:h-[210px] rounded-[15px]">
+          <div className="relative w-full bg-black h-[180px] md:h-[210px] rounded-x">
             {" "}
             <Triangle />
             {admin && (

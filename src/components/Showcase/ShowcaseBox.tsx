@@ -64,7 +64,7 @@ const ShowcaseBox: React.FC<{
       />}
       <div
         className={cn(
-          " rounded-[15px] transition-all relative min-h-[13rem] group overflow-hidden inline-block",
+          " rounded-x transition-all relative min-h-[13rem] group overflow-hidden inline-block",
           className
         )}
         draggable

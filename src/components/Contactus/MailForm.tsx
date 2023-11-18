@@ -97,7 +97,7 @@ const MailForm = () => {
           label={"Name/Company"}
           register={register}
           placeholder="Name/Company"
-          className="outline-none py-3 px-5 bg-white rounded-[15px]"
+          className="outline-none py-3 px-5 bg-white rounded-x"
           error={errors?.name?.message}
         />
         <Input
@@ -106,7 +106,7 @@ const MailForm = () => {
           label={"E-mail"}
           register={register}
           placeholder="E-mail"
-          className="outline-none py-3 px-5 bg-white rounded-[15px]"
+          className="outline-none py-3 px-5 bg-white rounded-x"
           error={errors?.email?.message}
           autoComplete="off"
         />
@@ -123,7 +123,7 @@ const MailForm = () => {
                 placeholder="WhatsApp number"
                 value={field.value}
                 onChange={field.onChange}
-                className="outline-none py-3 px-5 bg-white rounded-[15px]"
+                className="outline-none py-3 px-5 bg-white rounded-x"
                 autoComplete="off"
               />
             );
@@ -140,7 +140,7 @@ const MailForm = () => {
           label={"Description"}
           register={register}
           placeholder="Description"
-          className="py-3 px-5 bg-white rounded-[15px]"
+          className="py-3 px-5 bg-white rounded-x"
           error={errors?.description?.message}
           rows={5}
         />
@@ -152,7 +152,7 @@ const MailForm = () => {
           //   if (dirties) setModal(true);
           // }}
           disabled={loading}
-          className="flex disabled:opacity-75 items-center gap-3 justify-center rounded-[15px] w-[150px] bg-[#0060E4] font-medium py-3 text-white"
+          className="flex disabled:opacity-75 items-center gap-3 justify-center rounded-x w-[150px] bg-[#0060E4] font-medium py-3 text-white"
         >
           {loading && (
             <Loader className="border-[2px] border-t-white w-[16px] h-[16px]" />

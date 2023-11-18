@@ -61,7 +61,7 @@ const Login = () => {
         />
         <button
           disabled={isPending}
-          className="disabled:opacity-80 flex items-center justify-center gap-2 rounded-[15px] w-full bg-[#0060E4] font-medium py-3 text-white"
+          className="disabled:opacity-80 flex items-center justify-center gap-2 rounded-x w-full bg-[#0060E4] font-medium py-3 text-white"
         >
           {isPending && (
             <Loader className="!border-[3px] border-t-white w-4 h-4" />

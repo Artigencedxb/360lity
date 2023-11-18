@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 };
 const ProjectPage = () => {
   return (
-    <div className="py-10 h-full">
+    <div className="py-10 =h-full">
       <Header heading="Projects" />
 
       <ProjectSlider />

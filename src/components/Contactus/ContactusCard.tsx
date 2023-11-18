@@ -28,7 +28,7 @@ const ContactusCard = () => {
         )}
         <Triangle />
       </div>
-      <div className="bg-white flex flex-col justify-end rounded-[15px] p-8">
+      <div className="bg-white flex flex-col justify-end rounded-x p-8">
         <div className="text-sm font-normal whitespace-pre-wrap">
           {contact?.description ?? ""}
         </div>

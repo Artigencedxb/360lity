@@ -79,7 +79,7 @@ const BlogPage: React.FC<{ params: { blogId: string } }> = ({ params }) => {
             />
           </div>
         </div>
-        <div className="bg-white rounded-[15px] p-5 flex flex-col">
+        <div className="bg-white rounded-x p-5 flex flex-col">
           <div dangerouslySetInnerHTML={{ __html: clean }} />
           {/* <div className="text-sm font-semibold whitespace-pre-wrap">
           {blog?.title}

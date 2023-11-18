@@ -97,7 +97,7 @@ const Footer = () => {
           <h3 className="mb-3 font-semibold">Contact</h3>
           <Link href="/contactus" className="text-sm hover:text-zinc-100">Feedback</Link>
           <Link href={`tel:${contact?.phone}`} className="text-sm hover:text-zinc-100">
-            Tel:{contact?.phone}
+            Tel: {contact?.phone}
           </Link>
 
           <Link

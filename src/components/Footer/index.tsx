@@ -102,7 +102,7 @@ const Footer = () => {
 
           <Link
             target="_blank"
-            href={`https://api.whatsapp.com/send?phone=${contact?.phone}`}
+            href={`https://wa.me/${contact?.phone}`}
             className="text-sm"
           >
             WhatsApp

@@ -8,7 +8,7 @@ import { ArrowUpTrayIcon } from "@heroicons/react/20/solid";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { convert } from "html-to-text";
 import { useRouter } from "next/navigation";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import ReactQuill, { Quill } from "react-quill";
 import "react-quill/dist/quill.snow.css";
@@ -31,36 +31,47 @@ const QuillNoSSRWrapper = dynamic(() => import("react-quill"), {
 const XvtSchema = z.object({
   name: z.string().min(1, "Please enter a title"),
   image: z.string().optional(),
+  descImage1: z.string().optional(),
+  descImage2: z.string().optional(),
+  description: z.string().min(3, "Please enter a description"),
 });
 
 type XvtSchemaType = z.infer<typeof XvtSchema>;
 
+function htmlDecode(content: string) {
+  let e = document.createElement("div");
+  e.innerHTML = content;
+  return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
+}
 
 const XvtForm: React.FC<{ initialValues: Xvt }> = ({ initialValues }) => {
   const router = useRouter();
+  const decodeValue = htmlDecode(initialValues?.description as string);
+  const text = convert(decodeValue as string);
 
   const { mutate: edit, isPending: editLoader } = useEditXvt();
   const { mutate: upload, isPending: uploadLoader } = useUpload();
   const { mutate: deleteImage, isPending: deleteLoader } = useDelete();
   const imageloader = uploadLoader || deleteLoader;
   const loader = editLoader;
-  const buttonText = "Update Xvt details";
+  const buttonText = "Update xvt details";
   const {
     register,
     handleSubmit,
     setValue,
     getValues,
     watch,
+    control,
     formState: { errors },
   } = useForm<XvtSchemaType>({
     resolver: zodResolver(XvtSchema),
     mode: "onChange",
-    defaultValues: { ...initialValues },
+    defaultValues: { ...initialValues, description: text },
   });
 
   const onSubmit: SubmitHandler<XvtSchemaType> = (data) => {
     console.log(data, "data");
-    
+
     if (initialValues) {
       edit(
         {
@@ -77,7 +88,10 @@ const XvtForm: React.FC<{ initialValues: Xvt }> = ({ initialValues }) => {
     }
   };
 
-  const imageHandler = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  const imageHandler = async (
+    e: React.ChangeEvent<HTMLInputElement>,
+    field: "image" | "descImage1" | "descImage2"
+  ) => {
     let formData = new FormData();
 
     const imageFile = e.target.files?.[0];
@@ -97,7 +111,7 @@ const XvtForm: React.FC<{ initialValues: Xvt }> = ({ initialValues }) => {
         onSuccess: (res) => {
           console.log(res, "res");
           const imgUrl = res?.data?.secure_url;
-          setValue("image", imgUrl);
+          setValue(field, imgUrl);
         },
       });
     }
@@ -145,7 +159,9 @@ const XvtForm: React.FC<{ initialValues: Xvt }> = ({ initialValues }) => {
             </label>
             <input
               id={"image"}
-              onChange={imageHandler}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                imageHandler(e, "image")
+              }
               name="image"
               className="w-full hidden"
               type="file"
@@ -160,6 +176,80 @@ const XvtForm: React.FC<{ initialValues: Xvt }> = ({ initialValues }) => {
             </div>
           </div>
         )}
+        {imageloader ? (
+          <div className="flex justify-center py-6 w-[45%]">
+            <Loader />
+          </div>
+        ) : watch("descImage1")?.length ? (
+          <ImagePreview
+            src={watch("descImage1") as string}
+            alt="xvt"
+            deleteHandler={deleteHandler}
+          />
+        ) : (
+          <div>
+            <label
+              className="bg-[#0060E4] flex items-center w-64 gap-2 cursor-pointer text-sm justify-center rounded-x text-white font-semibold px-5 py-3"
+              htmlFor="descImage1"
+            >
+              <ArrowUpTrayIcon className="w-5 h-5" /> Upload description image
+            </label>
+            <input
+              id={"descImage1"}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                imageHandler(e, "descImage1")
+              }
+              name="descImage1"
+              className="w-full hidden"
+              type="file"
+            />
+            {errors?.image && (
+              <p className="text-red-700 text-sm font-medium mt-3">
+                {errors?.descImage1?.message}
+              </p>
+            )}
+            <div className="text-sm text-gray-400 mt-2 ml-7">
+              (288px x 208px)
+            </div>
+          </div>
+        )}
+        {imageloader ? (
+          <div className="flex justify-center py-6 w-[45%]">
+            <Loader />
+          </div>
+        ) : watch("descImage2")?.length ? (
+          <ImagePreview
+            src={watch("descImage2") as string}
+            alt="xvt"
+            deleteHandler={deleteHandler}
+          />
+        ) : (
+          <div>
+            <label
+              className="bg-[#0060E4] flex items-center w-64 gap-2 cursor-pointer text-sm justify-center rounded-x text-white font-semibold px-5 py-3"
+              htmlFor="descImage2"
+            >
+              <ArrowUpTrayIcon className="w-5 h-5" /> Upload description image
+            </label>
+            <input
+              id={"descImage2"}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                imageHandler(e, "descImage2")
+              }
+              name="descImage2"
+              className="w-full hidden"
+              type="file"
+            />
+            {errors?.image && (
+              <p className="text-red-700 text-sm font-medium mt-3">
+                {errors?.descImage2?.message}
+              </p>
+            )}
+            <div className="text-sm text-gray-400 mt-2 ml-7">
+              (288px x 208px)
+            </div>
+          </div>
+        )}
         <Input
           id={"name"}
           name="name"
@@ -168,7 +258,21 @@ const XvtForm: React.FC<{ initialValues: Xvt }> = ({ initialValues }) => {
           error={errors?.name?.message}
           className="w-full"
         />
-       
+        <Controller
+          control={control}
+          name="description"
+          render={({ field: { onChange, value, name } }) => {
+            return (
+              <QuillNoSSRWrapper
+                className="bg-white rounded-x min-h-[250px]"
+                theme="snow"
+                value={value}
+                defaultValue={initialValues?.description}
+                onChange={onChange}
+              ></QuillNoSSRWrapper>
+            );
+          }}
+        />
         <Button
           loading={loader}
           disabled={loader || imageloader}

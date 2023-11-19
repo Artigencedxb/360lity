@@ -7,5 +7,6 @@ export const routes = {
   blog: "/blog",
   contact: "/contact",
   about: "/about",
+  arvr: "/arvr",
   xvt: "/xvt",
 };

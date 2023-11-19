@@ -83,16 +83,19 @@ const Footer = () => {
             <Link href="#">Team</Link>
           </li>
         </ul>
-        <div className="px-5 space-y-1.5 text-start lg:text-start">
+        <ul className="px-5 space-y-1.5 text-start lg:text-start">
           <h3 className="mb-3 font-semibold">Services</h3>
-
-          <p className="text-sm">360-XVT</p>
-          <p className="text-sm">VR/AR</p>
-          <p className="text-sm">3D-Studio</p>
-          <p className="text-sm">Animation</p>
-          <p className="text-sm">Photography</p>
-          <p className="text-sm">Videography</p>
-        </div>
+          <p className="text-sm hover:text-zinc-100">
+            <Link href="/arvr">360-XVT</Link>
+          </p>
+          <p className="text-sm hover:text-zinc-100">
+            <Link href="/arvr">Vr/Ar</Link>
+          </p>
+          <p className="text-sm hover:text-zinc-100">3D-Studio</p>
+          <p className="text-sm hover:text-zinc-100">Animation</p>
+          <p className="text-sm hover:text-zinc-100">Photography</p>
+          <p className="text-sm hover:text-zinc-100">Videography</p>
+        </ul>
         {
           <div className="px-5 space-y-1.5 text-start lg:text-start flex flex-col">
             <h3 className="mb-3 font-semibold">Contact</h3>

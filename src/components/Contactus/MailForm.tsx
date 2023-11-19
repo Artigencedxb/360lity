@@ -62,7 +62,8 @@ const MailForm = () => {
       )
       .then(
         (result) => {
-          toast.success("Contact details submitted successfully.");
+          toast.success(
+            "Contact details submitted successfully. Our executive will get back to you soon.");
           reset();
           console.log(result, "res");
           console.log(result.text);

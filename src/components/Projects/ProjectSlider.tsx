@@ -9,14 +9,12 @@ import { useKeenSlider } from "keen-slider/react";
 import { useParams } from "next/navigation";
 
 const ProjectSlider = () => {
-  const params = useParams()
+  const params = useParams();
   console.log(params?.projectId, "id");
-  const projectId = Number(params?.projectId)
+  const projectId = Number(params?.projectId);
   const { projectIndex } = useProjectStore();
   const [currentSlide, setCurrentSlide] = React.useState(projectId);
- 
- 
-  
+
   const [loaded, setLoaded] = React.useState(false);
   console.log(projectIndex, "index");
 
@@ -64,34 +62,6 @@ const ProjectSlider = () => {
             />
           );
         })}
-        {/* <div className="keen-slider__slide flex items-center justify-center py-8">
-  1
-      </div>
-      <div className="keen-slider__slide">2</div>
-      <div className="keen-slider__slide">3</div> */}
-
-        {/* {project?.slice(currentSlide, currentSlide + 1).map((el, indexes) => {
-          return (
-            // <div
-            //   key={indexes}
-            //   initial={{ x: -200 }}
-            //   animate={{ x: 0 }}
-            //   exit={{ x: 200 }}
-            //   transition={{ duration: 1 }}
-            // >
-            <ProjectDetails
-              currentSlide={currentSlide}
-              direction={direction}
-              length={project?.length}
-              projectIndex={indexes}
-              setCurrentSlide={setCurrentSlide}
-              setDirection={setDirection}
-              key={indexes}
-              val={el}
-            />
-            // </div>
-          );
-        })} */}
       </div>
     );
   }

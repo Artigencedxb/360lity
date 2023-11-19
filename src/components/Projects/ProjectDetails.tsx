@@ -28,15 +28,14 @@ const ProjectDetails: React.FC<{
   instanceRef,
 }) => {
   const router = useRouter();
-  const params = useParams()
-  const projectId = params?.projectId
+  const params = useParams();
+  const projectId = params?.projectId;
   const [isReadMore, setIsReadMore] = useState(true);
-
 
   const shareData = {
     title: "Projects",
     text: "360lity projects!",
-    url: `${window.location.origin}/projects/${projectId}`,
+    url: `${window.location.origin}/projects/details/${currentSlide}`,
   };
 
   console.log(Number(currentSlide) + 1, "test");
@@ -47,14 +46,16 @@ const ProjectDetails: React.FC<{
 
   const shareButton = async () => {
     try {
-    await navigator.share(shareData);
+      if(navigator.share) {
+      await navigator.share(shareData);
+      }
     } catch (error) {
       console.log(error);
     }
-  }
+  };
 
   return (
-    <div className="keen-slider__slide mt-12 lg:mt-5 grid lg:grid-cols-2 lg:gap-x-6 grid-cols-1">
+    <div className="keen-slider__slide mt-12 lg:mt-5 grid lg:grid-cols-2 gap-y-6 lg:gap-y-0 lg:gap-x-6 grid-cols-1">
       <div className="relative rounded-x w-full h-[300px] lg:h-[375px] group overflow-hidden inline-block">
         <Triangle />
         {val?.image?.length ? (
@@ -113,7 +114,7 @@ const ProjectDetails: React.FC<{
           )}
           <div className="self-end flex items-center gap-5 ml-auto">
             <button onClick={shareButton}>
-            <Image src={ShareIcon} alt="share icon" />
+              <Image src={ShareIcon} alt="share icon" />
             </button>
             {currentSlide !==
               instanceRef.current?.track?.details?.slides.length - 1 && (

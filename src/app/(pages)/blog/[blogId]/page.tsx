@@ -37,7 +37,9 @@ const BlogPage: React.FC<{ params: { blogId: string } }> = ({ params }) => {
 
   const shareButton = async () => {
     try {
+      if(navigator.share) {
       await navigator.share(shareData);
+    }
     } catch (error) {
       console.log(error);
     }

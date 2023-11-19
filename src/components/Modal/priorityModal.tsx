@@ -18,6 +18,8 @@ import { useQueryClient } from "@tanstack/react-query";
 import { routes } from "../../api/routes";
 import { useEditBlog } from "../../api/blog";
 import { Blog, PatchBlog } from "../../types/blog";
+import { PatchTeam, Team } from "../../types/team";
+import { useEditTeam } from "../../api/team";
 
 const prioritySchema = z.object({
   priority: z.coerce.number().gte(1, "Please enter a priority"),
@@ -27,7 +29,7 @@ type ProjectSchemaType = z.infer<typeof prioritySchema>;
 
 const PriorityModal: React.FC<{
   open: boolean;
-  initialValues: Project | Showcase | Blog;
+  initialValues: Project | Showcase | Blog | Team;
   type: string;
   onClose: () => void;
 }> = ({ open, type, initialValues, onClose }) => {
@@ -36,6 +38,7 @@ const PriorityModal: React.FC<{
     useEditProject();
   const { mutate: editShowcase, isPending: editShowcaseLoader } =
     useEditShowcase();
+  const { mutate: editTeam, isPending: editTeamLoader } = useEditTeam();
   const { mutate: editBlog, isPending: editBlogLoader } = useEditBlog();
   const queryClient = useQueryClient();
   const {
@@ -61,11 +64,9 @@ const PriorityModal: React.FC<{
           },
         }
       );
- 
-    }
-    else if (type === "blog") {
+    } else if (type === "blog") {
       return editBlog(
-        {...initialValues, priority: data?.priority } as PatchBlog,
+        { ...initialValues, priority: data?.priority } as PatchBlog,
         {
           onSuccess: (res) => {
             toast.success("Priority updated.");
@@ -74,8 +75,18 @@ const PriorityModal: React.FC<{
           },
         }
       );
-    }
-     else {
+    } else if (type === "team") {
+      return editTeam(
+        { ...initialValues, priority: data?.priority } as PatchTeam,
+        {
+          onSuccess: (res) => {
+            toast.success("Priority updated.");
+            queryClient.invalidateQueries({ queryKey: [routes?.["team"]] });
+            onClose();
+          },
+        }
+      );
+    } else {
       return editShowcase(
         { ...initialValues, priority: data?.priority } as PatchShowcase,
         {
@@ -123,8 +134,18 @@ const PriorityModal: React.FC<{
             No
           </button>
           <Button
-            loading={editProjectLoader || editShowcaseLoader || editBlogLoader}
-            disabled={editProjectLoader || editShowcaseLoader || editBlogLoader}
+            loading={
+              editProjectLoader ||
+              editShowcaseLoader ||
+              editBlogLoader ||
+              editTeamLoader
+            }
+            disabled={
+              editProjectLoader ||
+              editShowcaseLoader ||
+              editBlogLoader ||
+              editTeamLoader
+            }
             type="submit"
             text={buttonText}
           >

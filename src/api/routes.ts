@@ -8,5 +8,6 @@ export const routes = {
   contact: "/contact",
   about: "/about",
   arvr: "/arvr",
+  team: "/team",
   xvt: "/xvt",
 };

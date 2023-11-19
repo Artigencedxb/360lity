@@ -107,6 +107,18 @@ const Sidebar = () => {
               Contact
             </li>
           </Link>
+          <Link href="/admin/team">
+            <li
+              className={cn(
+                "mb-4 transition-all duration-300 text-lg hover:text-black font-medium cursor-pointer hover:bg-primary text-center py-2.5 rounded-x",
+                {
+                  "bg-primary text-black": pathname === "/admin/team",
+                }
+              )}
+            >
+              Team
+            </li>
+          </Link>
         </ul>
       </nav>
       <div className="flex justify-center w-full mt-auto">

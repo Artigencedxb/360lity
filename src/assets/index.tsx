@@ -9,9 +9,6 @@ import ShareIcon from "./share.svg";
 import RightArrowIcon from "./right.svg";
 import LogoView from "./360.svg";
 import LogoWhite from "./360-white.svg";
-import MailIcon from "./mail.svg";
-import PhoneIcon from "./phone.svg";
-import WhatsappIcon from "./whatsapp.svg";
 
 //close icon
 import CloseIcon from "./close.svg";
@@ -34,7 +31,7 @@ import YoutubeIcon from "./youtube.svg";
 import FooterLogo from "./footer-logo.svg";
 import FooterQr from "./footer-qr.svg";
 
-import PriorityIcon from "./priority.svg"
+import PriorityIcon from "./priority.svg";
 //Triangle
 import TriangleIcon from "./round-triangle.svg";
 import TriangleBlackIcon from "./round-triangle-black.svg";
@@ -46,13 +43,10 @@ export {
   RightArrowIcon,
   LogoWhite,
   ShareIcon,
-  MailIcon,
-  WhatsappIcon,
   LeftArrow,
   RightArrow,
   UaeMap,
   FacebookIcon,
-  PhoneIcon,
   FooterLogo,
   FooterQr,
   InstagramIcon,
@@ -66,5 +60,5 @@ export {
   TriangleIcon,
   TriangleBlackIcon,
   CloseIcon,
-  PriorityIcon
+  PriorityIcon,
 };

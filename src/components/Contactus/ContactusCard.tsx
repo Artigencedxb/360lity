@@ -1,11 +1,11 @@
 "use client";
-import { MailIcon, PhoneIcon, WhatsappIcon } from "@/assets";
 import Image from "next/image";
 import React from "react";
 import Triangle from "../../common/Triangle";
 import { useGetContact } from "../../api/contactus";
 import Link from "next/link";
 import cn from "classnames";
+import { MailIcon, PhoneIcon, WhatsappIcon } from "../../assets/social";
 
 const ContactusCard = () => {
   const { data } = useGetContact();

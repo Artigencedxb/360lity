@@ -80,7 +80,7 @@ const Footer = () => {
           </li>
 
           <li className="text-sm hover:text-zinc-100">
-            <Link href="#">Team</Link>
+            <Link href="/team">Team</Link>
           </li>
         </ul>
         <ul className="px-5 space-y-1.5 text-start lg:text-start">

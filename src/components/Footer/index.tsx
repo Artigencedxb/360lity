@@ -91,7 +91,11 @@ const Footer = () => {
           <p className="text-sm hover:text-zinc-100">
             <Link href="/arvr">Vr/Ar</Link>
           </p>
-          <p className="text-sm hover:text-zinc-100">3D-Studio</p>
+          <p className="text-sm hover:text-zinc-100">
+            <Link target="_blank" href="https://www.3dio.art">
+              3D-Studio
+            </Link>
+          </p>
           <p className="text-sm hover:text-zinc-100">Animation</p>
           <p className="text-sm hover:text-zinc-100">Photography</p>
           <p className="text-sm hover:text-zinc-100">Videography</p>

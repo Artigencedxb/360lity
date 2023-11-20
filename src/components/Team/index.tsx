@@ -10,7 +10,7 @@ import { useLottie } from "lottie-react";
 import animation from "../../../public/animation.json";
 
 const Team = () => {
-  const { data, isPending } = useTeam();
+  const { data, isPending } = useTeam(undefined, undefined, "priority");
   const team = data?.data?.team;
 
   const options = {

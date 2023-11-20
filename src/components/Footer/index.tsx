@@ -96,9 +96,15 @@ const Footer = () => {
               3D-Studio
             </Link>
           </p>
-          <p className="text-sm hover:text-zinc-100">Animation</p>
-          <p className="text-sm hover:text-zinc-100">Photography</p>
-          <p className="text-sm hover:text-zinc-100">Videography</p>
+          <p className="text-sm hover:text-zinc-100">
+            <Link href="/media">Animation</Link>
+          </p>
+          <p className="text-sm hover:text-zinc-100">
+            <Link href="/media">Photography</Link>
+          </p>
+          <p className="text-sm hover:text-zinc-100">
+            <Link href="/media">Videography</Link>
+          </p>
         </ul>
         {
           <div className="px-5 space-y-1.5 text-start lg:text-start flex flex-col">

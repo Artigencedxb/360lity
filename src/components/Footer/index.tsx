@@ -5,16 +5,13 @@ import {
   InstagramIcon,
   LogoWhite,
   TiktokIcon,
-  TriangleBlackIcon,
   TwitterIcon,
-  YoutubeIcon,
+  YoutubeIcon
 } from "@/assets";
-import Triangle from "@/common/Triangle";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
-import TriangleBlack from "../../common/TriangleBlack";
 import { useGetContact } from "../../api/contactus";
+import TriangleBlack from "../../common/TriangleBlack";
 
 const Footer = () => {
   const { data } = useGetContact();

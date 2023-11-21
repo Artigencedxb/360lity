@@ -18,6 +18,8 @@ import { useEditAbout } from "../../api/about";
 import { About } from "../../types/about";
 import "react-quill/dist/quill.snow.css";
 import Input from "../../UI/Input";
+import { Editor } from "react-draft-wysiwyg";
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
 import dynamic from "next/dynamic";
 

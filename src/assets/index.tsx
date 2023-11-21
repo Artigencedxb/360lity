@@ -35,6 +35,7 @@ import PriorityIcon from "./priority.svg";
 //Triangle
 import TriangleIcon from "./round-triangle.svg";
 import TriangleBlackIcon from "./round-triangle-black.svg";
+import TriangleWhiteIcon from "./round-triangle-white.svg";
 
 export {
   Logo,
@@ -61,4 +62,5 @@ export {
   TriangleBlackIcon,
   CloseIcon,
   PriorityIcon,
+  TriangleWhiteIcon,
 };

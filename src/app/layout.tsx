@@ -5,6 +5,7 @@ import { Metadata } from "next";
 import ReactQueryProvider from "@/Providers/QueryClientProvider";
 import { Toaster } from "sonner";
 import LoadingWrapper from "./LoadingWrapper";
+import localFont from 'next/font/local'
 
 export const metadata: Metadata = {
   title: "360-lity",
@@ -14,6 +15,9 @@ export const metadata: Metadata = {
   },
 };
 
+//👇 Configure our local font object
+const myFont = localFont({ src: '../../public/SF-Compact-Rounded-Regular.ttf' })
+
 export default function RootLayout({
   children,
 }: {
@@ -21,7 +25,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
+      <body className={`${myFont.className}`}>
         <ReactQueryProvider>
           <LoadingWrapper>
             <LayooutView>{children}</LayooutView>

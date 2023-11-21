@@ -20,6 +20,12 @@ import { useEditBlog } from "../../api/blog";
 import { Blog, PatchBlog } from "../../types/blog";
 import { PatchTeam, Team } from "../../types/team";
 import { useEditTeam } from "../../api/team";
+import { useEditPhotography } from "../../api/photography";
+import { useEditVideography } from "../../api/Videography";
+import { useEditAnimation } from "../../api/animation";
+import { PatchVideography, Videography } from "../../types/videography";
+import { PatchAnimation, Animation } from "../../types/animation";
+import { PatchPhotography, Photography } from "../../types/photography";
 
 const prioritySchema = z.object({
   priority: z.coerce.number().gte(1, "Please enter a priority"),
@@ -29,7 +35,14 @@ type ProjectSchemaType = z.infer<typeof prioritySchema>;
 
 const PriorityModal: React.FC<{
   open: boolean;
-  initialValues: Project | Showcase | Blog | Team;
+  initialValues:
+    | Project
+    | Showcase
+    | Blog
+    | Team
+    | Photography
+    | Videography
+    | Animation;
   type: string;
   onClose: () => void;
 }> = ({ open, type, initialValues, onClose }) => {
@@ -40,6 +53,12 @@ const PriorityModal: React.FC<{
     useEditShowcase();
   const { mutate: editTeam, isPending: editTeamLoader } = useEditTeam();
   const { mutate: editBlog, isPending: editBlogLoader } = useEditBlog();
+  const { mutate: editPhotography, isPending: editPhotographyLoader } =
+    useEditPhotography();
+  const { mutate: editVideography, isPending: editVideographyLoader } =
+    useEditVideography();
+  const { mutate: editAnimation, isPending: editAnimationLoader } =
+    useEditAnimation();
   const queryClient = useQueryClient();
   const {
     register,
@@ -82,6 +101,45 @@ const PriorityModal: React.FC<{
           onSuccess: (res) => {
             toast.success("Priority updated.");
             queryClient.invalidateQueries({ queryKey: [routes?.["team"]] });
+            onClose();
+          },
+        }
+      );
+    } else if (type === "photography") {
+      return editPhotography(
+        { ...initialValues, priority: data?.priority } as PatchPhotography,
+        {
+          onSuccess: (res) => {
+            toast.success("Priority updated.");
+            queryClient.invalidateQueries({
+              queryKey: [routes?.["photography"]],
+            });
+            onClose();
+          },
+        }
+      );
+    } else if (type === "videography") {
+      return editVideography(
+        { ...initialValues, priority: data?.priority } as PatchVideography,
+        {
+          onSuccess: (res) => {
+            toast.success("Priority updated.");
+            queryClient.invalidateQueries({
+              queryKey: [routes?.["videography"]],
+            });
+            onClose();
+          },
+        }
+      );
+    } else if (type === "animation") {
+      return editAnimation(
+        { ...initialValues, priority: data?.priority } as PatchAnimation,
+        {
+          onSuccess: (res) => {
+            toast.success("Priority updated.");
+            queryClient.invalidateQueries({
+              queryKey: [routes?.["animation"]],
+            });
             onClose();
           },
         }
@@ -138,13 +196,19 @@ const PriorityModal: React.FC<{
               editProjectLoader ||
               editShowcaseLoader ||
               editBlogLoader ||
-              editTeamLoader
+              editTeamLoader ||
+              editPhotographyLoader ||
+              editVideographyLoader ||
+              editAnimationLoader
             }
             disabled={
               editProjectLoader ||
               editShowcaseLoader ||
               editBlogLoader ||
-              editTeamLoader
+              editTeamLoader ||
+              editPhotographyLoader ||
+              editVideographyLoader ||
+              editAnimationLoader
             }
             type="submit"
             text={buttonText}

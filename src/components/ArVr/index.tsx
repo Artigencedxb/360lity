@@ -24,7 +24,7 @@ const ArVr = () => {
   if (arvr) {
     return (
       <div className="py-[4.3rem] md:py-10 space-y-5">
-        <Header heading="Vr/Ar" />
+        <Header heading="VR/AR" />
 
         {!arvr?.image?.length ? (
           <div className="bg-black rounded-[10px] relative w-full py-20 flex items-center justify-center">

@@ -19,7 +19,7 @@ const ArVrPage = () => {
   if (arvr && state) {
     return (
       <div className="pb-10">
-        <Header heading="Ar/Vr" back={false} />
+        <Header heading="VR/AR" back={false} />
         <ArVrForm initialValues={arvr} />
       </div>
     );

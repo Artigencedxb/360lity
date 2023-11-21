@@ -86,7 +86,7 @@ const Footer = () => {
             <Link href="/arvr">360-XVT</Link>
           </p>
           <p className="text-sm hover:text-zinc-100">
-            <Link href="/arvr">Vr/Ar</Link>
+            <Link href="/arvr">VR/AR</Link>
           </p>
           <p className="text-sm hover:text-zinc-100">
             <Link target="_blank" href="https://www.3dio.art">

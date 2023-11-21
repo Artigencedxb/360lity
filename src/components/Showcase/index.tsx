@@ -44,11 +44,13 @@ const Showcase = () => {
               case 3:
                 className = "lg:col-span-2 col-span-1";
                 break;
-              case 4:
-                className = "col-span-1";
+              case 10:
+                className = "lg:row-span-2 lg:col-span-2";
+                break;
+              case 13:
+                className = "lg:col-span-2 col-span-1";
                 break;
             }
-
             return (
               <ShowcaseBox
                 className={className}

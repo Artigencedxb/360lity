@@ -52,7 +52,7 @@ const ArVrForm: React.FC<{ initialValues: ArVr }> = ({ initialValues }) => {
   const { mutate: deleteImage, isPending: deleteLoader } = useDelete();
   const imageloader = uploadLoader || deleteLoader;
   const loader = editLoader;
-  const buttonText = "Update Vr/Ar details";
+  const buttonText = "Update VR/AR details";
   const {
     register,
     handleSubmit,
@@ -77,7 +77,7 @@ const ArVrForm: React.FC<{ initialValues: ArVr }> = ({ initialValues }) => {
         },
         {
           onSuccess: (res) => {
-            toast.success("Vr/Ar details updated.");
+            toast.success("VR/AR details updated.");
           },
         }
       );

@@ -19,7 +19,7 @@ const XvtAdminPage = () => {
   if (xvt && state) {
     return (
       <div className="pb-10">
-        <Header heading="Xvt" back={false} />
+        <Header heading="XVT" back={false} />
         <XvtForm initialValues={data?.data?.xvt} />
       </div>
     );

@@ -9,5 +9,8 @@ export const routes = {
   about: "/about",
   arvr: "/arvr",
   team: "/team",
+  photography: "/photography",
+  videography: "/videography",
+  animation: "/animation",
   xvt: "/xvt",
 };

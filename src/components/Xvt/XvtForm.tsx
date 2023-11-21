@@ -81,7 +81,7 @@ const XvtForm: React.FC<{ initialValues: Xvt }> = ({ initialValues }) => {
         },
         {
           onSuccess: (res) => {
-            toast.success("Xvt details updated.");
+            toast.success("XVT details updated.");
           },
         }
       );

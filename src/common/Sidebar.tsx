@@ -21,7 +21,7 @@ const Sidebar = () => {
     <aside className="fixed left-0 top-0 h-screen z-100 w-64 py-6 px-5 flex flex-col text-white bg-black/80">
       <nav className="flex flex-col justify-center items-center">
         <Image src={LogoTextWhite} className="mb-8" alt="" />
-        <ul className="w-full">
+        <ul className="w-full h-screen overflow-y-auto scrollbar-hide pb-10">
           <Link href="/admin/showcase">
             <li
               className={cn(
@@ -68,7 +68,7 @@ const Sidebar = () => {
                 }
               )}
             >
-              Xvt
+              XVT
             </li>
           </Link>
           <Link href="/admin/arvr">
@@ -80,7 +80,7 @@ const Sidebar = () => {
                 }
               )}
             >
-              Vr/Ar
+              VR/AR
             </li>
           </Link>
           <Link href="/admin/about-us">
@@ -93,6 +93,42 @@ const Sidebar = () => {
               )}
             >
               About
+            </li>
+          </Link>
+          <Link href="/admin/photography">
+            <li
+              className={cn(
+                "mb-4 transition-all duration-300 text-lg hover:text-black font-medium cursor-pointer hover:bg-primary text-center py-2.5 rounded-x",
+                {
+                  "bg-primary text-black": pathname === "/admin/photography",
+                }
+              )}
+            >
+              Photography
+            </li>
+          </Link>
+          <Link href="/admin/videography">
+            <li
+              className={cn(
+                "mb-4 transition-all duration-300 text-lg hover:text-black font-medium cursor-pointer hover:bg-primary text-center py-2.5 rounded-x",
+                {
+                  "bg-primary text-black": pathname === "/admin/videography",
+                }
+              )}
+            >
+              Videography
+            </li>
+          </Link>
+          <Link href="/admin/animation">
+            <li
+              className={cn(
+                "mb-4 transition-all duration-300 text-lg hover:text-black font-medium cursor-pointer hover:bg-primary text-center py-2.5 rounded-x",
+                {
+                  "bg-primary text-black": pathname === "/admin/animation",
+                }
+              )}
+            >
+              Animation
             </li>
           </Link>
           <Link href="/admin/contactus">

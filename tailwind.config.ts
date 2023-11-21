@@ -18,11 +18,9 @@ const config: Config = {
       },
     },
   },
-  plugins: [
-    require('tailwind-scrollbar'),
-],
-variants: {
-  scrollbar: ['rounded']
-}
+  plugins: [require("tailwind-scrollbar"), require("tailwind-scrollbar-hide")],
+  variants: {
+    scrollbar: ["rounded"],
+  },
 };
 export default config;

@@ -6,7 +6,7 @@ import { Project } from "@/types/project";
 import { Showcase } from "@/types/showcase";
 
 const View360Page = () => {
-  const { data } = useShowcase();
+  const { data } = useShowcase(undefined, undefined, "priority");
 
   const showcase = data?.data?.showcase;
   return (

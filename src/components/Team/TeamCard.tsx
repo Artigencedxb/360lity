@@ -34,7 +34,7 @@ const TeamCard: React.FC<{ data: Team }> = ({ data }) => {
         </div>
       </div>
 
-      <div className="bg-white flex flex-col px-6 py-8 rounded-x overflow-hidden">
+      <div className="bg-white flex flex-col px-6 py-8 rounded-bl-x rounded-br-x overflow-hidden -mt-2">
         <div className="text-center space-y-5 h-[12rem] overflow-y-auto scroll">
           <h3 className="font-semibold text-xl">{data?.role}</h3>
 

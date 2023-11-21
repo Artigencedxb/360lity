@@ -6,7 +6,7 @@ import {
   LogoWhite,
   TiktokIcon,
   TwitterIcon,
-  YoutubeIcon
+  YoutubeIcon,
 } from "@/assets";
 import Image from "next/image";
 import Link from "next/link";
@@ -104,32 +104,23 @@ const Footer = () => {
           </p>
         </ul>
         {
-          <div className="px-5 space-y-1.5 text-start lg:text-start flex flex-col">
+          <ul className="px-5 space-y-1.5 text-start lg:text-start">
             <h3 className="mb-3 font-semibold">Contact</h3>
-            <Link href="/contactus" className="text-sm hover:text-zinc-100">
-              Feedback
-            </Link>
-            <Link
-              href={`tel:${contact?.phone}`}
-              className="text-sm hover:text-zinc-100"
-            >
-              Tel: {contact?.phone}
-            </Link>
-
-            <Link
-              target="_blank"
-              href={`https://wa.me/${contact?.whatsapp}`}
-              className="text-sm"
-            >
-              WhatsApp
-            </Link>
-            <Link
-              href={`mailto:${contact?.email}`}
-              className="text-sm hover:text-zinc-100"
-            >
-              E mail
-            </Link>
-          </div>
+            <p className="text-sm hover:text-zinc-100">
+              <Link href="/contactus">Feedback</Link>
+            </p>
+            <p className="text-sm hover:text-zinc-100">
+              <Link href={`tel:${contact?.phone}`}>Tel: {contact?.phone}</Link>
+            </p>
+            <p className="text-sm hover:text-zinc-100">
+              <Link target="_blank" href={`https://wa.me/${contact?.whatsapp}`}>
+                WhatsApp
+              </Link>
+            </p>
+            <p className="text-sm hover:text-zinc-100">
+              <Link href={`mailto:${contact?.email}`}>E mail</Link>
+            </p>
+          </ul>
         }
         <div className="flex items-center justify-start flex-col gap-4">
           <div className="bg-white w-[200px] lg:w-full relative flex items-center justify-between rounded-x px-6 py-6">
@@ -142,7 +133,7 @@ const Footer = () => {
             <TriangleBlack />
           </div>
           <p className="text-[11px] lg:text-[10px] xl:text-[11px]">
-            copyright All rights reserved 360lity.com
+            Copyright all rights reserved 360lity.com
           </p>
         </div>
       </div>

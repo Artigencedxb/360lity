@@ -17,9 +17,11 @@ const Videography = () => {
     loop: true,
   };
   const { View } = useLottie(options);
+  console.log(data, "data");
+  
   return (
     <div className="py-[4.3rem] md:py-10">
-      <Header heading="videography" />
+      <Header heading="Videography" />
       <div className="mt-5">
         {isPending && <div>{View}</div>}
         {!videography?.length && !isPending && (

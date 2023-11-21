@@ -58,6 +58,7 @@ const ProjectSlider = () => {
               setDirection={setDirection}
               key={index}
               val={el}
+              index={index}
               instanceRef={instanceRef}
             />
           );

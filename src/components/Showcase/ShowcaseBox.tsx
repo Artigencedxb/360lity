@@ -103,7 +103,7 @@ const ShowcaseBox: React.FC<{
           <div
             onClick={() => {
               setProjectIndex(index as number);
-              router.push(`/view-showcase`);
+              router.push(`/view-showcase?index=${index}`);
             }}
             className="cursor-pointer absolute flex flex-col bg-black/50 w-full h-full opacity-0 justify-center items-center group-hover:opacity-100 z-10"
           >

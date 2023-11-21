@@ -17,6 +17,7 @@ const ProjectDetails: React.FC<{
   projectIndex?: number;
   val: Project;
   instanceRef: any;
+  index: number
 }> = ({
   currentSlide,
   setCurrentSlide,
@@ -26,6 +27,7 @@ const ProjectDetails: React.FC<{
   direction,
   projectIndex,
   instanceRef,
+  index
 }) => {
   const router = useRouter();
   const params = useParams();
@@ -69,7 +71,7 @@ const ProjectDetails: React.FC<{
           val?.name
         )}
         <div className="absolute bg-black/50 w-full h-full opacity-0 flex justify-center items-center group-hover:opacity-100 z-10">
-          <button onClick={() => router.push(`/view-project`)}>
+          <button onClick={() => router.push(`/view-project?index=${index}`)}>
             <Image src={LogoView} alt="360 View Logo" className="" />
           </button>
         </div>

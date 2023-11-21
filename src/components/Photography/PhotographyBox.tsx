@@ -43,7 +43,6 @@ const PhotographyBox: React.FC<{
           className
         )}
       >
-        <Triangle />
         {data?.image?.length ? (
           <div className="block transition-all duration-300 group-hover:bg-black/30">
             <Image

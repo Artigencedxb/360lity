@@ -6,12 +6,10 @@ import React, { useState } from "react";
 import { useDeleteVideography } from "../../api/Videography";
 import { PriorityIcon } from "../../assets";
 import Triangle from "../../common/Triangle";
-import { Photography } from "../../types/photography";
-import { Team } from "../../types/team";
-import DeleteModal from "../Modal/DeleteModal";
-import PriorityModal from "../Modal/priorityModal";
 import { Videography } from "../../types/videography";
 import { get_youtube_thumbnail } from "../../utils/getYoutubeThumbnail";
+import DeleteModal from "../Modal/DeleteModal";
+import PriorityModal from "../Modal/priorityModal";
 
 const VideographyAdminCard: React.FC<{ data: Videography }> = ({ data }) => {
   const [deleteModal, setDeleteModal] = useState(false);

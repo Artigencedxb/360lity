@@ -64,7 +64,7 @@ const PhotographyAdminCard: React.FC<{ data: Photography }> = ({ data }) => {
             <Image
               src={data?.image}
               fill
-              className="rounded-[12px] object-cover transition group-hover:bg-black/30 duration-1000 scale-110 group-hover:scale-100"
+              className="rounded-x object-cover transition group-hover:bg-black/30 duration-1000 scale-110 group-hover:scale-100"
               alt={"Photography image"}
             />
           </div>

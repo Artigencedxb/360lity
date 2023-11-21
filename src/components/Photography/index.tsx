@@ -3,14 +3,16 @@ import Image from "next/image";
 import React from "react";
 import { Logo } from "@/assets";
 import Header from "@/common/Header";
+import { showCaseData } from "@/data/showcase";
+import { useShowcase } from "@/api/showcase";
 import animation from "../../../public/animation.json";
 import { useLottie } from "lottie-react";
-import VideographyBox from "./VideographyBox";
-import { useVideography } from "../../api/Videography";
+import { usePhotography } from "../../api/photography";
+import PhotographyBox from "./PhotographyBox";
 
-const Videography = () => {
-  const { data, isPending } = useVideography(undefined, undefined, "priority");
-  const videography = data?.data?.videography;
+const Photography = () => {
+  const { data, isPending } = usePhotography(undefined, undefined, "priority");
+  const photography = data?.data?.photography;
 
   const options = {
     animationData: animation,
@@ -19,16 +21,16 @@ const Videography = () => {
   const { View } = useLottie(options);
   return (
     <div className="py-[4.3rem] md:py-10">
-      <Header heading="videography" />
+      <Header heading="Photography" />
       <div className="mt-5">
         {isPending && <div>{View}</div>}
-        {!videography?.length && !isPending && (
+        {!photography?.length && !isPending && (
           <div className="py-16 text-center text-2xl font-medium">
-            No video&apos;s.
+            No photo&apos;s.
           </div>
         )}
         <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-8 lg:grid-rows-3 grid-rows-1">
-          {videography?.map((dat, index) => {
+          {photography?.map((dat, index) => {
             let className = "";
             switch (index) {
               case 0:
@@ -51,7 +53,7 @@ const Videography = () => {
                 break;
             }
             return (
-              <VideographyBox
+              <PhotographyBox
                 className={className}
                 admin={false}
                 key={dat?.id}
@@ -66,4 +68,4 @@ const Videography = () => {
   );
 };
 
-export default Videography;
+export default Photography;

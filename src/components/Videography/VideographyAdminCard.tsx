@@ -11,6 +11,7 @@ import { Team } from "../../types/team";
 import DeleteModal from "../Modal/DeleteModal";
 import PriorityModal from "../Modal/priorityModal";
 import { Videography } from "../../types/videography";
+import { get_youtube_thumbnail } from "../../utils/getYoutubeThumbnail";
 
 const VideographyAdminCard: React.FC<{ data: Videography }> = ({ data }) => {
   const [deleteModal, setDeleteModal] = useState(false);
@@ -18,6 +19,8 @@ const VideographyAdminCard: React.FC<{ data: Videography }> = ({ data }) => {
 
   //delete api
   const { mutate, isPending } = useDeleteVideography();
+
+  const video_thumbnail = get_youtube_thumbnail(data?.link, "high");
 
   const showcaseDeleteHandler = () => {
     mutate(
@@ -55,12 +58,22 @@ const VideographyAdminCard: React.FC<{ data: Videography }> = ({ data }) => {
         )}
       >
         <Triangle />
-
+        {video_thumbnail?.length ? (
+          <div className="block transition-all duration-300 group-hover:bg-black/30">
+            <Image
+              src={video_thumbnail}
+              fill
+              className="rounded-x object-cover transition group-hover:bg-black/30 duration-1000 scale-110 group-hover:scale-100"
+              alt="Videography"
+            />
+          </div>
+        ) : (
+          ""
+        )}
         {
           <div
             className={cn(
-              "absolute bg-black/50 flex-col w-full h-full opacity-0 flex justify-center gap-8 items-center group-hover:opacity-100 z-10",
-              {}
+              "absolute bg-black/50 flex-col w-full h-full opacity-0 flex justify-center gap-8 items-center group-hover:opacity-100 z-10"
             )}
           >
             <div className="space-x-4">

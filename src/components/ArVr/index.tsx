@@ -1,11 +1,10 @@
 "use client";
-import { Logo, LogoView, LogoWhite } from "@/assets";
+import { Logo, LogoView, LogoWhite, ShareIcon } from '@/assets';
 import Header from "@/common/Header";
 import Triangle from "@/common/Triangle";
 import Image from "next/image";
 import * as DOMPurify from "dompurify";
 import { useGetArVr } from "@/api/arvr";
-
 function htmlDecode(content: string) {
   let e = document.createElement("div");
   e.innerHTML = content;
@@ -20,6 +19,22 @@ const ArVr = () => {
   const description = htmlDecode(arvr?.description as string);
 
   const clean = DOMPurify.sanitize(description as string);
+
+  
+  const shareData = {
+    title: "Blog",
+    url: `${window.location.origin}/arvr`,
+  };
+
+  const shareButton = async () => {
+    try {
+      if(navigator.share) {
+      await navigator.share(shareData);
+    }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   if (arvr) {
     return (
@@ -67,13 +82,16 @@ const ArVr = () => {
             </div>
           </>
         )}
-        <div className="bg-white rounded-x p-5">
-          <div dangerouslySetInnerHTML={{ __html: clean }} />
+        <div className="bg-white overflow-hidden rounded-x p-5 flex flex-col">
+          <div className="break-words" dangerouslySetInnerHTML={{ __html: clean }} />
           {/* <div className="text-sm font-semibold whitespace-pre-wrap">
           {blog?.title}
         </div>
         <div className="text-sm font-normal whitespace-pre-wrap">{desc}</div>
         <div className="text-sm font-normal whitespace-pre-wrap">{conc}</div> */}
+         <button className="mt-8 ml-auto" onClick={shareButton}>
+            <Image src={ShareIcon} alt="share icon" />
+          </button>
         </div>
       </div>
     );

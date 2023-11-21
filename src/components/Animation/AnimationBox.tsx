@@ -4,14 +4,14 @@ import { LottieOptions, useLottie } from "lottie-react";
 import Image from "next/image";
 import React, { useState } from "react";
 import animation from "../../../public/animation-white.json";
-import { Videography } from "../../types/videography";
-import { get_youtube_thumbnail } from "../../utils/getYoutubeThumbnail";
 import { FullScreenIcon } from "../../assets/360-view";
 import VideoFullScreen from "../../common/VideoFullScreen";
+import { Animation } from "../../types/animation";
+import { get_youtube_thumbnail } from "../../utils/getYoutubeThumbnail";
 
-const VideographyBox: React.FC<{
+const AnimationBox: React.FC<{
   className?: string;
-  data: Videography;
+  data: Animation;
   index?: number;
   admin?: boolean;
 }> = ({ className, index, data, admin = false }) => {
@@ -74,4 +74,4 @@ const VideographyBox: React.FC<{
   );
 };
 
-export default VideographyBox;
+export default AnimationBox;

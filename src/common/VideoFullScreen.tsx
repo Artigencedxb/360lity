@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import React from "react";
-import { FullScreenIcon, ReduceIcon } from "../../assets/360-view";
+import { FullScreenIcon, ReduceIcon } from "../assets/360-view";
 
 const VideoFullScreen: React.FC<{
   link: string;

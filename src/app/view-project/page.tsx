@@ -4,7 +4,7 @@ import Viewer360 from "@/common/Viewer360";
 import { Project } from "@/types/project";
 
 const View360Page = () => {
-  const { data } = useProjects();
+  const { data } = useProjects(undefined, undefined, "priority");
 
   const project = data?.data?.project;
   return (

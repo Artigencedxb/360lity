@@ -30,8 +30,7 @@ const BlogPage: React.FC<{ params: { blogId: string } }> = ({ params }) => {
   console.log(description, "clean");
 
   const shareData = {
-    title: "Projects",
-    text: "360lity projects!",
+    title: "Blog",
     url: `${window.location.origin}/blog/${params?.blogId}`,
   };
 

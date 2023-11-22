@@ -8,13 +8,7 @@ import { Videography } from "../../types/videography";
 import { get_youtube_thumbnail } from "../../utils/getYoutubeThumbnail";
 import { FullScreenIcon } from "../../assets/360-view";
 import { useRouter } from "next/navigation";
-
-function youtube_parser(url: string) {
-  var regExp =
-    /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
-  var match = url.match(regExp);
-  return match && match[7].length == 11 ? match[7] : false;
-}
+import { youtubeIdParser } from "../../utils/youtubeIdParser";
 
 const VideographyBox: React.FC<{
   className?: string;
@@ -30,7 +24,7 @@ const VideographyBox: React.FC<{
   };
   const { View } = useLottie(options);
 
-  const youtube_video_id = youtube_parser(data?.link);
+  const youtube_video_id = youtubeIdParser(data?.link);
   console.log(youtube_video_id, "id");
 
   const video_thumbnail = get_youtube_thumbnail(data?.link, "high");

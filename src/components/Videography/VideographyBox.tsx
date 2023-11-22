@@ -7,7 +7,14 @@ import animation from "../../../public/animation-white.json";
 import { Videography } from "../../types/videography";
 import { get_youtube_thumbnail } from "../../utils/getYoutubeThumbnail";
 import { FullScreenIcon } from "../../assets/360-view";
-import VideoFullScreen from "../../common/VideoFullScreen";
+import { useRouter } from "next/navigation";
+
+function youtube_parser(url: string) {
+  var regExp =
+    /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
+  var match = url.match(regExp);
+  return match && match[7].length == 11 ? match[7] : false;
+}
 
 const VideographyBox: React.FC<{
   className?: string;
@@ -15,14 +22,17 @@ const VideographyBox: React.FC<{
   index?: number;
   admin?: boolean;
 }> = ({ className, index, data, admin = false }) => {
-  const [fullScreen, setFullScreen] = useState(false);
+  const router = useRouter();
   const options: LottieOptions = {
     animationData: animation,
     loop: true,
     width: 100,
   };
   const { View } = useLottie(options);
-  //   var youtube_video_id = data?.link?.match(/youtube\.com.*(\?v=|\/embed\/)(.{11})/)!.pop();
+
+  const youtube_video_id = youtube_parser(data?.link);
+  console.log(youtube_video_id, "id");
+
   const video_thumbnail = get_youtube_thumbnail(data?.link, "high");
   //   let video_thumbnail = ""
   //   if (data?.link.length == 11) {
@@ -37,13 +47,6 @@ const VideographyBox: React.FC<{
           className
         )}
       >
-        {fullScreen && (
-          <VideoFullScreen
-            fullScreen={fullScreen}
-            setFullScreen={setFullScreen}
-            link={data?.link}
-          />
-        )}
         {video_thumbnail?.length ? (
           <div className="block transition-all duration-300 group-hover:bg-black/30">
             <Image
@@ -59,7 +62,7 @@ const VideographyBox: React.FC<{
         <div className="hidden group-hover:block absolute bottom-4 right-4">
           <button
             className="outline-none bg-black/50 rounded-full w-[30px] h-[30px] flex items-center justify-center"
-            onClick={() => setFullScreen((prev) => !prev)}
+            onClick={() => router.push(`/videography/${youtube_video_id}`)}
           >
             <Image
               width={12}

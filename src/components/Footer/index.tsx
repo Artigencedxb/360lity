@@ -83,7 +83,7 @@ const Footer = () => {
         <ul className="px-5 space-y-1.5 text-start lg:text-start">
           <h3 className="mb-3 font-semibold">Services</h3>
           <p className="text-sm hover:text-zinc-100">
-            <Link href="/arvr">360-XVT</Link>
+            <Link href="/xvt">360-XVT</Link>
           </p>
           <p className="text-sm hover:text-zinc-100">
             <Link href="/arvr">VR/AR</Link>

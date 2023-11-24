@@ -32,6 +32,8 @@ const ArVrSchema = z.object({
   title: z.string().min(1, "Please enter a title"),
   description: z.string().min(3, "Please enter a description"),
   image: z.string().optional(),
+  descImage1: z.string().optional(),
+  descImage2: z.string().optional(),
 });
 
 type ArVrSchemaType = z.infer<typeof ArVrSchema>;
@@ -84,7 +86,10 @@ const ArVrForm: React.FC<{ initialValues: ArVr }> = ({ initialValues }) => {
     }
   };
 
-  const imageHandler = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  const imageHandler = async (
+    e: React.ChangeEvent<HTMLInputElement>,
+    field: "image" | "descImage1" | "descImage2"
+  ) => {
     let formData = new FormData();
 
     const imageFile = e.target.files?.[0];
@@ -104,7 +109,7 @@ const ArVrForm: React.FC<{ initialValues: ArVr }> = ({ initialValues }) => {
         onSuccess: (res) => {
           console.log(res, "res");
           const imgUrl = res?.data?.secure_url;
-          setValue("image", imgUrl);
+          setValue(field, imgUrl);
         },
       });
     }
@@ -139,7 +144,7 @@ const ArVrForm: React.FC<{ initialValues: ArVr }> = ({ initialValues }) => {
         ) : watch("image")?.length ? (
           <ImagePreview
             src={watch("image") as string}
-            alt="project"
+            alt="xvt"
             deleteHandler={deleteHandler}
           />
         ) : (
@@ -152,7 +157,9 @@ const ArVrForm: React.FC<{ initialValues: ArVr }> = ({ initialValues }) => {
             </label>
             <input
               id={"image"}
-              onChange={imageHandler}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                imageHandler(e, "image")
+              }
               name="image"
               className="w-full hidden"
               type="file"
@@ -164,6 +171,80 @@ const ArVrForm: React.FC<{ initialValues: ArVr }> = ({ initialValues }) => {
             )}
             <div className="text-sm text-gray-400 mt-2 ml-7">
               (250px x 144px)
+            </div>
+          </div>
+        )}
+        {imageloader ? (
+          <div className="flex justify-center py-6 w-[45%]">
+            <Loader />
+          </div>
+        ) : watch("descImage1")?.length ? (
+          <ImagePreview
+            src={watch("descImage1") as string}
+            alt="xvt"
+            deleteHandler={deleteHandler}
+          />
+        ) : (
+          <div>
+            <label
+              className="bg-[#0060E4] flex items-center w-64 gap-2 cursor-pointer text-sm justify-center rounded-x text-white font-semibold px-5 py-3"
+              htmlFor="descImage1"
+            >
+              <ArrowUpTrayIcon className="w-5 h-5" /> Upload description image
+            </label>
+            <input
+              id={"descImage1"}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                imageHandler(e, "descImage1")
+              }
+              name="descImage1"
+              className="w-full hidden"
+              type="file"
+            />
+            {errors?.image && (
+              <p className="text-red-700 text-sm font-medium mt-3">
+                {errors?.descImage1?.message}
+              </p>
+            )}
+            <div className="text-sm text-gray-400 mt-2 ml-7">
+              (288px x 208px)
+            </div>
+          </div>
+        )}
+        {imageloader ? (
+          <div className="flex justify-center py-6 w-[45%]">
+            <Loader />
+          </div>
+        ) : watch("descImage2")?.length ? (
+          <ImagePreview
+            src={watch("descImage2") as string}
+            alt="xvt"
+            deleteHandler={deleteHandler}
+          />
+        ) : (
+          <div>
+            <label
+              className="bg-[#0060E4] flex items-center w-64 gap-2 cursor-pointer text-sm justify-center rounded-x text-white font-semibold px-5 py-3"
+              htmlFor="descImage2"
+            >
+              <ArrowUpTrayIcon className="w-5 h-5" /> Upload description image
+            </label>
+            <input
+              id={"descImage2"}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                imageHandler(e, "descImage2")
+              }
+              name="descImage2"
+              className="w-full hidden"
+              type="file"
+            />
+            {errors?.image && (
+              <p className="text-red-700 text-sm font-medium mt-3">
+                {errors?.descImage2?.message}
+              </p>
+            )}
+            <div className="text-sm text-gray-400 mt-2 ml-7">
+              (288px x 208px)
             </div>
           </div>
         )}

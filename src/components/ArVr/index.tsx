@@ -1,5 +1,5 @@
 "use client";
-import { Logo, LogoView, LogoWhite, ShareIcon } from '@/assets';
+import { Logo, LogoView, LogoWhite, ShareIcon } from "@/assets";
 import Header from "@/common/Header";
 import Triangle from "@/common/Triangle";
 import Image from "next/image";
@@ -18,28 +18,37 @@ const ArVr = () => {
 
   const description = htmlDecode(arvr?.description as string);
 
-  const clean = DOMPurify.sanitize(description as string);
+  const description1 = htmlDecode(
+    arvr?.description?.split("2nd paragraph")[0] as string
+  );
+  const description2 = htmlDecode(
+    arvr?.description?.split("2nd paragraph")[1] as string
+  );
 
-  
+  const clean1 = DOMPurify.sanitize(description1 as string);
+  const clean2 = DOMPurify.sanitize(description2 as string);
+
   const shareData = {
-    title: "Blog",
+    title: "VR/AR",
     url: `${window.location.origin}/arvr`,
   };
 
   const shareButton = async () => {
     try {
-      if(navigator.share) {
-      await navigator.share(shareData);
-    }
+      if (navigator.share) {
+        await navigator.share(shareData);
+      }
     } catch (error) {
       console.log(error);
     }
   };
 
+  console.log(clean2, description2, "desc");
+
   if (arvr) {
     return (
       <div className="py-[4.3rem] md:py-10 space-y-5">
-        <Header heading="VR/AR" />
+        <Header heading="XVT" />
 
         {!arvr?.image?.length ? (
           <div className="bg-black rounded-[10px] relative w-full py-20 flex items-center justify-center">
@@ -82,16 +91,72 @@ const ArVr = () => {
             </div>
           </>
         )}
-        <div className="bg-white overflow-hidden rounded-x p-5 flex flex-col">
-          <div className="break-words" dangerouslySetInnerHTML={{ __html: clean }} />
-          {/* <div className="text-sm font-semibold whitespace-pre-wrap">
-          {blog?.title}
-        </div>
-        <div className="text-sm font-normal whitespace-pre-wrap">{desc}</div>
-        <div className="text-sm font-normal whitespace-pre-wrap">{conc}</div> */}
-         <button className="mt-8 ml-auto" onClick={shareButton}>
-            <Image src={ShareIcon} alt="share icon" />
-          </button>
+
+        <div className="bg-white rounded-x py-8 px-14 flex flex-col space-y-14">
+          <div className="flex justify-between items-center gap-10 flex-col-reverse lg:flex-row">
+            <div className="lg:basis-[50%]">
+              <div
+                className="text-sm font-normal text-justify whitespace-pre-wrap"
+                dangerouslySetInnerHTML={{ __html: clean1 }}
+              ></div>
+              {/* {XVTData?.description?.map((el) => {
+              if (el?.id <= 5)
+                return (
+                  <div
+                    key={el?.id}
+                    className="text-sm font-normal text-justify whitespace-pre-wrap"
+                    dangerouslySetInnerHTML={{ __html: el?.desc }}
+                  />
+                );
+            })} */}
+            </div>
+            <div className="lg:basis-[50%] relative w-full lg:w-[288px] h-[400px]">
+              {arvr?.descImage1?.length ? (
+                <Image
+                  fill
+                  src={arvr?.descImage1}
+                  className="object-cover rounded-x"
+                  alt="VR/AR Image"
+                />
+              ) : (
+                ""
+              )}
+            </div>
+          </div>
+          <div className="flex lg:flex-row-reverse justify-between items-center gap-10 flex-col-reverse">
+            <div className="lg:basis-[50%]">
+              {description2 &&
+                description != undefined &&
+                description2?.length && (
+                  <div
+                    className="text-sm font-normal text-justify whitespace-pre-wrap"
+                    dangerouslySetInnerHTML={{ __html: clean2 }}
+                  ></div>
+                )}
+              {/* {XVTData?.description?.map((el) => {
+              if (el?.id > 5)
+                return (
+                  <div
+                    key={el?.id}
+                    className="text-sm font-normal text-justify whitespace-pre-wrap"
+                    dangerouslySetInnerHTML={{ __html: el?.desc }}
+                  />
+                );
+            })} */}
+            </div>
+            <div className="lg:basis-[50%] relative w-full lg:w-[288px] h-[400px]">
+              {arvr?.descImage2?.length ? (
+                <Image
+                  fill
+                  src={arvr?.descImage2}
+                  className="object-cover rounded-x"
+                  alt="VR/AR Image"
+                />
+              ) : (
+                ""
+              )}
+            </div>
+          </div>
         </div>
       </div>
     );

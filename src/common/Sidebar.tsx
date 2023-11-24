@@ -21,7 +21,7 @@ const Sidebar = () => {
     <aside className="fixed left-0 top-0 h-screen z-100 w-64 py-6 px-5 flex flex-col text-white bg-black/80">
       <nav className="flex flex-col justify-center items-center">
         <Image src={LogoTextWhite} className="mb-8" alt="" />
-        <ul className="w-full h-screen overflow-y-auto scrollbar-hide pb-10">
+        <ul className="w-full overflow-y-auto h-[67vh] scrollbar-hide pb-10">
           <Link href="/admin/showcase">
             <li
               className={cn(

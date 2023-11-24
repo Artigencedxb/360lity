@@ -2,6 +2,7 @@
 import Input from "@/UI/Input";
 import Loader from "@/UI/Loader";
 import { useLogin } from "@/api/auth/login-api";
+import { LogoNavigation, LogoText } from "@/assets";
 import { Logo } from "@/assets";
 import Header from "@/common/Header";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -33,17 +34,16 @@ const Login = () => {
   };
   return (
     <div className="bg-white rounded-[10px] p-10">
-      <div className="flex items-center mb-5">
-        <button
-          className="relative w-[25px] h-[25px] md:w-[37px] md:h-[37px]"
-          onClick={() => router.back()}
-        >
-          <Image fill src={Logo} alt="" />
-        </button>
-        <h1 className="text-center ml-6">Admin</h1>
+      <div className="flex items-center flex-col justify-center gap-3 mb-5">
+        <h1 className="text-2xl font-bold">Admin</h1>
+        <Image src={LogoText} width={100} alt="Logo" />
       </div>
 
-      <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
+      <form
+        className="space-y-4"
+        onSubmit={handleSubmit(onSubmit)}
+        autoComplete="off"
+      >
         <Input
           id={"email"}
           name="email"

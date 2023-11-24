@@ -1,6 +1,6 @@
 "use client";
 import { useGetXvt } from "@/api/xvt";
-import { LogoWhite } from "@/assets";
+import { LogoWhite, ShareIcon } from "@/assets";
 import { XvtImage1, XvtImage2 } from "@/assets/xvt";
 import Header from "@/common/Header";
 import Triangle from "@/common/Triangle";
@@ -80,7 +80,7 @@ const XVT = () => {
 
       <div className="bg-white rounded-x py-8 px-14 flex flex-col space-y-14">
         <div className="flex justify-between items-center gap-10 flex-col-reverse lg:flex-row">
-          <div className="basis-[50%]">
+          <div className="lg:basis-[50%]">
             <div
               className="text-sm font-normal text-justify whitespace-pre-wrap"
               dangerouslySetInnerHTML={{ __html: clean1 }}
@@ -96,16 +96,21 @@ const XVT = () => {
                 );
             })} */}
           </div>
-          <div className="basis-[50%] relative w-[288px] h-[400px]">
+          <div className="lg:basis-[50%] relative w-full lg:w-[288px] h-[400px]">
             {xvt?.descImage1?.length ? (
-              <Image fill src={xvt?.descImage1} className="object-cover" alt="Xvt Image" />
+              <Image
+                fill
+                src={xvt?.descImage1}
+                className="object-cover rounded-x"
+                alt="Xvt Image"
+              />
             ) : (
               ""
             )}
           </div>
         </div>
         <div className="flex lg:flex-row-reverse justify-between items-center gap-10 flex-col-reverse">
-          <div className="basis-[50%]">
+          <div className="lg:basis-[50%]">
             <div
               className="text-sm font-normal text-justify whitespace-pre-wrap"
               dangerouslySetInnerHTML={{ __html: clean2 }}
@@ -121,9 +126,14 @@ const XVT = () => {
                 );
             })} */}
           </div>
-          <div className="basis-[50%] relative w-[288px] h-[400px]">
-          {xvt?.descImage2?.length ? (
-              <Image fill src={xvt?.descImage2} className="object-cover" alt="Xvt Image" />
+          <div className="lg:basis-[50%] relative w-full lg:w-[288px] h-[400px]">
+            {xvt?.descImage2?.length ? (
+              <Image
+                fill
+                src={xvt?.descImage2}
+                className="object-cover rounded-x"
+                alt="Xvt Image"
+              />
             ) : (
               ""
             )}

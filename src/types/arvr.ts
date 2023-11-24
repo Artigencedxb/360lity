@@ -3,6 +3,8 @@ export interface PatchArVr {
   description: string;
   title: string;
   image?: string | null;
+  descImage1?: string | null;
+  descImage2?: string | null;
 }
 
 export interface IArVr {
@@ -27,5 +29,7 @@ export interface ArVr {
   description: string;
   title: string;
   image?: string;
+  descImage1?: string;
+  descImage2?: string;
   id: string;
 }

@@ -11,30 +11,37 @@ import Link from "next/link";
 import { Team } from "../../types/team";
 import Triangle from "../../common/Triangle";
 
-const TeamCard: React.FC<{ data: Team }> = ({ data }) => {
+const TeamCard: React.FC<{
+  data: Team;
+  setTeamData: React.Dispatch<React.SetStateAction<Team | null>>;
+}> = ({ data, setTeamData }) => {
   const [hover, setHover] = useState(0);
   return (
     <div className="relative">
-      <div className="group relative self-center w-full overflow-hidden h-[210px] bg-[#D9D9D9] rounded-x">
+      <div
+        onMouseEnter={() => setTeamData(data)}
+        onMouseLeave={() => setTeamData(null)}
+        className="group relative self-center w-full overflow-hidden h-[210px] bg-[#D9D9D9] rounded-x"
+      >
         <Triangle type="white" />
         {data?.image?.length ? (
           <Image
             src={data?.image}
             alt={data?.name}
-            className="object-cover duration-700 scale-105 group-hover:scale-100 transition-all rounded-x"
+            className="grayscale group-hover:grayscale-0 object-cover duration-700 scale-105 group-hover:scale-100 transition-all rounded-x"
             fill
           />
         ) : (
           ""
         )}
-        <div className="absolute bg-black/50 w-full h-full opacity-0 flex justify-center gap-8 items-center group-hover:opacity-100 z-10">
+        {/* <div className="absolute bg-black/50 w-full h-full opacity-0 flex justify-center gap-8 items-center group-hover:opacity-100 z-10">
           <div className="text-center text-white text-[29px] font-semibold">
             {data?.name}
           </div>
-        </div>
+        </div> */}
       </div>
 
-      <div className="bg-white flex flex-col px-6 py-8 rounded-b-[10px] overflow-hidden -mt-2">
+      <div className="bg-white lg:hidden flex flex-col px-6 py-8 rounded-b-[10px] overflow-hidden -mt-2">
         <div className="text-center space-y-5 h-[12rem] overflow-y-auto scroll">
           <h3 className="font-semibold text-xl">{data?.role}</h3>
 

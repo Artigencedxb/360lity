@@ -34,7 +34,7 @@ const TeamModule = () => {
       {teamData ? (
         <div
           className={cn(
-            "bg-white rounded-x relative w-full px-10 transition-all duration-1000 py-10 items-start justify-between",
+            "bg-white rounded-x relative w-full px-10 transition-all ease-in-out duration-1000 py-10 items-start justify-between",
             {
               "hidden lg:flex lg:h-[218px]": !!teamData,
               hidden: !teamData,
@@ -86,7 +86,11 @@ const TeamModule = () => {
           </div>
         </div>
       ) : (
-        <div className="bg-black rounded-x relative w-full py-20 flex items-center justify-center">
+        <div
+          className={cn(
+            "bg-black transition-all lg:h-[218px] ease-in-out duration-700 rounded-x relative w-full py-20 flex items-center justify-center"
+          )}
+        >
           <Image src={LogoWhite} alt="" />
           <Triangle />
         </div>

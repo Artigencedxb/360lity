@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import Header from "../../common/Header";
 import Image from "next/image";
-import { LogoWhite, TiktokIcon } from "../../assets";
+import { InstagramIcon, LogoWhite, TiktokIcon } from "../../assets";
 import Triangle from "../../common/Triangle";
 import TeamCard from "./TeamCard";
 import { useTeam } from "../../api/team";
@@ -13,6 +13,7 @@ import Link from "next/link";
 import {
   InstagramBlackIcon,
   LinkedinIcon,
+  TiktokBlackIcon,
   WhatsappIcon,
 } from "../../assets/social";
 import cn from "classnames";
@@ -33,9 +34,9 @@ const TeamModule = () => {
       {teamData ? (
         <div
           className={cn(
-            "bg-white rounded-x relative w-full px-10 py-10 items-start justify-between",
+            "bg-white rounded-x relative w-full px-10 transition-all duration-1000 py-10 items-start justify-between",
             {
-              "flex h-[218px] transition-all duration-1000": !!teamData,
+              "hidden lg:flex lg:h-[218px]": !!teamData,
               hidden: !teamData,
             }
           )}
@@ -43,10 +44,8 @@ const TeamModule = () => {
           <Triangle />
           <div className="w-[35%]">
             <h1 className="text-2xl font-bold">{teamData?.name}</h1>
-            <div className="text-2xl font-bold capitalize">
-              {teamData?.role}
-            </div>
-            <div className="text-lg break-words font-bold">
+            <div className="text-lg font-bold capitalize">{teamData?.role}</div>
+            <div className="text-md break-words font-medium">
               {teamData?.description}
             </div>
           </div>
@@ -78,7 +77,7 @@ const TeamModule = () => {
               )}
               {teamData?.tiktok?.length ? (
                 <Link target="_blank" href={teamData?.tiktok}>
-                  <Image src={TiktokIcon} alt="Tiktok icon" />
+                  <Image src={TiktokBlackIcon} alt="Tiktok icon" />
                 </Link>
               ) : (
                 ""

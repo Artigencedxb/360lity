@@ -3,9 +3,13 @@ import Image from "next/image";
 import React, { useState } from "react";
 import {
   InstagramBlackIcon,
+  InstagramWhiteIcon,
   LinkedinIcon,
+  LinkedinWhiteIcon,
+  TiktokBlackIcon,
+  TiktokWhiteIcon,
   WhatsappIcon,
-  TiktokIcon,
+  WhatsappWhiteIcon,
 } from "../../assets/social";
 import Link from "next/link";
 import { Team } from "../../types/team";
@@ -28,17 +32,60 @@ const TeamCard: React.FC<{
           <Image
             src={data?.image}
             alt={data?.name}
-            className="grayscale group-hover:grayscale-0 object-cover duration-700 scale-105 group-hover:scale-100 transition-all rounded-x"
+            className="grayscale-0 group-hover:grayscale object-cover duration-700 scale-105 group-hover:scale-100 transition-all rounded-x"
             fill
           />
         ) : (
           ""
         )}
-        {/* <div className="absolute bg-black/50 w-full h-full opacity-0 flex justify-center gap-8 items-center group-hover:opacity-100 z-10">
-          <div className="text-center text-white text-[29px] font-semibold">
-            {data?.name}
+        <div className="absolute bg-black/50 w-full h-full opacity-0 flex justify-center gap-8 items-center group-hover:opacity-100 z-10">
+          <div className="flex items-center justify-center gap-4">
+            {data?.whatsapp?.length ? (
+              <Link target="_blank" href={`https://wa.me/${data?.whatsapp}`}>
+                <Image
+                  className="hover:scale-105 transition-all duration-300"
+                  src={WhatsappWhiteIcon}
+                  alt="Whatsapp icon"
+                />
+              </Link>
+            ) : (
+              ""
+            )}
+            {data?.linkedin?.length ? (
+              <Link target="_blank" href={data?.linkedin}>
+                <Image
+                  className="hover:scale-105 transition-all duration-300"
+                  src={LinkedinWhiteIcon}
+                  alt="Linkedin icon"
+                />
+              </Link>
+            ) : (
+              ""
+            )}
+            {data?.instagram?.length ? (
+              <Link target="_blank" href={data?.instagram}>
+                <Image
+                  className="hover:scale-105 transition-all duration-300"
+                  src={InstagramWhiteIcon}
+                  alt="Instagram icon"
+                />
+              </Link>
+            ) : (
+              ""
+            )}
+            {data?.tiktok?.length ? (
+              <Link target="_blank" href={data?.tiktok}>
+                <Image
+                  className="hover:scale-105 transition-all duration-300"
+                  src={TiktokWhiteIcon}
+                  alt="Tiktok icon"
+                />
+              </Link>
+            ) : (
+              ""
+            )}
           </div>
-        </div> */}
+        </div>
       </div>
 
       <div className="bg-white lg:hidden flex flex-col px-6 py-8 rounded-b-[10px] overflow-hidden -mt-2">
@@ -73,7 +120,7 @@ const TeamCard: React.FC<{
           )}
           {data?.tiktok?.length ? (
             <Link target="_blank" href={data?.tiktok}>
-              <Image src={TiktokIcon} alt="Tiktok icon" />
+              <Image src={TiktokBlackIcon} alt="Tiktok icon" />
             </Link>
           ) : (
             ""

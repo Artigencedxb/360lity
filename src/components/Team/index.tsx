@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import Header from "../../common/Header";
 import Image from "next/image";
-import { InstagramIcon, LogoWhite, TiktokIcon } from "../../assets";
+import { InstagramIcon, LogoText, LogoWhite, TiktokIcon } from "../../assets";
 import Triangle from "../../common/Triangle";
 import TeamCard from "./TeamCard";
 import { useTeam } from "../../api/team";
@@ -17,6 +17,7 @@ import {
   WhatsappIcon,
 } from "../../assets/social";
 import cn from "classnames";
+import { LogoMain } from "@/assets";
 
 const TeamModule = () => {
   const [teamData, setTeamData] = useState<Team | null>(null);
@@ -49,39 +50,16 @@ const TeamModule = () => {
               {teamData?.description}
             </div>
           </div>
-          <div className="self-center">
-            <div className="flex items-center justify-center mt-auto gap-4">
-              {teamData?.whatsapp?.length ? (
-                <Link
-                  target="_blank"
-                  href={`https:wa.me/${teamData?.whatsapp}`}
-                >
-                  <Image src={WhatsappIcon} alt="Whatsapp icon" />
-                </Link>
-              ) : (
-                ""
-              )}
-              {teamData?.linkedin?.length ? (
-                <Link target="_blank" href={teamData?.linkedin}>
-                  <Image src={LinkedinIcon} alt="Linkedin icon" />
-                </Link>
-              ) : (
-                ""
-              )}
-              {teamData?.instagram?.length ? (
-                <Link target="_blank" href={teamData?.instagram}>
-                  <Image src={InstagramBlackIcon} alt="Instagram icon" />
-                </Link>
-              ) : (
-                ""
-              )}
-              {teamData?.tiktok?.length ? (
-                <Link target="_blank" href={teamData?.tiktok}>
-                  <Image src={TiktokBlackIcon} alt="Tiktok icon" />
-                </Link>
-              ) : (
-                ""
-              )}
+          <div
+            className={cn(
+              "transition-all duration-1000 self-center z-[1000] -translate-x-20",
+              {
+                "translate-x-0 transition-all duration-1000": !!teamData,
+              }
+            )}
+          >
+            <div className="relative w-[120px] h-[120px]">
+              <Image src={LogoText} fill alt="Logo" />
             </div>
           </div>
         </div>

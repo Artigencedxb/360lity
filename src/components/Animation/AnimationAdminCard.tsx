@@ -13,10 +13,13 @@ import PriorityModal from "../Modal/priorityModal";
 import { Videography } from "../../types/videography";
 import { useDeleteAnimation } from "../../api/animation";
 import { Animation } from "../../types/animation";
+import { get_youtube_thumbnail } from "../../utils/getYoutubeThumbnail";
 
 const AnimationAdminCard: React.FC<{ data: Videography }> = ({ data }) => {
   const [deleteModal, setDeleteModal] = useState(false);
   const [priorityModal, setPriorityModal] = useState(false);
+
+  const video_thumbnail = get_youtube_thumbnail(data?.link, "high");
 
   //delete api
   const { mutate, isPending } = useDeleteAnimation();
@@ -57,7 +60,18 @@ const AnimationAdminCard: React.FC<{ data: Videography }> = ({ data }) => {
         )}
       >
         <Triangle />
-
+        {video_thumbnail?.length ? (
+          <div className="block transition-all duration-300 group-hover:bg-black/30">
+            <Image
+              src={video_thumbnail}
+              fill
+              className="rounded-x object-cover transition group-hover:bg-black/30 duration-1000 scale-110 group-hover:scale-100"
+              alt="Videography"
+            />
+          </div>
+        ) : (
+          ""
+        )}
         {
           <div
             className={cn(

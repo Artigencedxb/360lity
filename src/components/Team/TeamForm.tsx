@@ -28,7 +28,10 @@ const TeamSchema = z.object({
   linkedin: z.string().optional(),
   tiktok: z.string().optional(),
   priority: z.coerce.number().gte(1, "Please enter a priority").optional(),
-  description: z.string().min(3, "Please enter a description"),
+  description: z
+    .string()
+    .min(100, "Please enter a minimum of 100 characters.")
+    .max(250, "Maximum 250 characters is allowed."),
 });
 
 type TeamSchemaType = z.infer<typeof TeamSchema>;

@@ -24,6 +24,7 @@ const AnimationBox: React.FC<{
     width: 100,
   };
   const { View } = useLottie(options);
+
   const youtube_video_id = youtubeIdParser(data?.link);
   console.log(youtube_video_id, "id");
   const video_thumbnail = get_youtube_thumbnail(data?.link, "high");

@@ -47,7 +47,7 @@ const Aboutus = () => {
           <>
             <div className="hidden rounded-[10px] w-full relative md:flex flex-col md:flex-row items-center justify-center">
               <Triangle />
-              <div className="fade-effect md:absolute w-full z-[1000] top-0 left-0 md:w-[90%] lg:w-[95%] h-full self-stretch md:flex items-center py-10 rounded-tl-[10px] rounded-bl-[10px]">
+              <div className="fade-effect md:absolute w-full z-[1000] top-0 left-0 md:w-[100%] lg:w-[100%] h-full self-stretch md:flex items-center py-10 rounded-x">
                 <h1 className="text-3xl md:text-5px text-white pl-12 w-[70%]">
                   {about?.title ?? ""}
                 </h1>
@@ -79,7 +79,7 @@ const Aboutus = () => {
             </div>
           </>
         )}
-        <div className="bg-white rounded-x p-5">
+        <div className="bg-white rounded-x px-12 py-8">
           <div dangerouslySetInnerHTML={{ __html: clean }} />
           {/* <div className="text-sm font-semibold whitespace-pre-wrap">
           {blog?.title}

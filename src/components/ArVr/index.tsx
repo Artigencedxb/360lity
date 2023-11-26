@@ -59,7 +59,7 @@ const ArVr = () => {
           <>
             <div className="hidden rounded-[10px] w-full relative md:flex flex-col md:flex-row items-center justify-center">
               <Triangle />
-              <div className="fade-effect md:absolute w-full z-[1000] top-0 left-0 md:w-[90%] lg:w-[95%] h-full self-stretch md:flex items-center py-10 rounded-tl-[10px] rounded-bl-[10px]">
+              <div className="fade-effect md:absolute w-full z-[1000] top-0 left-0 md:w-[100%] lg:w-[100%] h-full self-stretch md:flex items-center py-10 rounded-x">
                 <h1 className="text-3xl md:text-5px text-white pl-12 w-[70%]">
                   {arvr?.title ?? ""}
                 </h1>
@@ -92,7 +92,7 @@ const ArVr = () => {
           </>
         )}
 
-        <div className="bg-white rounded-x py-8 px-14 flex flex-col space-y-14">
+        <div className="bg-white rounded-x py-8 px-12 flex flex-col space-y-14">
           <div className="flex justify-between items-center gap-10 flex-col-reverse lg:flex-row">
             <div className="lg:basis-[50%]">
               <div

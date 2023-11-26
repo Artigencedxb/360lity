@@ -29,6 +29,8 @@ const TeamModule = () => {
     loop: true,
   };
   const { View } = useLottie(options);
+  console.log(teamData?.description?.length, "length");
+
   return (
     <div className="py-[4.3rem] md:py-10 space-y-5">
       <Header heading="Team" />
@@ -37,13 +39,20 @@ const TeamModule = () => {
           className={cn(
             "bg-white rounded-x relative w-full px-10 transition-all ease-in-out duration-1000 py-10 items-start justify-between",
             {
-              "hidden lg:flex lg:h-[218px]": !!teamData,
+              "hidden lg:flex lg:h-[230px] xl:h-[218px]": !!teamData,
               hidden: !teamData,
             }
           )}
         >
           <Triangle />
-          <div className="w-[35%]">
+          <div
+            className={cn(
+              "w-[50%] transition-all duration-1000 self-center z-[1000] translate-x-30",
+              {
+                "translate-x-0 transition-all duration-1000": !!teamData,
+              }
+            )}
+          >
             <h1 className="text-2xl font-bold">{teamData?.name}</h1>
             <div className="text-lg font-bold capitalize">{teamData?.role}</div>
             <div className="text-md break-words font-medium">
@@ -52,7 +61,7 @@ const TeamModule = () => {
           </div>
           <div
             className={cn(
-              "transition-all duration-1000 self-center z-[1000] -translate-x-20",
+              "transition-all duration-1000 self-center z-[1000] translate-x-30",
               {
                 "translate-x-0 transition-all duration-1000": !!teamData,
               }
@@ -66,7 +75,7 @@ const TeamModule = () => {
       ) : (
         <div
           className={cn(
-            "bg-black transition-all lg:h-[218px] ease-in-out duration-700 rounded-x relative w-full py-20 flex items-center justify-center"
+            "bg-black hidden transition-all lg:h-[230px] xl:h-[218px] ease-in-out duration-700 rounded-x relative w-full py-20 lg:flex items-center justify-center"
           )}
         >
           <Image src={LogoWhite} alt="" />

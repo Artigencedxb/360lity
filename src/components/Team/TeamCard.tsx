@@ -27,7 +27,12 @@ const TeamCard: React.FC<{
         onMouseLeave={() => setTeamData(null)}
         className="group relative self-center w-full overflow-hidden h-[210px] bg-[#D9D9D9] rounded-x"
       >
-        <Triangle type="white" />
+        <div className="lg:hidden">
+          <Triangle type="white" />
+        </div>
+        <div className="hidden lg:block">
+          <Triangle />
+        </div>
         {data?.image?.length ? (
           <Image
             src={data?.image}
@@ -89,12 +94,12 @@ const TeamCard: React.FC<{
       </div>
 
       <div className="bg-white lg:hidden flex flex-col px-6 py-8 rounded-b-[10px] overflow-hidden -mt-2">
-        <div className="text-center space-y-5 h-[12rem] overflow-y-auto scroll">
-          <h3 className="font-semibold text-xl">{data?.role}</h3>
-
-          <p className="break-words text-base font-semibold">
+        <div className="text-center space-y-1 h-[16rem] md:h-[16rem] overflow-y-auto scroll">
+          <h1 className="text-2xl font-bold">{data?.name}</h1>
+          <div className="text-lg font-bold capitalize">{data?.role}</div>
+          <div className="text-md break-words font-medium">
             {data?.description}
-          </p>
+          </div>
         </div>
         <div className="flex items-center justify-center mt-auto gap-4">
           {data?.whatsapp?.length ? (

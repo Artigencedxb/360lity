@@ -10,6 +10,7 @@ import { useLottie } from "lottie-react";
 import Image from "next/image";
 import React from "react";
 import animation from "../../../public/animation.json";
+import Fallback from "../../common/Fallback";
 
 function htmlDecode(content: string) {
   let e = document.createElement("div");
@@ -35,6 +36,10 @@ const XVT = () => {
     loop: true,
   };
   const { View } = useLottie(options);
+
+  if (isPending) {
+    return <Fallback heading="XVT" />;
+  }
 
   return (
     <div className="py-[4.3rem] md:py-10 space-y-5">

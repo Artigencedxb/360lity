@@ -6,6 +6,8 @@ import { AboutusData } from "@/data/Aboutus";
 import Image from "next/image";
 import { useGetAbout } from "../../api/about";
 import * as DOMPurify from "dompurify";
+import animation from "../../../public/animation.json";
+import { useLottie } from "lottie-react";
 
 function htmlDecode(content: string) {
   let e = document.createElement("div");
@@ -31,13 +33,17 @@ const Aboutus = () => {
 
   const clean = DOMPurify.sanitize(description as string);
 
-  console.log(clean, "clean");
+  const options = {
+    animationData: animation,
+    loop: true,
+  };
+  const { View } = useLottie(options);
 
   if (about) {
     return (
       <div className="py-[4.3rem] md:py-10 space-y-5">
         <Header heading="About us" />
-
+        {isPending && <div>{View}</div>}
         {!about?.image?.length ? (
           <div className="bg-black rounded-[10px] relative w-full py-20 flex items-center justify-center">
             <Image src={LogoWhite} alt="" />

@@ -5,6 +5,9 @@ import Triangle from "@/common/Triangle";
 import Image from "next/image";
 import * as DOMPurify from "dompurify";
 import { useGetArVr } from "@/api/arvr";
+import animation from "../../../public/animation.json";
+import { useLottie } from "lottie-react";
+
 function htmlDecode(content: string) {
   let e = document.createElement("div");
   e.innerHTML = content;
@@ -37,13 +40,17 @@ const ArVr = () => {
     }
   };
 
-  console.log(clean2, description2, "desc");
+  const options = {
+    animationData: animation,
+    loop: true,
+  };
+  const { View } = useLottie(options);
 
   if (arvr) {
     return (
       <div className="py-[4.3rem] md:py-10 space-y-5">
         <Header heading="XVT" />
-
+        {isPending && <div>{View}</div>}
         {!arvr?.image?.length ? (
           <div className="bg-black rounded-[10px] relative w-full py-20 flex items-center justify-center">
             <Image src={LogoWhite} alt="" />

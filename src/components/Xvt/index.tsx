@@ -6,8 +6,10 @@ import Header from "@/common/Header";
 import Triangle from "@/common/Triangle";
 import { XVTData } from "@/data/xvt";
 import * as DOMPurify from "dompurify";
+import { useLottie } from "lottie-react";
 import Image from "next/image";
 import React from "react";
+import animation from "../../../public/animation.json";
 
 function htmlDecode(content: string) {
   let e = document.createElement("div");
@@ -28,10 +30,16 @@ const XVT = () => {
 
   console.log(clean1, "clean");
 
+  const options = {
+    animationData: animation,
+    loop: true,
+  };
+  const { View } = useLottie(options);
+
   return (
     <div className="py-[4.3rem] md:py-10 space-y-5">
       <Header heading="XVT" />
-
+      {isPending && <div>{View}</div>}
       {!xvt?.image?.length ? (
         <div className="bg-black rounded-[10px] relative w-full py-20 flex items-center justify-center">
           <Image src={LogoWhite} alt="" />

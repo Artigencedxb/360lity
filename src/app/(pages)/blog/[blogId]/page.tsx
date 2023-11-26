@@ -7,6 +7,8 @@ import Image from "next/image";
 import React from "react";
 import { ShareIcon } from "../../../../assets";
 import { useParams } from "next/navigation";
+import animation from "../../../../../public/animation.json";
+import { useLottie } from "lottie-react";
 
 // export const metadata: Metadata = {
 //   title: "Blog",
@@ -19,7 +21,7 @@ function htmlDecode(content: string) {
 }
 
 const BlogPage: React.FC<{ params: { blogId: string } }> = ({ params }) => {
-  const { data } = useGetBlog(params?.blogId);
+  const { data, isPending } = useGetBlog(params?.blogId);
   // const blog: IBlog = BlogData?.find((el) => el?.id === Number(params?.blogId));
   const blog = data?.data?.blog;
 
@@ -43,11 +45,18 @@ const BlogPage: React.FC<{ params: { blogId: string } }> = ({ params }) => {
       console.log(error);
     }
   };
+
+  const options = {
+    animationData: animation,
+    loop: true,
+  };
+  const { View } = useLottie(options);
+
   if (blog) {
     return (
       <div className="py-[4.8rem] md:py-10 space-y-5">
         <Header heading="Blog" />
-
+        {isPending && <div>{View}</div>}
         <div className="hidden rounded-[10px] w-full relative md:flex flex-col md:flex-row items-center justify-center">
           <Triangle />
           <div className="fade-effect md:absolute w-full z-[1000] top-0 left-0 md:w-[100%] lg:w-[100%] h-full self-stretch md:flex items-center py-10 rounded-x">

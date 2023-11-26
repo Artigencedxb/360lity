@@ -9,7 +9,8 @@ export interface PatchXvt {
   image?: string | null;
   descImage1?: string | null;
   descImage2?: string | null;
-  description: string;
+  description1: string;
+  description2: string;
 }
 
 export interface IXvt {
@@ -35,6 +36,7 @@ export interface Xvt {
   image?: string;
   descImage1?: string;
   descImage2?: string;
-  description: string;
+  description1: string;
+  description2: string;
   id: string;
 }

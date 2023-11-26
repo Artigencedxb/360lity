@@ -1,6 +1,7 @@
 export interface PatchArVr {
   id?: string;
-  description: string;
+  description1: string;
+  description2: string;
   title: string;
   image?: string | null;
   descImage1?: string | null;
@@ -26,7 +27,8 @@ interface Data {
 export interface ArVr {
   _id: string;
   createdAt: string;
-  description: string;
+  description1: string;
+  description2: string;
   title: string;
   image?: string;
   descImage1?: string;

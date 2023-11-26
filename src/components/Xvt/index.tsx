@@ -20,12 +20,8 @@ const XVT = () => {
 
   const xvt = data?.data?.xvt;
 
-  const description1 = htmlDecode(
-    xvt?.description?.split("2nd paragraph")[0] as string
-  );
-  const description2 = htmlDecode(
-    xvt?.description?.split("2nd paragraph")[1] as string
-  );
+  const description1 = htmlDecode(xvt?.description1 as string);
+  const description2 = htmlDecode(xvt?.description2 as string);
 
   const clean1 = DOMPurify.sanitize(description1 as string);
   const clean2 = DOMPurify.sanitize(description2 as string);

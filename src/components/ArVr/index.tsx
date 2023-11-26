@@ -16,14 +16,8 @@ const ArVr = () => {
 
   const arvr = data?.data?.arvr;
 
-  const description = htmlDecode(arvr?.description as string);
-
-  const description1 = htmlDecode(
-    arvr?.description?.split("2nd paragraph")[0] as string
-  );
-  const description2 = htmlDecode(
-    arvr?.description?.split("2nd paragraph")[1] as string
-  );
+  const description1 = htmlDecode(arvr?.description1 as string);
+  const description2 = htmlDecode(arvr?.description2 as string);
 
   const clean1 = DOMPurify.sanitize(description1 as string);
   const clean2 = DOMPurify.sanitize(description2 as string);
@@ -126,7 +120,7 @@ const ArVr = () => {
           <div className="flex lg:flex-row-reverse justify-between items-center gap-10 flex-col-reverse">
             <div className="lg:basis-[50%]">
               {description2 &&
-                description != undefined &&
+                description2 != undefined &&
                 description2?.length && (
                   <div
                     className="text-sm font-normal text-justify whitespace-pre-wrap"

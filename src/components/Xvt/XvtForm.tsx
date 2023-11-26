@@ -33,7 +33,14 @@ const XvtSchema = z.object({
   image: z.string().optional(),
   descImage1: z.string().optional(),
   descImage2: z.string().optional(),
-  description: z.string().min(3, "Please enter a description"),
+  description1: z
+    .string()
+    .min(3, "Please enter first paragraph description.")
+    .min(50, "Please enter atleast 50 characters"),
+  description2: z
+    .string()
+    .min(3, "Please enter second paragraph description.")
+    .min(50, "Please enter atleast 50 characters"),
 });
 
 type XvtSchemaType = z.infer<typeof XvtSchema>;
@@ -46,8 +53,10 @@ function htmlDecode(content: string) {
 
 const XvtForm: React.FC<{ initialValues: Xvt }> = ({ initialValues }) => {
   const router = useRouter();
-  const decodeValue = htmlDecode(initialValues?.description as string);
-  const text = convert(decodeValue as string);
+  const decodeValue1 = htmlDecode(initialValues?.description1 as string);
+  const decodeValue2 = htmlDecode(initialValues?.description2 as string);
+  const text1 = convert(decodeValue1 as string);
+  const text2 = convert(decodeValue2 as string);
 
   const { mutate: edit, isPending: editLoader } = useEditXvt();
   const { mutate: upload, isPending: uploadLoader } = useUpload();
@@ -66,7 +75,11 @@ const XvtForm: React.FC<{ initialValues: Xvt }> = ({ initialValues }) => {
   } = useForm<XvtSchemaType>({
     resolver: zodResolver(XvtSchema),
     mode: "onChange",
-    defaultValues: { ...initialValues, description: text },
+    defaultValues: {
+      ...initialValues,
+      description1: text1 || "",
+      description2: text2 || "",
+    },
   });
 
   const onSubmit: SubmitHandler<XvtSchemaType> = (data) => {
@@ -260,14 +273,29 @@ const XvtForm: React.FC<{ initialValues: Xvt }> = ({ initialValues }) => {
         />
         <Controller
           control={control}
-          name="description"
+          name="description1"
           render={({ field: { onChange, value, name } }) => {
             return (
               <QuillNoSSRWrapper
                 className="bg-white rounded-x min-h-[250px]"
                 theme="snow"
                 value={value}
-                defaultValue={initialValues?.description}
+                defaultValue={initialValues?.description1}
+                onChange={onChange}
+              ></QuillNoSSRWrapper>
+            );
+          }}
+        />
+        <Controller
+          control={control}
+          name="description2"
+          render={({ field: { onChange, value, name } }) => {
+            return (
+              <QuillNoSSRWrapper
+                className="bg-white rounded-x min-h-[250px]"
+                theme="snow"
+                value={value}
+                defaultValue={initialValues?.description2}
                 onChange={onChange}
               ></QuillNoSSRWrapper>
             );

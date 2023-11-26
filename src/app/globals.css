@@ -129,6 +129,10 @@ body {
   );
 }
 
+.h-svh {
+  height: 100svh;
+}
+
 .overlay::after {
   content: "";
   position: absolute;

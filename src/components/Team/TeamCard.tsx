@@ -37,13 +37,13 @@ const TeamCard: React.FC<{
           <Image
             src={data?.image}
             alt={data?.name}
-            className="grayscale-0 group-hover:grayscale object-cover duration-700 scale-105 group-hover:scale-100 transition-all rounded-x"
+            className="lg:grayscale-0 lg:group-hover:grayscale object-cover duration-700 scale-105 group-hover:scale-100 transition-all rounded-x"
             fill
           />
         ) : (
           ""
         )}
-        <div className="absolute bg-black/50 w-full h-full opacity-0 flex justify-center gap-8 items-center group-hover:opacity-100 z-10">
+        <div className="hidden absolute bg-black/50 w-full h-full opacity-0 lg:flex justify-center gap-8 items-center group-hover:opacity-100 z-10">
           <div className="flex items-center justify-center gap-4">
             {data?.whatsapp?.length ? (
               <Link target="_blank" href={`https://wa.me/${data?.whatsapp}`}>

@@ -18,6 +18,7 @@ import {
 } from "../../assets/social";
 import cn from "classnames";
 import { LogoMain } from "@/assets";
+import Fallback from "../../common/Fallback";
 
 const TeamModule = () => {
   const [teamData, setTeamData] = useState<Team | null>(null);
@@ -30,6 +31,10 @@ const TeamModule = () => {
   };
   const { View } = useLottie(options);
   console.log(teamData?.description?.length, "length");
+
+  if (isPending) {
+    return <Fallback heading="Team" />;
+  }
 
   return (
     <div className="py-[4.3rem] md:py-10 space-y-5">
@@ -82,7 +87,7 @@ const TeamModule = () => {
           <Triangle />
         </div>
       )}
-      {isPending && <div>{View}</div>}
+      {/* {isPending && <div>{View}</div>} */}
       {!team?.length && !isPending && (
         <div className="py-16 text-center text-2xl font-medium">No teams.</div>
       )}

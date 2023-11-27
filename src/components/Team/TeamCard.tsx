@@ -94,7 +94,7 @@ const TeamCard: React.FC<{
       </div>
 
       <div className="bg-white lg:hidden flex flex-col px-6 py-8 rounded-b-[10px] overflow-hidden -mt-2">
-        <div className="text-center space-y-1 h-[16rem] md:h-[16rem] overflow-y-auto scroll">
+        <div className="text-center space-y-1 h-[19rem] sm:h-[16rem] md:h-[16rem] overflow-y-auto scroll">
           <h1 className="text-2xl font-bold">{data?.name}</h1>
           <div className="text-lg font-bold capitalize">{data?.role}</div>
           <div className="text-md break-words font-medium">

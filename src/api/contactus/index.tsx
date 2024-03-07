@@ -1,12 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { axiosInstance } from "../../../axios.config";
 import { routes } from "../routes";
-import {
-
-  ISingleContact,
-  PatchContact,
-
-} from "@/types/contact";
+import { ISingleContact, PatchContact } from "@/types/contact";
 
 const editContact = async (val: PatchContact) => {
   let editData = { ...val };
@@ -18,10 +13,10 @@ const editContact = async (val: PatchContact) => {
   return data;
 };
 
-
-
 const singleContact = async (): Promise<ISingleContact> => {
-  const { data } = await axiosInstance?.get(`${routes.contact}/654f18a002755f116421be89`);
+  const { data } = await axiosInstance?.get(
+    `${routes.contact}/${process.env.NEXT_PUBLIC_CONTACT_API_ID}`
+  );
   return data;
 };
 

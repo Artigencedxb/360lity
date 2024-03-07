@@ -15,7 +15,7 @@ const editArVr = async (val: PatchArVr) => {
 
 const singleArVr = async (): Promise<ISingleArVr> => {
   const { data } = await axiosInstance?.get(
-    `${routes.arvr}/655a0abc8ac629dc263eca3d`
+    `${routes.arvr}/${process.env.NEXT_PUBLIC_ARVR_API_ID}`
   );
   return data;
 };

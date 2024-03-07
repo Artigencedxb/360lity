@@ -14,7 +14,7 @@ const editXvt = async (val: PatchXvt) => {
 };
 
 const singleXvt = async (): Promise<ISingleXvt> => {
-  const { data } = await axiosInstance?.get(`${routes.xvt}/6558477b6cac10cf19e8fef7`);
+  const { data } = await axiosInstance?.get(`${routes.xvt}/${process.env.NEXT_PUBLIC_XVT_API_ID}`);
   return data;
 };
 

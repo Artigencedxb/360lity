@@ -15,7 +15,7 @@ const editAbout = async (val: PatchAbout) => {
 
 const singleAbout = async (): Promise<ISingleAbout> => {
   const { data } = await axiosInstance?.get(
-    `${routes.about}/654f2ea00e83f8bf275d74e4`
+    `${routes.about}/${process.env.NEXT_PUBLIC_ABOUTUS_API_ID}`
   );
   return data;
 };

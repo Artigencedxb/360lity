@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <div className="h-svh">
       <iframe
-        src="https://360lity.com/projects/web/"
+        src="https://artigence.ae/360/Web%20Gallaxy/index.html"
         name="360lity"
         width="100%"
         height="100%"

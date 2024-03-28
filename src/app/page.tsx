@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <div className="h-svh">
       <iframe
-        src="https://artigence.ae/360/Web%20Gallaxy/index.html"
+        src="https://evercard.live/Web%20Gallaxy/"
         name="360lity"
         width="100%"
         height="100%"
